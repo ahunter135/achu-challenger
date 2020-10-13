@@ -1,27 +1,144 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.home-bar {
+  width: 85%;
+  margin: auto;
+  margin-top: 15px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.nav-bar-container {
+  --background: #FFFFFF;
+  z-index: 99;
 }
 
-#container p {
+.nav-bar-container ion-segment-button {
+  --background: #FFFFFF;
+  --border-color: #FFFFFF;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --color-checked: var(--ion-color-primary);
+  --color: #000000;
+}
+
+.nav-bar-container ion-icon {
   font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+  color: var(--ion-color-primary);
 }
 
-#container a {
-  text-decoration: none;
+.goal-card {
+  width: 100%;
+  margin: 0;
+  background-color: inherit;
+  box-shadow: none;
+}
+
+ion-card-content {
+  margin: 0;
+  width: 100%;
+}
+
+.goal-card ion-grid {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.inner-rows {
+  margin: 0;
+  padding: 0;
+}
+
+.overall-goal-card {
+  --background: linear-gradient(90deg, rgba(155,190,250,1) 29%, rgba(123,237,212,1) 100%);
+  padding: 0 !important;
+  height: 100%;
+}
+
+.fab-btn {
+  position: absolute;
+  bottom: 13%;
+}
+
+.fab-btn ion-fab-button {
+  --background-activated: #000000 !important;
+  --background-hover: #000000 !important;
+}
+
+ion-text {
+  color: black;
+}
+
+ion-progress-bar {
+  height: 8px;
+  border-radius: 25px;
+}
+
+ion-card-item ion-item {
+  --padding-end: 0;
+  --padding-left: 0;
+}
+
+.flex-container {
+  display:flex; 
+  flex-wrap:wrap; 
+  flex-direction: row;
+  width: 100%;
+}
+
+.flex-container .bars-container {
+  display:flex; 
+  flex-wrap:wrap; 
+  flex-direction: column;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 55%;
+  float: left;
+}
+.flex-container .bars-container .bar{
+  width: 100%;
+}
+
+.flex-container .character-container {
+  display: flex; 
+  flex-wrap: nowrap; 
+  flex-direction: column;
+  //align-content: space-evenly;
+  justify-content: space-evenly;
+  width: 45%;
+  float: right;
+}
+
+.stress-health-updates {
+  --bar-height: 8px;
+  --knob-size: 12px;
+  --knob-background: black;
+  --bar-background: linear-gradient(90deg, rgb(111, 235, 158) 29%, rgba(123,237,212,1) 55%, rgba(75, 68, 180,1) 100%);
+  --bar-background-active: transparent;
+  position: inherit !important;
+  padding: 0 !important;
+}
+
+.fatigue-health-updates {
+  --bar-height: 8px;
+  --knob-size: 12px;
+  --knob-background: black;
+  --bar-background: linear-gradient(90deg, rgb(111, 235, 158) 29%, rgba(123,237,212,1) 55%, rgba(75, 68, 180,1) 100%);
+  --bar-background-active: transparent;
+  position: inherit !important;
+  padding: 0 !important;
+}
+
+.item-text {
+  --background: #F3f3f3 !important;
+}
+
+.good {
+  color: rgb(111, 235, 158);
+}
+
+.moderate {
+  color: rgba(123,237,212,1);
+}
+
+.risk {
+  color: rgba(75, 68, 180,1)
 }

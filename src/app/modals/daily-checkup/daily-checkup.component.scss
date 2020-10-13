@@ -1,0 +1,19 @@
+#createBtn {
+    --padding-top: 25px;
+    --padding-bottom: 25px;
+    --box-shadow: none;
+    --border-radius: 8px;
+    text-transform: none;
+}
+
+#footerBar {
+    --min-height: 65px;
+}
+
+::ng-deep {
+    .slider {
+        .ng5-slider {
+            :focus {outline:0 !important;}
+        }
+    }
+}

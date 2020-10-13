@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../fitbit/random"
+		},
+		{
+			"path": "../achu-apps/atwork"
+		},
+		{
+			"path": "../KiezelPay-New"
+		},
+		{
+			"path": "../../kpay-web"
+		},
+		{
+			"path": "../achu-apps/consumer-app"
+		}
+	],
+	"settings": {}
+}

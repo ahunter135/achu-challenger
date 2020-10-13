@@ -1,0 +1,45 @@
+<ion-toolbar mode="md">
+  <ion-title slot="start" style="font-size: 25px">Daily Check-In</ion-title>
+  <ion-buttons slot="end">
+    <ion-button fill="clear" color="primary" (click)="dismiss()">Close</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-align-items-center" style="position: fixed; top: 55px; left: -10px; right: 0;">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col size="8">
+        <ion-text style="font-size: medium; float: left;">Question {{step + 1}}</ion-text>
+      </ion-col>
+      <ion-col size="3"></ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center" style="position: fixed; top: 75px; left: -10px; right: 0;">
+      <ion-col size="1">
+      </ion-col>
+      <ion-col size="8">
+        <ion-text style="font-size: x-large; font-weight: bold; float: left;">
+          <span *ngIf="step == 0">How tired do you feel today?</span>
+          <span *ngIf="step == 1">How stressed are you today?</span>
+          <span *ngIf="step == 2">How anxious are you today?</span>
+        </ion-text>
+      </ion-col>
+      <ion-col size="3"></ion-col>
+    </ion-row>
+    <ion-row style="position: absolute; left: 30%; height: 60%; top: 28%">
+      <ion-col class="slider">
+        <ng5-slider [(value)]="value" color="primary" [options]="options" [manualRefresh]="manualRefresh"></ng5-slider>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-no-border" style="height: 125px;">
+  <ion-toolbar id="footerBar">
+    <ion-button id="createBtn" color="primary" expand="block" (click)="incStep()" mode="ios" *ngIf="step != 2">
+      Next Question
+    </ion-button>
+    <ion-button id="createBtn" color="primary" expand="block" (click)="submit()" mode="ios" *ngIf="step == 2">
+      Submit
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,15 @@
+<ion-header [translucent]="true" style="background-color: white;">
+  <ion-toolbar class="header-card">
+    <ion-buttons slot="start" size="small">
+      <ion-button size="small">
+        <ion-avatar class="ion-margin-start" style="width: 30px; height: 30px;">
+          <img src="../../assets/images/avatar.svg">
+        </ion-avatar>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-toolbar class="header-card name-card" style="padding-bottom: 10px;">
+  <p class="header-text-s">{{today | date:'EEEE, LLLL	d'}}</p>
+  <p class="header-text-m">Welcome Back {{http.user.firstName}}</p>
+</ion-toolbar>

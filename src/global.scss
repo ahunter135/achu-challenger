@@ -24,3 +24,20 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+ion-content {
+    --background: #F3f3f3;
+}
+
+ion-card-subtitle {
+    text-decoration: none !important;
+    text-transform: none!important;
+}
+
+.my-custom-modal-css .modal-wrapper {
+    height: 100%;
+    top: 8%;
+    position: absolute; 
+    display: block;  
+    --border-radius: 8px;
+ }

@@ -1,0 +1,27 @@
+ion-header ion-toolbar {
+    --box-shadow: none !important;
+    background-image: none;
+    --border-color: #ffffff;
+    --background: #ffffff
+}
+
+#createBtn {
+    --padding-top: 30px;
+    --padding-bottom: 30px;
+    --padding-start: 40px;
+    --padding-end: 40px;
+    --box-shadow: none;
+    --border-radius: 8px;
+    text-transform: none;
+    --background-activated: #000000 !important;
+    --background-hover: #000000 !important;
+}
+
+ion-input {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+ion-content {
+    --background: #FFFFFF;
+}
