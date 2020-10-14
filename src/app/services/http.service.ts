@@ -17,6 +17,7 @@ export class HttpService {
   currentLat = 43.996541;
   currentLng = -78.185234;
   userDefaults = <any>{};
+  userSettings = <any>{};
 
   constructor(public http: HttpClient, private storage: StorageService, public router: Router) { }
 
