@@ -186,3 +186,12 @@ ion-card-item ion-item {
 .top-card {
   margin-bottom:0px;
 }
+
+.ion-color-privacy {
+
+  --ion-color-base: var(--ion-color-privacy);
+}
+
+.ion-color-privacybg {
+   --ion-color-base: var(--ion-color-privacybg);
+}
