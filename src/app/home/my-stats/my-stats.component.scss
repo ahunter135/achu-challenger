@@ -1,8 +1,38 @@
 .my-stats-card {
-    --background: linear-gradient(180deg, hsl(218, 90%, 79%) 29%, rgba(123,237,212,1) 100%);
+    --background: linear-gradient(0deg, rgba(131,209,222,1) 0%, rgba(125,153,204,1) 79%);
 }
 
 ion-progress-bar {
     height: 9px;
     border-radius: 25px;
+    --buffer-background:#ededed;
 }
+
+.ion-color-excercise{
+    --ion-color-base: var(--ion-color-excercise);
+    --ion-color-shade: var(--ion-color-excercise-shade);
+  }
+
+  
+  .ion-color-sleep{
+    --ion-color-base: var(--ion-color-sleep);
+    --ion-color-shade: var(--ion-color-sleep-shade);
+  }
+
+  .ion-color-cals{
+    --ion-color-base: var(--ion-color-cals);
+    --ion-color-shade: var(--ion-color-cals-shade);
+  }
+
+  .ion-color-steps{
+    --ion-color-base: var(--ion-color-steps);
+    --ion-color-shade: var(--ion-color-steps-shade);
+    --ion-color-tint: var(--ion-color-steps-tint);
+    --ion-color-contrast: var(--ion-color-steps-contrast);
+  }
+
+  .ion-color-last{
+    --ion-color-base: var(--ion-color-last);
+    --ion-color-shade: var(--ion-color-last-shade);
+  }
+  

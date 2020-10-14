@@ -1,17 +1,44 @@
+<ion-card color="privacybg">
+  <ion-card-header (click)="goToMyStats()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon name="ion-alert-circled"></ion-icon></ion-col>
+    <ion-col size="10">
+    <ion-card-subtitle >Privacy Settings</ion-card-subtitle>
+  </ion-col>
+  </ion-row>
+  <ion-row>   <ion-col> <ion-card-subtitle style="font-size:10px">In order for you to compete with friends you must enable data sharing in
+      settings.</ion-card-subtitle></ion-col>
+    </ion-row>
+<ion-row><ion-col>
+      <ion-button expand="block" size="small" color="privacy">Enable Sharing</ion-button>
+    </ion-col>
+    </ion-row>
+    </ion-grid>
+  </ion-card-header>
+</ion-card>
+
+<ion-card *ngIf="!friendData">
+  <ion-card-header (click)="goToMyStats()">
+    <ion-card-subtitle style="color: black">We noticed you don't have any fitbit friends! Please invite friends through
+      your fitbit application to start competing!</ion-card-subtitle>
+  </ion-card-header>
+</ion-card>
+
 <ion-card style="width: 100%; padding: 0; margin: 0;" class="my-comp-card">
   <ion-card-header *ngIf="friendData">
-    <strong>Competition</strong>
+    <ion-card-subtitle style="color: black; text-decoration: none;">Competition</ion-card-subtitle>
   </ion-card-header>
+
+
+
+
   <ion-card-content>
     <canvas #friendsCanvas style="width: 100%; height: 100%; padding-top: 15px"></canvas>
   </ion-card-content>
 </ion-card>
-<ion-card>
-  <ion-card-header (click)="goToMyStats()">
-    <ion-card-subtitle style="color: black">In order for you to compete with friends you must enable data sharing in
-      settings (button that says click to change privacy settings)</ion-card-subtitle>
-  </ion-card-header>
-</ion-card>
+
 <ion-card *ngIf="friendData">
   <ion-card-header (click)="goToMyStats()">
     <ion-card-subtitle style="color: black">My Friends</ion-card-subtitle>
@@ -53,10 +80,4 @@
       </ion-label>
     </ion-item>
   </ion-card-content>
-</ion-card>
-<ion-card *ngIf="!friendData">
-  <ion-card-header (click)="goToMyStats()">
-    <ion-card-subtitle style="color: black">We noticed you don't have any fitbit friends! Please invite friends through
-      your fitbit application to start competing!</ion-card-subtitle>
-  </ion-card-header>
 </ion-card>

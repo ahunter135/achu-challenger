@@ -1,5 +1,5 @@
 .my-comp-card {
-    --background: #F3f3f3;
+    --background: #FFF;
     box-shadow: none !important;
 }
 
@@ -7,3 +7,12 @@
     padding-top: 12px;
     padding-bottom: 12px;
 }
+
+.ion-color-privacy {
+
+    --ion-color-base: var(--ion-color-privacy);
+}
+
+ .ion-color-privacybg {
+     --ion-color-base: var(--ion-color-privacybg);
+ }

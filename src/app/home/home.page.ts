@@ -104,7 +104,7 @@ export class HomePage {
             data: data,
             borderAlign: 'inner',
             backgroundColor: [
-              '#4b44b4', '#6feb9e', '#7bedd4'
+              '#7d99cc', '#83d1de', '#76c7ae'
             ]
           }
         ]

@@ -9,6 +9,9 @@
   z-index: 99;
 }
 
+
+ 
+
 .nav-bar-container ion-segment-button {
   --background: #FFFFFF;
   --border-color: #FFFFFF;
@@ -30,6 +33,26 @@
   box-shadow: none;
 }
 
+.progress {
+  border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.progress-buffer-bar {
+  border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+ion-segment-button::before{
+border-left:none;
+}
+
+ 
+ion-segment-button::part(indicator-background) {
+ 
+  box-shadow: none;
+}
+
 ion-card-content {
   margin: 0;
   width: 100%;
@@ -47,9 +70,22 @@ ion-card-content {
 }
 
 .overall-goal-card {
-  --background: linear-gradient(90deg, rgba(155,190,250,1) 29%, rgba(123,237,212,1) 100%);
+  --background: linear-gradient(90deg, rgba(178,196,215,1) 43%, rgba(151,206,192,1) 75%);
   padding: 0 !important;
   height: 100%;
+  margin-top:0px;
+}
+
+.ion-color-fat-burning{
+  --ion-color-base: var(--ion-color-fat-burning);
+}
+
+.ion-color-peak{
+  --ion-color-base: var(--ion-color-peak);
+}
+
+.ion-color-cardio{
+  --ion-color-base: var(--ion-color-cardio);
 }
 
 .fab-btn {
@@ -111,7 +147,7 @@ ion-card-item ion-item {
   --bar-height: 8px;
   --knob-size: 12px;
   --knob-background: black;
-  --bar-background: linear-gradient(90deg, rgb(111, 235, 158) 29%, rgba(123,237,212,1) 55%, rgba(75, 68, 180,1) 100%);
+  --bar-background: linear-gradient(90deg, rgba(118,199,174,1) 0%, rgba(131,209,222,1) 50%, rgba(125,153,204,1) 100%);
   --bar-background-active: transparent;
   position: inherit !important;
   padding: 0 !important;
@@ -121,24 +157,32 @@ ion-card-item ion-item {
   --bar-height: 8px;
   --knob-size: 12px;
   --knob-background: black;
-  --bar-background: linear-gradient(90deg, rgb(111, 235, 158) 29%, rgba(123,237,212,1) 55%, rgba(75, 68, 180,1) 100%);
+  --bar-background: linear-gradient(90deg, rgba(118,199,174,1) 0%, rgba(131,209,222,1) 50%, rgba(125,153,204,1) 100%);
   --bar-background-active: transparent;
   position: inherit !important;
   padding: 0 !important;
 }
 
 .item-text {
-  --background: #F3f3f3 !important;
+  --background: #FFF !important;
 }
 
 .good {
-  color: rgb(111, 235, 158);
+  color: #76c7ae;
 }
 
 .moderate {
-  color: rgba(123,237,212,1);
+  color: #83d1de;
 }
 
 .risk {
-  color: rgba(75, 68, 180,1)
+  color:#7d99cc;
+}
+
+.title-text {
+  margin-bottom:0px;
+}
+
+.top-card {
+  margin-bottom:0px;
 }
