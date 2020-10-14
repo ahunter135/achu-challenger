@@ -53,7 +53,7 @@
   <ion-item lines="none">
     <ion-text style="font-size: 10px; color: #5a5a5a; padding-top: 15px;">LOGOUT OF ACHU</ion-text>
   </ion-item>
-  <ion-item detail="false" button>
+  <ion-item detail="false" button (click)="http.logout()">
     <ion-label color="primary">
       <h3>Logout</h3>
     </ion-label>
