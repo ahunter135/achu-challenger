@@ -47,6 +47,7 @@ export class HomePage {
       this.getDailyGoals();
       this.getHRZones();
       this.getFitbitScores();
+      this.getUserSettings();
     }
   }
 
@@ -144,6 +145,12 @@ export class HomePage {
     }
     this.stressScore = response.stressScoreValue;
     this.fatigueScore = response.fatigueScoreValue;
+  }
+
+  async getUserSettings() {
+    let response = await this.http.get('/api/Account/GetUserSettings', {});
+    console.log(response);
+    this.http.userSettings = response;
   }
 
   segmentChanged(ev: any) {

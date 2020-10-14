@@ -13,12 +13,11 @@ export class StatsPageComponent implements OnInit {
   @ViewChild("friendsCanvas") friendsCanvas: ElementRef;
   chartLoaded = false;
   public items: any = [];
-  friendData;
+  friendData = [];
   friendsChart: Chart;
   constructor(public globalService: GlobalService, public router: Router, public http: HttpService) {
     this.globalService.getObservable().subscribe(async (data) => {
       if (data === 'competition') {
-        await this.getFriendGoals();
         this.viewHasEntered();
       }
     })
@@ -30,11 +29,18 @@ export class StatsPageComponent implements OnInit {
     ];
   }
 
+  ngOnInit() {
+
+  }
+
   expandItem(item): void {
     item.expanded = !item.expanded;
   }
 
   async viewHasEntered() {
+    console.log(this.http.userSettings);
+    this.friendData = await this.http.get('/api/fitbit/friendGoals', {});
+
     let data = [];
     let labels = [];
     let backgroundColors = [];
@@ -97,16 +103,6 @@ export class StatsPageComponent implements OnInit {
     });
     this.chartLoaded = true;
   }
-
-  async getFriendGoals() {
-    this.http.get('/api/fitbit/friendGoals', {}).then((data) => {
-      this.friendData = data;
-      console.log(data);
-      this.viewHasEntered();
-    });
-  }
-
-  ngOnInit() { }
 
   goToMyStats() {
     this.router.navigateByUrl("home/my-stats");
