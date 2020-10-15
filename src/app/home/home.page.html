@@ -161,31 +161,22 @@
     <ion-item lines="none" class="item-text title-text">
       <ion-label>Health Updates</ion-label>
     </ion-item>
-    <ion-card color="privacybg">
+
+    <ion-card color="privacybg" *ngIf="!http.userSettings.lastDailyCheckin">
       <ion-card-header (click)="goToMyStats()">
         <ion-grid>
-          <!-- <ion-row>
+          <ion-row>
             <ion-col>
-              <ion-icon name="alert-circle-outline"></ion-icon>
+              <ion-card-subtitle style="font-size:10px">To receive stress and fatigue updates please complete a Daily
+                Check In by clicking the floating clip board icon!</ion-card-subtitle>
             </ion-col>
-            
-        <ion-col size="10">
-        <ion-card-subtitle >Privacy Settings</ion-card-subtitle>
-      </ion-col>
-      </ion-row> -->
-      <ion-row>  
-    
-         <ion-col> 
-           <ion-card-subtitle style="font-size:10px">To receive stress and fatigue updates please complete a Daily Check In by clicking the floating clip board icon!</ion-card-subtitle></ion-col>
-        </ion-row>
-    <ion-row>
-      <!-- <ion-col>
-          <ion-button expand="block" size="small" color="privacy">Enable Sharing</ion-button>
-        </ion-col> -->
-        </ion-row>
+          </ion-row>
+          <ion-row>
+          </ion-row>
         </ion-grid>
       </ion-card-header>
     </ion-card>
+
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle style="color: black; text-decoration: none;">Stress</ion-card-subtitle>
