@@ -53,7 +53,6 @@ export class HomePage {
 
   async getDailyGoals() {
     let response = await this.http.get('/api/fitbit/dailygoals', {});
-    console.log(response);
     if (response == undefined) {
       this.http.logout();
       return;
@@ -138,7 +137,6 @@ export class HomePage {
 
   async getFitbitScores() {
     let response = await this.http.get('/api/scores/fitbit', {});
-    console.log(response);
     if (response == undefined) {
       this.http.logout();
       return;
@@ -149,7 +147,6 @@ export class HomePage {
 
   async getUserSettings() {
     let response = await this.http.get('/api/Account/GetUserSettings', {});
-    console.log(response);
     this.http.userSettings = response;
   }
 

@@ -165,7 +165,6 @@ export class HttpService {
     let response = await this.get("/api/Account/GetUserInfo", {
       tenantId: this.tenantId
     });
-    console.log(response);
     if (response.status == undefined) {
       this.user = response;
     } else {
@@ -270,7 +269,6 @@ export class HttpService {
     minLat = currentLat + (180 / Math.PI) * (-500000 / 6378137);
     minLon = currentLon + (180 / Math.PI) * (-500000 / 6378137) / Math.cos(Math.PI / 180.0 * currentLat);
 
-    console.log(day);
     let response = await this.get("/sickscan/Data", {
       dateOffset: day.getTime(),
       minLon: minLon,
@@ -309,8 +307,6 @@ export class HttpService {
     } else {
       await this.logout();
     }
-
-    console.log(response);
   }
 
   async getSicknessDetails(report) {

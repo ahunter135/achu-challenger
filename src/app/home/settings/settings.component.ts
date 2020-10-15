@@ -23,6 +23,8 @@ export class SettingsComponent implements OnInit {
         duration: 2000
       });
       t.present();
+      let response = await this.http.get('/api/Account/GetUserSettings', {});
+      this.http.userSettings = response;
     });
   }
 }

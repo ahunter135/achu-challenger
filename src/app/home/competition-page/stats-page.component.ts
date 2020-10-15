@@ -3,6 +3,7 @@ import { Chart } from 'chart.js';
 import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-stats-page',
@@ -15,7 +16,7 @@ export class StatsPageComponent implements OnInit {
   public items: any = [];
   friendData = [];
   friendsChart: Chart;
-  constructor(public globalService: GlobalService, public router: Router, public http: HttpService) {
+  constructor(public globalService: GlobalService, public router: Router, public http: HttpService, public toast: ToastController) {
     this.globalService.getObservable().subscribe(async (data) => {
       if (data === 'competition') {
         this.viewHasEntered();
@@ -38,9 +39,9 @@ export class StatsPageComponent implements OnInit {
   }
 
   async viewHasEntered() {
-    console.log(this.http.userSettings);
     this.friendData = await this.http.get('/api/fitbit/friendGoals', {});
-
+    console.log(this.friendData);
+    if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) return;
     let data = [];
     let labels = [];
     let backgroundColors = [];
@@ -106,6 +107,18 @@ export class StatsPageComponent implements OnInit {
 
   goToMyStats() {
     this.router.navigateByUrl("home/my-stats");
+  }
+
+  async optIn() {
+    this.http.put("/api/Account/UpdateFitbitShare", { "fitbitShare": true }).then(async () => {
+      let t = await this.toast.create({
+        message: 'Opt In Successful',
+        duration: 2000
+      });
+      t.present();
+      let response = await this.http.get('/api/Account/GetUserSettings', {});
+      this.http.userSettings = response;
+    });
   }
 
 }

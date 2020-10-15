@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TimePipe implements PipeTransform {
 
   transform(value: number): string {
-    console.log(value);
     if (!value) return 0 + " min"
     if (value > 0 && value / 60 < 1) {
       return value + ' min';
