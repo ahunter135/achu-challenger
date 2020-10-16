@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { AppVersion } from '@ionic-native/app-version/ngx';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
+import { OptinComponent } from 'src/app/modals/optin/optin.component';
 
 @Component({
   selector: 'app-settings',
@@ -10,14 +11,19 @@ import { ToastController } from '@ionic/angular';
 })
 export class SettingsComponent implements OnInit {
   version;
-  constructor(public http: HttpService, public appVersion: AppVersion, public toast: ToastController) { }
+  constructor(public http: HttpService, public appVersion: AppVersion, public toast: ToastController, public modal: ModalController) { }
 
   async ngOnInit() {
     this.version = await this.appVersion.getVersionNumber();
   }
 
   async optIn() {
-    this.http.put("/api/Account/UpdateFitbitShare", { "fitbitShare": true }).then(async () => {
+    let modal = await this.modal.create({
+      component: OptinComponent,
+      cssClass: 'my-custom-modal-css'
+    });
+    return await modal.present();
+    /*this.http.put("/api/Account/UpdateFitbitShare", { "fitbitShare": true }).then(async () => {
       let t = await this.toast.create({
         message: 'Opt In Successful',
         duration: 2000
@@ -25,6 +31,6 @@ export class SettingsComponent implements OnInit {
       t.present();
       let response = await this.http.get('/api/Account/GetUserSettings', {});
       this.http.userSettings = response;
-    });
+    });*/
   }
 }

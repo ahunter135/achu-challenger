@@ -3,7 +3,8 @@ import { Chart } from 'chart.js';
 import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
+import { OptinComponent } from 'src/app/modals/optin/optin.component';
 
 @Component({
   selector: 'app-stats-page',
@@ -16,7 +17,7 @@ export class StatsPageComponent implements OnInit {
   public items: any = [];
   friendData = [];
   friendsChart: Chart;
-  constructor(public globalService: GlobalService, public router: Router, public http: HttpService, public toast: ToastController) {
+  constructor(public globalService: GlobalService, public router: Router, public http: HttpService, public toast: ToastController, public modal: ModalController) {
     this.globalService.getObservable().subscribe(async (data) => {
       if (data === 'competition') {
         this.viewHasEntered();
@@ -110,7 +111,13 @@ export class StatsPageComponent implements OnInit {
   }
 
   async optIn() {
-    this.http.put("/api/Account/UpdateFitbitShare", { "fitbitShare": true }).then(async () => {
+    let modal = await this.modal.create({
+      component: OptinComponent,
+      cssClass: 'my-custom-modal-css'
+    });
+    return await modal.present();
+
+    /*this.http.put("/api/Account/UpdateFitbitShare", { "fitbitShare": true }).then(async () => {
       let t = await this.toast.create({
         message: 'Opt In Successful',
         duration: 2000
@@ -118,7 +125,7 @@ export class StatsPageComponent implements OnInit {
       t.present();
       let response = await this.http.get('/api/Account/GetUserSettings', { dateOffset: new Date().getTime() });
       this.http.userSettings = response;
-    });
+    });*/
   }
 
 }
