@@ -6,16 +6,6 @@
           <ion-icon name="alert-circle-outline"></ion-icon>
         </ion-col>
 
-<<<<<<< HEAD
-     <ion-col> 
-       <ion-card-subtitle style="font-size:10px">In order for you to compete with friends you must enable data sharing in
-      settings.</ion-card-subtitle></ion-col>
-    </ion-row>
-<ion-row><ion-col>
-      <ion-button expand="block" size="small" color="privacy">Enable Sharing</ion-button>
-    </ion-col>
-    </ion-row>
-=======
         <ion-col size="10">
           <ion-card-subtitle>Privacy Settings</ion-card-subtitle>
         </ion-col>
@@ -33,17 +23,11 @@
           <ion-button expand="block" size="small" color="privacy">Enable Sharing</ion-button>
         </ion-col>
       </ion-row>
->>>>>>> 33651fc7a8278d849a7419c475989f15cc893a8c
     </ion-grid>
   </ion-card-header>
 </ion-card>
 
-<<<<<<< HEAD
-<ion-card  color="friendsbg" *ngIf="!friendData">
- 
-=======
 <ion-card color="friendsbg" *ngIf="friendData.length <= 0">
->>>>>>> 33651fc7a8278d849a7419c475989f15cc893a8c
   <ion-card-header (click)="goToMyStats()">
     <ion-card-subtitle style="color: black">We noticed you don't have any fitbit friends! Please invite friends
       through
@@ -52,11 +36,7 @@
 </ion-card>
 
 <ion-card style="width: 100%; padding: 0; margin: 0;" class="my-comp-card">
-<<<<<<< HEAD
-<ion-card-header *ngIf="friendData.length > 0 && http.userSettings.fitBitShare">
-=======
   <ion-card-header *ngIf="friendData.length > 0 && http.userSettings.fitBitShare">
->>>>>>> 33651fc7a8278d849a7419c475989f15cc893a8c
     <ion-card-subtitle style="color: black; text-decoration: none;">Competition</ion-card-subtitle>
   </ion-card-header>
 
@@ -70,11 +50,6 @@
       settings (button that says click to change privacy settings)</ion-card-subtitle>
   </ion-card-header>
 </ion-card>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 33651fc7a8278d849a7419c475989f15cc893a8c
 <ion-card *ngIf="friendData.length > 0 && http.userSettings.fitBitShare">
   <ion-card-header (click)="goToMyStats()">
     <ion-card-subtitle style="color: black">My Friends</ion-card-subtitle>
