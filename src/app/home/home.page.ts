@@ -52,8 +52,7 @@ export class HomePage {
   }
 
   async getDailyGoals() {
-    let response = await this.http.get('/api/fitbit/dailygoals', {});
-    console.log(response);
+    let response = await this.http.get('/api/fitbit/dailygoals', { dateOffset: new Date().getTime() });
     if (response == undefined) {
       this.http.logout();
       return;
@@ -80,7 +79,7 @@ export class HomePage {
 
 
   async getHRZones() {
-    let response = await this.http.get('/api/fitbit/HRZ', {});
+    let response = await this.http.get('/api/fitbit/HRZ', { dateOffset: new Date().getTime() });
     console.log(response);
     if (response == undefined) {
       this.http.logout();
@@ -95,6 +94,8 @@ export class HomePage {
       labels.push(response[i].name);
     }
     this.HRZones = data;
+    this.HRZones = this.HRZones.reverse();
+    console.log(this.HRZones);
     if (this.chartLoaded) return;
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: "doughnut",
@@ -137,8 +138,7 @@ export class HomePage {
   }
 
   async getFitbitScores() {
-    let response = await this.http.get('/api/scores/fitbit', {});
-    console.log(response);
+    let response = await this.http.get('/api/scores/fitbit', { dateOffset: new Date().getTime() });
     if (response == undefined) {
       this.http.logout();
       return;
@@ -148,8 +148,7 @@ export class HomePage {
   }
 
   async getUserSettings() {
-    let response = await this.http.get('/api/Account/GetUserSettings', {});
-    console.log(response);
+    let response = await this.http.get('/api/Account/GetUserSettings', { dateOffset: new Date().getTime() });
     this.http.userSettings = response;
   }
 

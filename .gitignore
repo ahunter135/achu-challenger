@@ -12,6 +12,8 @@
 Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
+*.apk
+*.code-workspace
 
 *.log
 log.txt

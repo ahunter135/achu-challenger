@@ -28,16 +28,16 @@ export class MyStatsComponent implements OnInit {
   }
 
   async ionViewDidEnter() {
-    let response = await this.http.get('/api/fitbit/WeeklyComparison', {});
+    let response = await this.http.get('/api/fitbit/WeeklyComparison', { dateOffset: new Date().getTime() });
     console.log(response);
     this.weeklyData = response;
     var gridColor = [];
-    var maxLines = 11;
+    var maxLines = 15;
     for (var i = 0; i < maxLines; i++) {
-      if (i !== 2)
+      if (i !== 1)
         gridColor.push('rgba(0, 0, 0, 0.1)');
       else
-        gridColor.push('rgba(0, 0, 0, 0.1)');
+        gridColor.push('#555555');
     }
     var data = [];
     for (let i = response.length - 1; i > -1; i--) {
@@ -61,8 +61,13 @@ export class MyStatsComponent implements OnInit {
           yAxes: [{
             ticks: {
               fontSize: 8,
-              display: false,
-              maxTicksLimit: maxLines
+              display: true,
+              max: 120,
+              min: 0,
+              callback: function (value, index, values) {
+                if (value != 100) return "";
+                else return "100%";
+              }
             },
             gridLines: {
               display: true,
