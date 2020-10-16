@@ -39,7 +39,7 @@ export class StatsPageComponent implements OnInit {
   }
 
   async viewHasEntered() {
-    this.friendData = await this.http.get('/api/fitbit/friendGoals', {});
+    this.friendData = await this.http.get('/api/fitbit/friendGoals', { dateOffset: new Date().getTime() });
     console.log(this.friendData);
     if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) return;
     let data = [];
@@ -116,7 +116,7 @@ export class StatsPageComponent implements OnInit {
         duration: 2000
       });
       t.present();
-      let response = await this.http.get('/api/Account/GetUserSettings', {});
+      let response = await this.http.get('/api/Account/GetUserSettings', { dateOffset: new Date().getTime() });
       this.http.userSettings = response;
     });
   }

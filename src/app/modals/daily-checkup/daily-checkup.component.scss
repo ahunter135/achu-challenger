@@ -14,13 +14,16 @@
     .slider {
         .ng5-slider {
             :focus {outline:0 !important;}
+            .ng5-slider-inner-tooltip {
+                height: 0% !important;
+            }
         }
         .ng5-slider {
             .ng5-slider-pointer{
                 background-color: #4cbf9f;
             }
             .ng5-slider-pointer.ng5-slider-active:after {
-                        background-color: #83d1de;
+                background-color: #83d1de;
             }
         }
 

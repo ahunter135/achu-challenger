@@ -28,7 +28,7 @@ export class MyStatsComponent implements OnInit {
   }
 
   async ionViewDidEnter() {
-    let response = await this.http.get('/api/fitbit/WeeklyComparison', {});
+    let response = await this.http.get('/api/fitbit/WeeklyComparison', { dateOffset: new Date().getTime() });
     console.log(response);
     this.weeklyData = response;
     var gridColor = [];

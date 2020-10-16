@@ -16,7 +16,7 @@ export class DailyCheckupComponent implements OnInit {
   manualRefresh: EventEmitter<void> = new EventEmitter<void>();
   options: Options = {
     floor: 0,
-    ceil: 4,
+    ceil: 10,
     vertical: true,
     showSelectionBar: false,
     showTicks: false,
@@ -24,22 +24,16 @@ export class DailyCheckupComponent implements OnInit {
     translate: (value: number, label: LabelType): string => {
       if (this.step == 0) {
         if (value == 0) return `Not Tired`;
-        else if (value == 1) return `Slightly Tired`;
-        else if (value == 2) return `Tired`;
-        else if (value == 3) return `Very Tired`;
-        else return `Extremely Tired`;
+        else if (value == 5) return `Tired`;
+        else if (value == 10) return `Extremely Tired`;
       } else if (this.step == 1) {
         if (value == 0) return `Not Stressed`;
-        else if (value == 1) return `Slightly Stressed`;
-        else if (value == 2) return `Stressed`;
-        else if (value == 3) return `Very Stressed`;
-        else return `Extremely Stressed`;
+        else if (value == 5) return `Stressed`;
+        else if (value == 10) return `Extremely Stressed`;
       } else if (this.step == 2) {
         if (value == 0) return `Not Anxious`;
-        else if (value == 1) return `Slightly Anxious`;
-        else if (value == 2) return `Anxious`;
-        else if (value == 3) return `Very Anxious`;
-        else return `Extremely Anxious`;
+        else if (value == 5) return `Anxious`;
+        else if (value == 10) return `Extremely Anxious`;
       }
     }
   };
@@ -49,6 +43,7 @@ export class DailyCheckupComponent implements OnInit {
   ngOnInit() { }
 
   incStep() {
+    if (this.value == 0) this.value++;
     // get value and store
     this.checkUps.push(this.value);
     this.value = 0;
