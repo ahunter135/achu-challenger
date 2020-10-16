@@ -1,14 +1,35 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../services/http.service';
+import { ToastController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-optin',
   templateUrl: './optin.component.html',
   styleUrls: ['./optin.component.scss'],
 })
-export class OptinComponent implements OnInit {
+export class OptinComponent {
 
-  constructor() { }
+  constructor(public http: HttpService, public toast: ToastController, public modal: ModalController) { }
 
-  ngOnInit() {}
+   
+
+
+  async optIn(status) {
+ 
+    this.http.put("/api/Account/UpdateFitbitShare", { "fitbitShare": status }).then(async () => {
+      let t = await this.toast.create({
+        message: 'Opt In Successful',
+        duration: 2000
+      });
+      t.present();
+      let response = await this.http.get('/api/Account/GetUserSettings', {});
+      this.http.userSettings = response;
+    });
+  }
+
+ 
+
+
+  
 
 }

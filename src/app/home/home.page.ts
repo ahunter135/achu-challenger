@@ -148,8 +148,13 @@ export class HomePage {
   }
 
   async getUserSettings() {
+
     let response = await this.http.get('/api/Account/GetUserSettings', { dateOffset: new Date().getTime() });
-    this.http.userSettings = response;
+
+    this.http.userSettings = response;    
+
+ 
+
   }
 
   segmentChanged(ev: any) {

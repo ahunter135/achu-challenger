@@ -41,3 +41,22 @@ ion-card-subtitle {
     display: block;  
     --border-radius: 8px;
  }
+
+ .ion-color-privacy {
+
+    --ion-color-base: var(--ion-color-privacy);
+}
+
+ .ion-color-privacybg {
+     --ion-color-base: var(--ion-color-privacybg);
+ }
+
+
+ .ion-color-friends {
+
+    --ion-color-base: var(--ion-color-friends);
+}
+
+ .ion-color-friendsbg {
+     --ion-color-base: var(--ion-color-friendsbg);
+ }
