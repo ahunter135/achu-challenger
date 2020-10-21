@@ -1,0 +1,36 @@
+<ion-toolbar mode="md">
+  <ion-title slot="start" style="font-size: 22px">Update Character</ion-title>
+  <ion-buttons slot="end">
+    <ion-button fill="clear" color="primary" (click)="dismiss()">Close</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+<ion-content>
+
+<ion-row>
+<ion-col>
+
+ 
+
+<ion-item>
+  <ion-label position="fixed">Name</ion-label>
+  <ion-input [(ngModel)]="characterName" type="text"  ></ion-input>
+</ion-item>
+ 
+</ion-col>
+</ion-row>
+
+</ion-content>
+
+<ion-footer class="ion-no-border" style="height: 125px;">
+
+  <ion-toolbar id="footerBar">
+
+    <ion-button id="createBtn" color="friends" expand="block"  (click)="changeName()" mode="ios">
+      Update
+    </ion-button>
+
+  </ion-toolbar>
+
+</ion-footer>
