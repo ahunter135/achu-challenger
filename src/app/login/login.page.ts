@@ -37,8 +37,8 @@ export class LoginPage implements OnInit {
       //  alert("Unauthorized");
       // }
     } else {
-      if (response.status == 401) alert("Unauthorized");
-      else alert("Login Failed, Try Again");
+      if (response.status == 401) alert("Invalid Email or Password");
+      else alert("Please enter an Email and Password.");
     }
 
   }
