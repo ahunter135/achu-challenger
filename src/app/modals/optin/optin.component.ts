@@ -11,14 +11,13 @@ export class OptinComponent {
 
   constructor(public http: HttpService, public toast: ToastController, public modal: ModalController) { }
 
-   
-  dismiss() {
 
+  dismiss() {
     this.modal.dismiss();
-}
+  }
 
   async optIn(status) {
- 
+
     this.http.put("/api/Account/UpdateFitbitShare", { "fitbitShare": status }).then(async () => {
       let t = await this.toast.create({
         message: 'Opt In Successful',
@@ -30,9 +29,9 @@ export class OptinComponent {
     });
   }
 
- 
 
 
-  
+
+
 
 }

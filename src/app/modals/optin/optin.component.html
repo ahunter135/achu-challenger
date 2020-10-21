@@ -12,38 +12,40 @@
           <ion-col>
             <ion-icon name="alert-circle-outline"></ion-icon>
           </ion-col>
-  
+
           <ion-col size="10">
             <ion-card-subtitle>Privacy Settings</ion-card-subtitle>
           </ion-col>
         </ion-row>
         <ion-row>
-  
+
           <ion-col>
             <ion-card-subtitle style="font-size:10px">In order for you to compete with friends you must enable data
-              sharing. We never share your information with any third parties. You can disable this feature at anytime by clicking "Disable Sharing".</ion-card-subtitle>
+              sharing. We never share your information with any third parties. You can disable this feature at anytime
+              by clicking "Disable Sharing".</ion-card-subtitle>
           </ion-col>
         </ion-row>
-        
+
       </ion-grid>
     </ion-card-header>
   </ion-card>
-  
+
 </ion-content>
 <ion-footer class="ion-no-border" style="height: 125px;">
 
   <ion-toolbar id="footerBar">
 
-  <ion-button id="createBtn" color="privacy" expand="block" (click)="optIn(true)" mode="ios" *ngIf="http.userSettings.fitBitShare === false; else disableButton">
-  Enable Sharing
-  </ion-button>
- <ng-template #disableButton>
-
-  <ion-button id="createBtn" color="friends" expand="block" (click)="optIn(false)" mode="ios">
-    Disable Sharing
+    <ion-button id="createBtn" color="privacy" expand="block" (click)="optIn(true)" mode="ios"
+      *ngIf="http.userSettings.fitBitShare === false; else disableButton">
+      Enable Sharing
     </ion-button>
+    <ng-template #disableButton>
 
- </ng-template>
+      <ion-button id="createBtn" color="friends" expand="block" (click)="optIn(false)" mode="ios">
+        Disable Sharing
+      </ion-button>
+
+    </ng-template>
   </ion-toolbar>
 
 </ion-footer>

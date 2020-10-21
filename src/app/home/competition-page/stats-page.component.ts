@@ -41,12 +41,10 @@ export class StatsPageComponent implements OnInit {
 
   async viewHasEntered() {
     this.friendData = await this.http.get('/api/fitbit/friendGoals', { dateOffset: new Date().getTime() });
-    console.log(this.friendData);
     if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) return;
     let data = [];
     let labels = [];
     let backgroundColors = [];
-
     labels.push('You');
     data.push(this.http.user.overallCompletion);
     backgroundColors.push('#51be9f');
@@ -76,6 +74,8 @@ export class StatsPageComponent implements OnInit {
             ticks: {
               fontSize: 8,
               display: false,
+              max: 100,
+              min: 0
             },
             gridLines: {
               display: false,
