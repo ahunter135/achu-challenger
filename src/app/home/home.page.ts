@@ -4,7 +4,7 @@ import { GlobalService } from '../services/global.service';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { DailyCheckupComponent } from '../modals/daily-checkup/daily-checkup.component';
 
 @Component({
@@ -43,7 +43,9 @@ export class HomePage {
   stressScore = 0;
   fatigueScore = 0;
   lineChart: Chart;
-  constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController) { }
+  loading;
+  constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,
+    public loadingController: LoadingController) { }
 
   async ionViewDidEnter() {
     var loggedIn = await this.storage.getItem("loggedIn");
@@ -51,17 +53,19 @@ export class HomePage {
     if (loggedIn == undefined) {
       this.http.logout();
     } else {
+      this.presentLoading();
       await this.http.setUserCreds(loggedIn);
-      this.getDailyGoals();
+      await this.getDailyGoals();
       this.getHRZones();
       this.getFitbitScores();
       this.getUserSettings();
+      this.loading.dismiss();
     }
   }
 
   async getDailyGoals() {
     let response = await this.http.get('/api/fitbit/dailygoals', { dateOffset: new Date().getTime() });
-    
+
     if (response == undefined) {
       this.http.logout();
       return;
@@ -167,13 +171,8 @@ export class HomePage {
   }
 
   async getUserSettings() {
-
     let response = await this.http.get('/api/Account/GetUserSettings', { dateOffset: new Date().getTime() });
-
-    this.http.userSettings = response;    
-
- 
-
+    this.http.userSettings = response;
   }
 
   segmentChanged(ev: any) {
@@ -196,6 +195,13 @@ export class HomePage {
 
   getContent() {
     return document.querySelector('ion-content');
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+    });
+    await this.loading.present();
   }
 
 }

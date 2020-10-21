@@ -1,0 +1,72 @@
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="welcome" color="primary" mode="ios"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-align-items-center" style="position: fixed; top: 100px; left: 0; right: 0;">
+      <ion-col size="1"></ion-col>
+      <ion-col size="6">
+        <ion-text style="font-size: x-large; font-weight: bold; float: left;">Complete Your Profile</ion-text>
+      </ion-col>
+      <ion-col size="5"></ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center" style="position: fixed; top: 190px; left: 0; right: 0;">
+      <ion-col size="1"></ion-col>
+      <ion-col size="8">
+        <div style="float: left;">
+          <ion-item lines="none">
+            <ion-label position="stacked">
+              <p style="font-weight: bold; font-size: 20px">First Name</p>
+            </ion-label>
+            <ion-input style="width: 100%;" type="text" placeholder="Enter your first name" [(ngModel)]="obj.firstName">
+            </ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label position="stacked">
+              <p style="font-weight: bold; font-size: 20px">Last Name</p>
+            </ion-label>
+            <ion-input style="width: 100%;" type="text" placeholder="Enter your last name" [(ngModel)]="obj.lastName">
+            </ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label position="stacked">Date of Birth</ion-label>
+            <ion-datetime displayFormat="MM DD YYYY" placeholder="Select your date of birth"
+              [(ngModel)]="obj.dateOfBirth">
+            </ion-datetime>
+          </ion-item>
+          <ion-item button (click)="openHeightPicker()" lines="none">
+            <ion-label position="stacked">
+              <p style="font-weight: bold; font-size: 20px">Height</p>
+            </ion-label>
+            <ion-input style="width: 100%;" type="text" placeholder="Enter your height" [(ngModel)]="obj.height"
+              readonly="true">
+            </ion-input>
+          </ion-item>
+          <ion-item button (click)="openWeightPicker()" lines="none">
+            <ion-label position="stacked">
+              <p style="font-weight: bold; font-size: 20px">Weight</p>
+            </ion-label>
+            <ion-input style="width: 100%;" type="text" placeholder="Enter your weight" [(ngModel)]="obj.weight"
+              readonly="true">
+            </ion-input>
+          </ion-item>
+          <ion-item button (click)="openGenderPicker()" lines="none">
+            <ion-label position="stacked">
+              <p style="font-weight: bold; font-size: 20px">Sex</p>
+            </ion-label>
+            <ion-input style="width: 100%;" type="text" placeholder="Enter your sex" [(ngModel)]="obj.gender"
+              readonly="true">
+            </ion-input>
+          </ion-item>
+          <ion-button id="createBtn" color="primary" style="margin-top: 5px" (click)="register()">Create your account
+          </ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3"></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
