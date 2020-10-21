@@ -44,12 +44,12 @@
     <canvas #friendsCanvas style="width: 100%; height: 100%; padding-top: 15px"></canvas>
   </ion-card-content>
 </ion-card>
-<ion-card *ngIf="!http.userSettings.fitBitShare">
+<!-- <ion-card *ngIf="!http.userSettings.fitBitShare">
   <ion-card-header (click)="goToMyStats()">
     <ion-card-subtitle style="color: black">In order for you to compete with friends you must enable data sharing in
       settings (button that says click to change privacy settings)</ion-card-subtitle>
   </ion-card-header>
-</ion-card>
+</ion-card> -->
 <ion-card *ngIf="friendData.length > 0 && http.userSettings.fitBitShare">
   <ion-card-header (click)="goToMyStats()">
     <ion-card-subtitle style="color: black">My Friends</ion-card-subtitle>

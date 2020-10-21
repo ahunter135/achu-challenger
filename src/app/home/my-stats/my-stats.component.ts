@@ -31,6 +31,8 @@ export class MyStatsComponent implements OnInit {
     let response = await this.http.get('/api/fitbit/WeeklyComparison', { dateOffset: new Date().getTime() });
     console.log(response);
     this.weeklyData = response;
+    console.log(this.weeklyData);
+    console.log(this.weeklyData[0].goals[3].progress);
     var gridColor = [];
     var maxLines = 15;
     for (var i = 0; i < maxLines; i++) {

@@ -4,14 +4,14 @@
     Find a better way for this use divs as "views"
   -->
   <div id="today-view" [hidden]="!(currentNav == 'today')">
-    <ion-segment (ionChange)="segmentChanged($event)" class="home-bar" [(ngModel)]="homeBar">
+    <!-- <ion-segment (ionChange)="segmentChanged($event)" class="home-bar" [(ngModel)]="homeBar">
       <ion-segment-button value="today">
         <ion-label>Today</ion-label>
       </ion-segment-button>
       <ion-segment-button value="notifications">
         <ion-label>Notifications</ion-label>
       </ion-segment-button>
-    </ion-segment>
+    </ion-segment> -->
 
     <ion-card class="goal-card">
       <ion-card-header style="padding-bottom: 0 !important">
@@ -27,44 +27,49 @@
       <ion-card-content>
         <div class="flex-container">
           <div class="bars-container">
-            <div class="bar">
+            <div class="bar" style="padding-bottom:5px;">
               <ion-text style="font-size: 12px; font-weight: bold; float: left">
                 Steps
               </ion-text>
-              <ion-text style="font-size: 12px; float: right">{{stepsProgress}} / 100
+              <ion-text style="font-size: 12px; float: right">{{stepsProgress}}%
               </ion-text>
               <ion-progress-bar value="{{stepsProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
+              <ion-text style="font-size: 10px; float: left">{{stepsCurrent}} / {{stepsGoal}}
+              </ion-text>
             </div>
-            <div class="bar">
+            <div class="bar" style="padding-bottom:5px;">
               <ion-text style="font-size: 12px; font-weight: bold; float: left">
                 Calories
               </ion-text>
-              <ion-text style="font-size: 12px; float: right">{{caloriesProgress}} /
-                100
+              <ion-text style="font-size: 12px; float: right">{{caloriesProgress}}%
               </ion-text>
               <ion-progress-bar value="{{caloriesProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
+              <ion-text style="font-size: 10px; float: left">{{caloriesCurrent}} / {{caloriesGoal}}
+              </ion-text>
             </div>
-            <div class="bar">
+            <div class="bar" style="padding-bottom:5px;">
               <ion-text style="font-size: 12px; font-weight: bold; float: left">
                 Sleep
               </ion-text>
-              <ion-text style="font-size: 12px; float: right">{{sleepProgress}} /
-                100
+              <ion-text style="font-size: 12px; float: right">{{sleepProgress}}%
               </ion-text>
               <ion-progress-bar value="{{sleepProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
+              <ion-text style="font-size: 10px; float: left">{{sleepCurrent}} / {{sleepGoal}}
+              </ion-text>
             </div>
-            <div class="bar">
+            <div class="bar" style="padding-bottom:5px;">
               <ion-text style="font-size: 12px; font-weight: bold; float: left">
                 Exercise
               </ion-text>
-              <ion-text style="font-size: 12px; float: right">{{exerciseProgress}} /
-                100
+              <ion-text style="font-size: 12px; float: right">{{exerciseProgress}}%
               </ion-text>
               <ion-progress-bar value="{{exerciseProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
+              <ion-text style="font-size: 10px; float: left">{{exerciseCurrent}} / {{exerciseGoal}}
+              </ion-text>
             </div>
           </div>
           <div class="character-container">
@@ -73,6 +78,7 @@
         </div>
       </ion-card-content>
     </ion-card>
+    
     <ion-card class="overall-goal-card">
       <ion-grid>
         <ion-row>
@@ -84,8 +90,7 @@
           <ion-progress-bar value="{{overallCompletionBar}}" reversed="false" color="primary" class="overallBar">
           </ion-progress-bar>
           <ion-col size="12">
-            <ion-text style="font-size: 12px; float: right">{{overallCompletion}} /
-              100
+            <ion-text style="font-size: 12px; float: right">{{overallCompletion}}%
             </ion-text>
           </ion-col>
         </ion-row>

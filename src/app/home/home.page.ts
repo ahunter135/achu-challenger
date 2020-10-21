@@ -23,12 +23,20 @@ export class HomePage {
   currentHome = this.homeBar;
   stepsProgress = 0;
   stepsProgressBar = 0;
+  stepsGoal = 0;
+  stepsCurrent = 0;
   sleepProgress = 0;
   sleepProgressBar = 0;
+  sleepGoal = 0;
+  sleepCurrent = 0;
   caloriesProgress = 0;
   caloriesProgressBar = 0;
+  caloriesGoal = 0;
+  caloriesCurrent = 0;
   exerciseProgress = 0;
   exerciseProgressBar = 0;
+  exerciseGoal = 0;
+  exerciseCurrent = 0;
   overallCompletion = 0;
   overallCompletionBar = 0;
   HRZones = <any>[];
@@ -53,6 +61,7 @@ export class HomePage {
 
   async getDailyGoals() {
     let response = await this.http.get('/api/fitbit/dailygoals', { dateOffset: new Date().getTime() });
+    
     if (response == undefined) {
       this.http.logout();
       return;
@@ -64,15 +73,25 @@ export class HomePage {
       if (response.goals[i].goalType == 'steps') {
         this.stepsProgress = Math.trunc((response.goals[i].progress / response.goals[i].goal) * 100);
         this.stepsProgressBar = (response.goals[i].progress / response.goals[i].goal);
+        this.stepsGoal = response.goals[i].goal;
+        this.stepsCurrent = response.goals[i].progress;
+
       } else if (response.goals[i].goalType == 'sleepDuration') {
         this.sleepProgress = Math.trunc((response.goals[i].progress / response.goals[i].goal) * 100);
         this.sleepProgressBar = (response.goals[i].progress / response.goals[i].goal);
+        this.sleepGoal = response.goals[i].goal;
+        this.sleepCurrent = response.goals[i].progress;
       } else if (response.goals[i].goalType == 'calories') {
         this.caloriesProgress = Math.trunc((response.goals[i].progress / response.goals[i].goal) * 100);
         this.caloriesProgressBar = (response.goals[i].progress / response.goals[i].goal);
-      } else if (response.goals[i].goalType == 'exerciseMinuutes') {
+        this.caloriesGoal = response.goals[i].goal;
+        this.caloriesCurrent = response.goals[i].progress;
+      } else if (response.goals[i].goalType == 'exerciseMinutes') {
+        console.log(response.goals[i]);
         this.exerciseProgress = Math.trunc((response.goals[i].progress / response.goals[i].goal) * 100);
         this.exerciseProgressBar = (response.goals[i].progress / response.goals[i].goal);
+        this.exerciseGoal = response.goals[i].goal;
+        console.log(this.exerciseCurrent = response.goals[i].progress);
       }
     }
   }

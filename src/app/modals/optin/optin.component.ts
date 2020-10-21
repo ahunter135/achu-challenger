@@ -12,7 +12,10 @@ export class OptinComponent {
   constructor(public http: HttpService, public toast: ToastController, public modal: ModalController) { }
 
    
+  dismiss() {
 
+    this.modal.dismiss();
+}
 
   async optIn(status) {
  
