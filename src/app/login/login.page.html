@@ -38,8 +38,12 @@
           <!-- <ion-item lines="none">
             <a>Forgot Password?</a>
           </ion-item>-->
-          <ion-button id="createBtn" color="primary" expand="block" (click)="login()">Login
+          <ion-button id="createBtn" color="primary" expand="block" (click)="login()" *ngIf="!loggingIn">Login
           </ion-button>
+          <ion-button id="createBtn" color="primary" expand="block" *ngIf="loggingIn">
+            <ion-spinner name="bubbles"></ion-spinner>
+          </ion-button>
+
           <br>
           <a>Create an Account</a>
         </div>

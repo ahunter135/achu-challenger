@@ -13,13 +13,14 @@ import { ModalController, } from '@ionic/angular';
 export class LoginPage implements OnInit {
   email: "";
   password: "";
-
+  loggingIn = false;
   constructor(public router: Router, public storage: StorageService, public navCtrl: NavController, public http: HttpService, public modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
 
   async login() {
+    this.loggingIn = true;
     let response = await this.http.post("/auth/Auth/Login", {
       email: this.email,
       password: this.password
@@ -30,6 +31,7 @@ export class LoginPage implements OnInit {
       let loginResponse = { key: "loggedIn", value: JSON.stringify(response) };
       await this.storage.setItem(loginResponse);
       await this.http.setUserCreds(response);
+      this.loggingIn = false;
       this.router.navigateByUrl("/home", {
         replaceUrl: true
       });
@@ -39,6 +41,7 @@ export class LoginPage implements OnInit {
     } else {
       if (response.status == 401) alert("Invalid Email or Password");
       else alert("Please enter an Email and Password.");
+      this.loggingIn = false;
     }
 
   }

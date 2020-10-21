@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, LoadingController } from '@ionic/angular';
 import { Chart } from 'chart.js';
 import { GlobalService } from 'src/app/services/global.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -15,7 +15,8 @@ export class MyStatsComponent implements OnInit {
   weeklyData;
   barChart: Chart;
   chartLoaded = false;
-  constructor(public navCtrl: NavController, public globalService: GlobalService, public http: HttpService) {
+  loading;
+  constructor(public navCtrl: NavController, public globalService: GlobalService, public http: HttpService, public loadingController: LoadingController) {
     this.globalService.getObservable().subscribe(async (data) => {
       if (data === 'stats') {
         this.ionViewDidEnter();
@@ -28,8 +29,9 @@ export class MyStatsComponent implements OnInit {
   }
 
   async ionViewDidEnter() {
+    if (!this.chartLoaded)
+      this.presentLoading();
     let response = await this.http.get('/api/fitbit/WeeklyComparison', { dateOffset: new Date().getTime() });
-    console.log(response);
     this.weeklyData = response;
     console.log(this.weeklyData);
     console.log(this.weeklyData[0].goals[3].progress);
@@ -100,10 +102,17 @@ export class MyStatsComponent implements OnInit {
       }
     });
     this.chartLoaded = true;
+    this.loading.dismiss();
   }
 
   goBack() {
     this.navCtrl.navigateBack('/home');
   }
 
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+    });
+    await this.loading.present();
+  }
 }

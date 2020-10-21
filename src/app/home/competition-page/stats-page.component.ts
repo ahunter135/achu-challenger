@@ -3,7 +3,7 @@ import { Chart } from 'chart.js';
 import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
-import { ToastController, ModalController } from '@ionic/angular';
+import { ToastController, ModalController, LoadingController } from '@ionic/angular';
 import { OptinComponent } from 'src/app/modals/optin/optin.component';
 
 @Component({
@@ -17,7 +17,9 @@ export class StatsPageComponent implements OnInit {
   public items: any = [];
   friendData = [];
   friendsChart: Chart;
-  constructor(public globalService: GlobalService, public router: Router, public http: HttpService, public toast: ToastController, public modal: ModalController) {
+  loading;
+  constructor(public globalService: GlobalService, public router: Router, public http: HttpService, public toast: ToastController, public modal: ModalController,
+    public loadingController: LoadingController) {
     this.globalService.getObservable().subscribe(async (data) => {
       if (data === 'competition') {
         this.viewHasEntered();
@@ -40,6 +42,8 @@ export class StatsPageComponent implements OnInit {
   }
 
   async viewHasEntered() {
+    if (!this.chartLoaded)
+      this.presentLoading();
     this.friendData = await this.http.get('/api/fitbit/friendGoals', { dateOffset: new Date().getTime() });
     if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) return;
     let data = [];
@@ -104,6 +108,14 @@ export class StatsPageComponent implements OnInit {
       }
     });
     this.chartLoaded = true;
+    this.loading.dismiss();
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+    });
+    await this.loading.present();
   }
 
   goToMyStats() {
