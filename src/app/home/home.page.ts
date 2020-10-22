@@ -4,8 +4,9 @@ import { GlobalService } from '../services/global.service';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { DailyCheckupComponent } from '../modals/daily-checkup/daily-checkup.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-home',
@@ -43,7 +44,8 @@ export class HomePage {
   stressScore = 0;
   fatigueScore = 0;
   lineChart: Chart;
-  constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController) { }
+  loading;
+  constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,public loadingController: LoadingController) { }
 
   async ionViewDidEnter() {
     var loggedIn = await this.storage.getItem("loggedIn");
@@ -170,9 +172,26 @@ export class HomePage {
 
     let response = await this.http.get('/api/Account/GetUserSettings', { dateOffset: new Date().getTime() });
 
-    this.http.userSettings = response;    
+    this.http.userSettings = response; 
 
+    console.log(this.http.userSettings.avatarName);
+
+    let lastCheckin = moment(this.http.userSettings.lastDailyCheckin);
+    let now = moment();
+    let needsCheckin = true;
+
+    if(lastCheckin){
+
+      if(moment(lastCheckin).isAfter(now, 'day')){
+
+        needsCheckin = false;
+
+      }
+
+    }
  
+     
+     
 
   }
 

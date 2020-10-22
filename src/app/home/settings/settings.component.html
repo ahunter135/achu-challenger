@@ -21,11 +21,20 @@
   <ion-item lines="none">
     <ion-text style="font-size: 10px; color: #5a5a5a; padding-top: 15px;">ABOUT ACHU</ion-text>
   </ion-item>
+
+  <ion-item detail="true" button (click)="updateCharacter()">
+    <ion-label>
+      <h3>Update AchuCharacter</h3>
+    </ion-label>
+  </ion-item>
+
   <ion-item detail="true" button>
     <ion-label>
       <h3>Fitbit Authorization</h3>
     </ion-label>
   </ion-item>
+
+
   <ion-item detail="true" button (click)="optIn()">
     <ion-label>
       <h3>Competition Opt In</h3>

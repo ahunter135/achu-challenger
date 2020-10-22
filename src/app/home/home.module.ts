@@ -15,7 +15,7 @@ import { TimePipe } from '../pipes/time.pipe';
 import { GoaltypePipe } from '../pipes/goaltype.pipe';
 import { SettingsComponent } from './settings/settings.component';
 import { OptinComponent } from '../modals/optin/optin.component';
-
+import { UpdateCharacterComponent } from '../modals/update-character/update-character.component';
 
 @NgModule({
   imports: [
@@ -26,7 +26,7 @@ import { OptinComponent } from '../modals/optin/optin.component';
     Ng5SliderModule
   ],
   declarations: [HomePage, HeaderCardComponent, StatsPageComponent, ExpandableComponent, MyStatsComponent,
-    DailyCheckupComponent, TimePipe, GoaltypePipe, SettingsComponent, OptinComponent],
-  entryComponents: [HeaderCardComponent, StatsPageComponent, ExpandableComponent, MyStatsComponent, SettingsComponent, OptinComponent]
+    DailyCheckupComponent, TimePipe, GoaltypePipe, SettingsComponent, OptinComponent, UpdateCharacterComponent],
+  entryComponents: [HeaderCardComponent, StatsPageComponent, ExpandableComponent, MyStatsComponent, SettingsComponent, OptinComponent, UpdateCharacterComponent]
 })
 export class HomePageModule { }
