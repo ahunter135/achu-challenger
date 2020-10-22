@@ -45,7 +45,12 @@ export class HomePage {
   fatigueScore = 0;
   lineChart: Chart;
   loading;
+<<<<<<< HEAD
   constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,public loadingController: LoadingController) { }
+=======
+  constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,
+    public loadingController: LoadingController) { }
+>>>>>>> 3731cbc3b957f90ee078a65b671037b795a9043a
 
   async ionViewDidEnter() {
     var loggedIn = await this.storage.getItem("loggedIn");
@@ -53,17 +58,19 @@ export class HomePage {
     if (loggedIn == undefined) {
       this.http.logout();
     } else {
+      this.presentLoading();
       await this.http.setUserCreds(loggedIn);
-      this.getDailyGoals();
+      await this.getDailyGoals();
       this.getHRZones();
       this.getFitbitScores();
       this.getUserSettings();
+      this.loading.dismiss();
     }
   }
 
   async getDailyGoals() {
     let response = await this.http.get('/api/fitbit/dailygoals', { dateOffset: new Date().getTime() });
-    
+
     if (response == undefined) {
       this.http.logout();
       return;
@@ -169,8 +176,8 @@ export class HomePage {
   }
 
   async getUserSettings() {
-
     let response = await this.http.get('/api/Account/GetUserSettings', { dateOffset: new Date().getTime() });
+<<<<<<< HEAD
 
     this.http.userSettings = response; 
 
@@ -193,6 +200,9 @@ export class HomePage {
      
      
 
+=======
+    this.http.userSettings = response;
+>>>>>>> 3731cbc3b957f90ee078a65b671037b795a9043a
   }
 
   segmentChanged(ev: any) {
@@ -215,6 +225,13 @@ export class HomePage {
 
   getContent() {
     return document.querySelector('ion-content');
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+    });
+    await this.loading.present();
   }
 
 }

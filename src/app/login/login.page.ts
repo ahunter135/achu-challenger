@@ -4,6 +4,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { NavController } from '@ionic/angular';
 import { HttpService } from 'src/app/services/http.service';
 import { ModalController, } from '@ionic/angular';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -44,6 +45,10 @@ export class LoginPage implements OnInit {
       this.loggingIn = false;
     }
 
+  }
+
+  async goToSignUp() {
+    this.router.navigateByUrl("/register");
   }
 
 }
