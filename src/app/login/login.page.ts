@@ -51,4 +51,9 @@ export class LoginPage implements OnInit {
     this.router.navigateByUrl("/register");
   }
 
+  async goToPwReset() {
+
+    this.router.navigateByUrl("/password-reset");
+  }
+
 }

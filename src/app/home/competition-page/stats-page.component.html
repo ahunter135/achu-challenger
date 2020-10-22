@@ -51,15 +51,15 @@
   </ion-card-header>
 </ion-card> -->
 <ion-card *ngIf="friendData.length > 0 && http.userSettings.fitBitShare">
-  <ion-card-header (click)="goToMyStats()">
+  <!-- <ion-card-header (click)="goToMyStats()">
     <ion-card-subtitle style="color: black">My Friends</ion-card-subtitle>
-  </ion-card-header>
+  </ion-card-header> -->
   <ion-card-content style="padding: 0 !important;">
     <ion-item (click)="expandItem(item)" *ngFor="let item of friendData" lines="none" style="padding: 0 !important;">
       <ion-label>
         <ion-grid fixed>
           <ion-row>
-            <ion-col size="4" class="ion-align-self-center">
+            <ion-col size="2" class="ion-align-self-center">
               <ion-avatar style="width: 30px; height: 30px; float: left;">
                 <img src="../../assets/images/avatar.svg">
               </ion-avatar>
@@ -69,10 +69,14 @@
               <br>
               <ion-text style="font-size: 10px; color: gray;">Overall Completion</ion-text>
             </ion-col>
-            <ion-col size="4" class="ion-align-self-center">
+            <ion-col size="4" class="ion-align-self-center bar" style="text-align: right;">{{(item.overallCompletion / 100) * 100}}%
+              
+            </ion-col>
+            <ion-col size="2" class="ion-align-self-center">
               <ion-icon *ngIf="!item.expanded" name="chevron-forward" style="float: right"></ion-icon>
               <ion-icon *ngIf="item.expanded" name="chevron-up" style="float: right"></ion-icon>
             </ion-col>
+           
           </ion-row>
         </ion-grid>
         <ion-progress-bar value="{{item.overallCompletion / 100}}" reversed="false" color="primary">

@@ -9,6 +9,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { RegisterComponent } from '../register/register.component';
 import { RegisterTwoComponent } from '../register-two/register-two.component';
+import { PasswordResetComponent } from '../password-reset/password-reset.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { RegisterTwoComponent } from '../register-two/register-two.component';
     IonicModule,
     LoginPageRoutingModule
   ],
-  declarations: [LoginPage, RegisterComponent, RegisterTwoComponent]
+  declarations: [LoginPage, RegisterComponent, RegisterTwoComponent, PasswordResetComponent]
 })
 export class LoginPageModule { }
