@@ -4,44 +4,33 @@
     Find a better way for this use divs as "views"
   -->
   <div id="today-view" [hidden]="!(currentNav == 'today')">
-    <!-- <ion-segment (ionChange)="segmentChanged($event)" class="home-bar" [(ngModel)]="homeBar">
-      <ion-segment-button value="today">
-        <ion-label>Today</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="notifications">
-        <ion-label>Notifications</ion-label>
-      </ion-segment-button>
-    </ion-segment> -->
-
-    <ion-card color="privacybg" *ngIf="needsCheckin">
+    <ion-card color="privacybg">
       <ion-card-header>
         <ion-grid>
- 
           <ion-row>
-    
             <ion-col>
-              <ion-card-subtitle style="font-size:12px">Please complete your daily checkin to receive updated stress and fatigue scores. Your check in must be completed daily to achieve accurate results.</ion-card-subtitle>
+              <ion-card-subtitle style="font-size:10px">Please complete your daily checkin to receive updated stress and
+                fatigue scores. Your check in must be completed daily to achieve accurate results.</ion-card-subtitle>
             </ion-col>
           </ion-row>
           <ion-row>
-
             <ion-col>
               <ion-button expand="block" size="small" color="privacy" (click)="openDailyCheckup()">Start</ion-button>
             </ion-col>
-
           </ion-row>
         </ion-grid>
       </ion-card-header>
     </ion-card>
-
     <ion-card class="goal-card">
       <ion-card-header style="padding-bottom: 0 !important">
-        <ion-card-subtitle style="color: black; text-decoration: none;font-size:16px;">Daily Goals</ion-card-subtitle>
-        <ion-card-subtitle style="color: #555555; font-size: 14px;">{{this.http.userSettings.avatarName}} is your personal
+        <ion-card-subtitle style="color: black; text-decoration: none;">Daily Goals</ion-card-subtitle>
+        <ion-card-subtitle style="color: #555555; font-size: 10px;">{{this.http.userSettings.avatarName}} is your
+          personal
           goal-driven avatar who adapts
           to
           your own
-          personal health status. {{this.http.userSettings.avatarName}} is driven by your consistency in achieving your personalized goals to ensure you
+          personal health status. {{this.http.userSettings.avatarName}} is driven by your consistency in achieving your
+          personalized goals to ensure you
           stay motivated in your journey.
         </ion-card-subtitle>
       </ion-card-header>
@@ -99,7 +88,7 @@
         </div>
       </ion-card-content>
     </ion-card>
-    
+
     <ion-card class="overall-goal-card">
       <ion-grid>
         <ion-row>
@@ -124,7 +113,8 @@
       </ion-button>
       <ion-card-header>
         <ion-card-subtitle style="color: black;font-size:16px;">Workout HR Zones</ion-card-subtitle>
-        <ion-card-subtitle style="color: #555555; text-decoration: none;font-size:14x">Your HR Trend shows a moderate similarity in
+        <ion-card-subtitle style="color: #555555; text-decoration: none;font-size:14x">Your HR Trend shows a moderate
+          similarity in
           your fatigue trends
           from
           your last 4 days
@@ -206,7 +196,9 @@
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle style="color: black; text-decoration: none;">Stress</ion-card-subtitle>
-        <ion-card-subtitle style="color: #555555; text-decoration: none;font-size:14x">Your stress indicator is a combination of your recent trend in health data and daily check ins.
+        <ion-card-subtitle style="color: #555555; text-decoration: none;">Your stress indicator is a
+          combination of your
+          recent trend in health data and daily check ins.
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
@@ -238,7 +230,8 @@
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle style="color: black; text-decoration: none;">Fatigue</ion-card-subtitle>
-        <ion-card-subtitle style="color: #555555; text-decoration: none;">Your fatigue indicator is a combination of your recent trend in health data and daily check ins.
+        <ion-card-subtitle style="color: #555555; text-decoration: none;">Your fatigue indicator is a combination of
+          your recent trend in health data and daily check ins.
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
