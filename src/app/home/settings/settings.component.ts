@@ -3,6 +3,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { ToastController, ModalController } from '@ionic/angular';
 import { OptinComponent } from 'src/app/modals/optin/optin.component';
+import { UpdateCharacterComponent } from 'src/app/modals/update-character/update-character.component';
 
 @Component({
   selector: 'app-settings',
@@ -22,15 +23,25 @@ export class SettingsComponent implements OnInit {
       component: OptinComponent,
       cssClass: 'my-custom-modal-css'
     });
+
+
+    
     return await modal.present();
-    /*this.http.put("/api/Account/UpdateFitbitShare", { "fitbitShare": true }).then(async () => {
-      let t = await this.toast.create({
-        message: 'Opt In Successful',
-        duration: 2000
-      });
-      t.present();
-      let response = await this.http.get('/api/Account/GetUserSettings', {});
-      this.http.userSettings = response;
-    });*/
+ 
   }
+
+  async updateCharacter() {
+    let modal = await this.modal.create({
+      component: UpdateCharacterComponent,
+      cssClass: 'my-custom-modal-css'
+    });
+
+
+    
+    return await modal.present();
+ 
+  }
+
+
+
 }

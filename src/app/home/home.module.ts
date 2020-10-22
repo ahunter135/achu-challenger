@@ -16,7 +16,10 @@ import { GoaltypePipe } from '../pipes/goaltype.pipe';
 import { SettingsComponent } from './settings/settings.component';
 import { OptinComponent } from '../modals/optin/optin.component';
 import { UpdateCharacterComponent } from '../modals/update-character/update-character.component';
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3731cbc3b957f90ee078a65b671037b795a9043a
 
 @NgModule({
   imports: [

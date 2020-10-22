@@ -250,6 +250,7 @@ export class HttpService {
         } else {
           //set data
           this.userDefaults = response;
+          
         }
       } else {
         // log out
