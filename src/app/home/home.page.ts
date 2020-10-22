@@ -45,12 +45,8 @@ export class HomePage {
   fatigueScore = 0;
   lineChart: Chart;
   loading;
-<<<<<<< HEAD
-  constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,public loadingController: LoadingController) { }
-=======
   constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,
     public loadingController: LoadingController) { }
->>>>>>> 3731cbc3b957f90ee078a65b671037b795a9043a
 
   async ionViewDidEnter() {
     var loggedIn = await this.storage.getItem("loggedIn");
@@ -177,32 +173,16 @@ export class HomePage {
 
   async getUserSettings() {
     let response = await this.http.get('/api/Account/GetUserSettings', { dateOffset: new Date().getTime() });
-<<<<<<< HEAD
-
-    this.http.userSettings = response; 
-
-    console.log(this.http.userSettings.avatarName);
-
+    this.http.userSettings = response;
     let lastCheckin = moment(this.http.userSettings.lastDailyCheckin);
     let now = moment();
     let needsCheckin = true;
 
-    if(lastCheckin){
-
-      if(moment(lastCheckin).isAfter(now, 'day')){
-
+    if (lastCheckin) {
+      if (moment(lastCheckin).isAfter(now, 'day')) {
         needsCheckin = false;
-
       }
-
     }
- 
-     
-     
-
-=======
-    this.http.userSettings = response;
->>>>>>> 3731cbc3b957f90ee078a65b671037b795a9043a
   }
 
   segmentChanged(ev: any) {

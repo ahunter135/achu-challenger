@@ -23,11 +23,7 @@ export class SettingsComponent implements OnInit {
       component: OptinComponent,
       cssClass: 'my-custom-modal-css'
     });
-
-
-    
     return await modal.present();
- 
   }
 
   async updateCharacter() {
@@ -35,11 +31,7 @@ export class SettingsComponent implements OnInit {
       component: UpdateCharacterComponent,
       cssClass: 'my-custom-modal-css'
     });
-
-
-    
     return await modal.present();
- 
   }
 
 
