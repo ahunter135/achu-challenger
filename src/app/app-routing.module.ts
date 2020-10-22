@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { RegisterTwoComponent } from './register-two/register-two.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,12 @@ const routes: Routes = [
   {
     path: 'register-two',
     component: RegisterTwoComponent
+  },
+  {
+    path: 'password-reset',
+    component: PasswordResetComponent
   }
+
 ];
 
 @NgModule({
