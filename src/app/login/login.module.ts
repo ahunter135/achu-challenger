@@ -18,6 +18,7 @@ import { PasswordResetComponent } from '../password-reset/password-reset.compone
     IonicModule,
     LoginPageRoutingModule
   ],
-  declarations: [LoginPage, RegisterComponent, RegisterTwoComponent, PasswordResetComponent]
+  declarations: [LoginPage, RegisterComponent, RegisterTwoComponent, PasswordResetComponent],
+  entryComponents: [PasswordResetComponent]
 })
 export class LoginPageModule { }

@@ -35,17 +35,15 @@
             <ion-input style="width: 100%;" type="password" placeholder="******" [(ngModel)]="password">
             </ion-input>
           </ion-item>
-          <ion-item lines="none">
-            <a (click)="goToPwReset()">Forgot Password?</a>
-          </ion-item>
           <ion-button id="createBtn" color="primary" expand="block" (click)="login()" *ngIf="!loggingIn">Login
           </ion-button>
           <ion-button id="createBtn" color="primary" expand="block" *ngIf="loggingIn">
             <ion-spinner name="bubbles"></ion-spinner>
           </ion-button>
-
           <br>
           <a (click)="goToSignUp()">Create an Account</a>
+          <br><br>
+          <a (click)="goToPwReset()">Forgot Password?</a>
         </div>
       </ion-col>
       <ion-col size="1"></ion-col>
