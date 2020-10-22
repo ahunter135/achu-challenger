@@ -45,7 +45,10 @@ export class StatsPageComponent implements OnInit {
     if (!this.chartLoaded)
       this.presentLoading();
     this.friendData = await this.http.get('/api/fitbit/friendGoals', { dateOffset: new Date().getTime() });
-    if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) return;
+    if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) {
+      this.loading.dismiss();
+      return;
+    }
     let data = [];
     let labels = [];
     let backgroundColors = [];
