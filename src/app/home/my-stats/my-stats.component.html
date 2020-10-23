@@ -1,7 +1,7 @@
-<ion-card style="width: 100%; padding: 0; margin: 0;" class="my-stats-card">
+<ion-card style="width: 100%; padding: 0; margin: 0;border-top-left-radius: 0px;border-top-right-radius: 0px;" class="my-stats-card">
   <ion-card-header>
     <h1 class="title">My Stats</h1>
-    <p>Overall Progression</p>
+    <p class="medium-text">Overall Progression</p>
   </ion-card-header>
   <ion-card-content>
     <canvas #barCanvas style="width: 100%; height: 220px;"></canvas>
@@ -29,7 +29,7 @@
           <ion-text class="medium-text" style="float: left">
             This Week
           </ion-text>
-          <ion-text class="medium-text" style=" float: right">
+          <ion-text class="small-text" style=" float: right">
             {{(weeklyData[0].goals[1].progress / weeklyData[0].goals[1].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -40,7 +40,7 @@
           color="steps">
         </ion-progress-bar>
         <ion-col size="12">
-          <ion-text class="medium-text"  style="float: left">
+          <ion-text class="small-text" style="float: left">
             {{weeklyData[0].goals[1].progress}} / {{weeklyData[0].goals[1].goal}} steps
           </ion-text>
         </ion-col>
@@ -51,7 +51,7 @@
           <ion-text class="medium-text" style="float: left">
             Last Week
           </ion-text>
-          <ion-text class="medium-text" style="float: right">
+          <ion-text class="small-text" style="float: right">
             {{(weeklyData[1].goals[1].progress / weeklyData[1].goals[1].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -60,7 +60,7 @@
         </ion-progress-bar>
  
         <ion-col size="12">
-          <ion-text class="medium-text" style="float: left">
+          <ion-text class="small-text" style="float: left">
             {{weeklyData[1].goals[1].progress}} / {{weeklyData[1].goals[1].goal}} steps
           </ion-text>
         
@@ -77,7 +77,7 @@
           <img src="../../assets/images/cals.svg" style="display: block; margin: auto;">
         </ion-col>
         <ion-col size="10">
-          <strong class="v-align">Calories</strong>
+          <strong class="title v-align">Calories</strong>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -86,12 +86,12 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12">
-          <ion-text style="font-size: 12px; font-weight: bold; float: left">
+          <ion-text class="medium-text" style=" float: left">
             This Week
           </ion-text>
          
 
-          <ion-text style="font-size: 12px; float: right">
+          <ion-text class="small-text" style="float: right">
             {{(weeklyData[0].goals[2].progress / weeklyData[0].goals[2].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
 
@@ -101,17 +101,17 @@
         </ion-progress-bar>
         
         <ion-col size="12">
-          <ion-text style="font-size: 10px; float: left">
+          <ion-text class="small-text" style="float: left">
             {{weeklyData[0].goals[2].progress}} / {{weeklyData[0].goals[2].goal}} cals
           </ion-text>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-text style="font-size: 12px; font-weight: bold; float: left">
+          <ion-text class="medium-text" style="float: left">
             Last Week
           </ion-text>
-          <ion-text style="font-size: 12px; float: right">
+          <ion-text class="small-text" style=" float: right">
             {{(weeklyData[1].goals[2].progress / weeklyData[1].goals[2].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -120,7 +120,7 @@
         </ion-progress-bar>
  
         <ion-col size="12">
-          <ion-text style="font-size: 10px; float: left">
+          <ion-text class="small-text" style="float: left">
             {{weeklyData[1].goals[2].progress}} / {{weeklyData[1].goals[2].goal}} cals
           </ion-text>
         </ion-col>
@@ -136,7 +136,7 @@
           <img src="../../assets/images/Sleep.svg" style="display: block; margin: auto;">
         </ion-col>
         <ion-col size="10">
-          <strong class="v-align">Sleep</strong>
+          <strong class="title v-align">Sleep</strong>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -145,10 +145,10 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12">
-          <ion-text style="font-size: 12px; font-weight: bold; float: left">
+          <ion-text class="medium-text" style="float: left">
             This Week
           </ion-text>
-          <ion-text style="font-size: 12px; float: right">
+          <ion-text class="small-text" style="float: right">
             {{(weeklyData[0].goals[0].progress / weeklyData[0].goals[0].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -156,7 +156,7 @@
           color="sleep" >
         </ion-progress-bar>
         <ion-col size="12">
-          <ion-text style="font-size: 10px; float: left">
+          <ion-text class="small-text" style="float: left">
             {{weeklyData[0].goals[0].progress}} / {{weeklyData[0].goals[0].goal}} mins
           </ion-text>
         </ion-col>
@@ -166,10 +166,10 @@
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-text style="font-size: 12px; float: left">
+          <ion-text class="medium-text" style="float: left">
             Last Week
           </ion-text>
-          <ion-text style="font-size: 12px; float: right">
+          <ion-text class="small-text" style="float: right">
             {{(weeklyData[1].goals[0].progress / weeklyData[1].goals[0].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -177,7 +177,7 @@
           color="last" >
         </ion-progress-bar>
         <ion-col size="12">
-          <ion-text style="font-size: 10px; float: left">
+          <ion-text class="small-text" style="float: left">
             {{weeklyData[1].goals[0].progress}} / {{weeklyData[1].goals[0].goal}} mins
           </ion-text>
         </ion-col>
@@ -196,7 +196,7 @@
           <img src="../../assets/images/Heart.svg" style="display: block; margin: auto;">
         </ion-col>
         <ion-col size="10">
-          <strong class="v-align">Exercise</strong>
+          <strong class="title v-align">Exercise</strong>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -205,10 +205,10 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12">
-          <ion-text style="font-size: 12px; font-weight: bold; float: left">
+          <ion-text class="medium-text" style="font-weight: bold; float: left">
             This Week
           </ion-text>
-          <ion-text style="font-size: 12px; float: right">
+          <ion-text class="small-text" style="float: right">
             {{(weeklyData[0].goals[3].progress / weeklyData[0].goals[3].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -216,7 +216,7 @@
           color="excercise" >
         </ion-progress-bar>
         <ion-col size="12">
-          <ion-text style="font-size: 10px; float: left">
+          <ion-text class="small-text" style="float: left">
             {{weeklyData[0].goals[3].progress}} / {{weeklyData[0].goals[3].goal}} mins
           </ion-text>
         </ion-col>
@@ -224,10 +224,10 @@
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-text style="font-size: 12px; float: left">
+          <ion-text class="medium-text" style=" float: left">
             Last Week
           </ion-text>
-          <ion-text style="font-size: 12px; float: right">
+          <ion-text class="small-text" style="float: right">
             {{(weeklyData[1].goals[3].progress / weeklyData[1].goals[3].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -235,7 +235,7 @@
           color="last" >
         </ion-progress-bar>
         <ion-col size="12">
-          <ion-text style="font-size: 10px; float: left">
+          <ion-text class="small-text" style=" float: left">
             {{weeklyData[1].goals[3].progress}} / {{weeklyData[1].goals[3].goal}} mins
           </ion-text>
         </ion-col>
