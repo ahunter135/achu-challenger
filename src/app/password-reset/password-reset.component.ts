@@ -14,7 +14,7 @@ export class PasswordResetComponent {
 
 
   async sendPwReset() {
-    console.log(this.emailreset);
+   
     this.http.post("/auth/Account/ForgotPassword", { email: this.emailreset }).then(async () => {
       let t = await this.toast.create({
         message: 'Email Sent!',

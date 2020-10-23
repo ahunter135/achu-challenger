@@ -9,8 +9,9 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-card-subtitle style="font-size:10px">Please complete your daily checkin to receive updated stress and
-                fatigue scores. Your check in must be completed daily to achieve accurate results.</ion-card-subtitle>
+              <ion-card-subtitle class="title">Daily Check In</ion-card-subtitle>
+              <ion-card-subtitle class="content">To receive stress and fatigue updates please complete a Daily
+                Check In by clicking the floating clip board icon or the start button below!</ion-card-subtitle>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -23,8 +24,8 @@
     </ion-card>
     <ion-card class="goal-card">
       <ion-card-header style="padding-bottom: 0 !important">
-        <ion-card-subtitle style="color: black; text-decoration: none;">Daily Goals</ion-card-subtitle>
-        <ion-card-subtitle style="color: #555555; font-size: 10px;">{{this.http.userSettings.avatarName}} is your
+        <ion-card-subtitle class="title">Daily Goals</ion-card-subtitle>
+        <ion-card-subtitle class="content">{{this.http.userSettings.avatarName}} is your
           personal
           goal-driven avatar who adapts
           to
@@ -38,49 +39,47 @@
         <div class="flex-container">
           <div class="bars-container">
             <div class="bar" style="padding-bottom:5px;">
-              <ion-text style="font-size: 16px; font-weight: bold; float: left">
+              <ion-text class="title" style="float: left">
                 Steps
               </ion-text>
-              <ion-text style="font-size: 16px; float: right">{{stepsProgress}}%
+              <ion-text class="title" style="float: right">{{stepsProgress}}%
               </ion-text>
-              <ion-progress-bar value="{{stepsProgressBar}}" reversed="false" color="primary">
-                #shadow-root
-                <div part="progress" class="progress"></div>
+              <ion-progress-bar class="dailyProgress" value="{{stepsProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
-              <ion-text style="font-size: 14px; float: left">{{stepsCurrent}} / {{stepsGoal}}
+              <ion-text class="medium-text" style="float: left">{{stepsCurrent}} / {{stepsGoal}}
               </ion-text>
             </div>
             <div class="bar" style="padding-bottom:5px;">
-              <ion-text style="font-size: 16px; font-weight: bold; float: left">
+              <ion-text class="title" style="float: left">
                 Calories
               </ion-text>
-              <ion-text style="font-size: 16px; float: right">{{caloriesProgress}}%
+              <ion-text class="title" style="float: right">{{caloriesProgress}}%
               </ion-text>
-              <ion-progress-bar value="{{caloriesProgressBar}}" reversed="false" color="primary">
+              <ion-progress-bar class="dailyProgress" value="{{caloriesProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
-              <ion-text style="font-size: 14px; float: left">{{caloriesCurrent}} / {{caloriesGoal}}
+              <ion-text class="medium-text" style="float: left">{{caloriesCurrent}} / {{caloriesGoal}}
               </ion-text>
             </div>
             <div class="bar" style="padding-bottom:5px;">
-              <ion-text style="font-size: 16px; font-weight: bold; float: left">
+              <ion-text class="title" style="float: left">
                 Sleep
               </ion-text>
-              <ion-text style="font-size: 16px; float: right">{{sleepProgress}}%
+              <ion-text class="title" style="float: right">{{sleepProgress}}%
               </ion-text>
-              <ion-progress-bar value="{{sleepProgressBar}}" reversed="false" color="primary">
+              <ion-progress-bar class="dailyProgress" value="{{sleepProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
-              <ion-text style="font-size: 14px; float: left">{{sleepCurrent}} / {{sleepGoal}}
+              <ion-text class="medium-text" style="float: left">{{sleepCurrent}} / {{sleepGoal}}
               </ion-text>
             </div>
             <div class="bar" style="padding-bottom:5px;">
-              <ion-text style="font-size: 16px; font-weight: bold; float: left">
+              <ion-text class="title" style="float: left">
                 Exercise
               </ion-text>
-              <ion-text style="font-size: 16px; float: right">{{exerciseProgress}}%
+              <ion-text class="title" style="float: right">{{exerciseProgress}}%
               </ion-text>
-              <ion-progress-bar value="{{exerciseProgressBar}}" reversed="false" color="primary">
+              <ion-progress-bar class="dailyProgress" value="{{exerciseProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
-              <ion-text style="font-size: 14px; float: left">{{exerciseCurrent}} / {{exerciseGoal}}
+              <ion-text class="medium-text" style="float: left">{{exerciseCurrent}} / {{exerciseGoal}}
               </ion-text>
             </div>
           </div>
@@ -95,14 +94,14 @@
       <ion-grid>
         <ion-row>
           <ion-col size="12">
-            <ion-text style="font-size: 16px; font-weight: bold; float: left">
+            <ion-text class="title" style="float: left">
               Overall Goal Completion
             </ion-text>
           </ion-col>
           <ion-progress-bar value="{{overallCompletionBar}}" reversed="false" color="primary" class="overallBar">
           </ion-progress-bar>
           <ion-col size="12">
-            <ion-text style="font-size: 16px; float: right">{{overallCompletion}}%
+            <ion-text class="title" style="float: right">{{overallCompletion}}%
             </ion-text>
           </ion-col>
         </ion-row>
@@ -111,11 +110,11 @@
 
     <ion-card class="heart-rate-card">
       <ion-button fill="clear" style="float: right;">
-        <ion-icon slot="icon-only" name="information-circle" size="small" style="color: #cfcfcf"></ion-icon>
+        <ion-icon slot="icon-only" name="information-circle" style="color: #cfcfcf;font-size:20px;"></ion-icon>
       </ion-button>
       <ion-card-header>
-        <ion-card-subtitle style="color: black;font-size:16px;">Workout HR Zones</ion-card-subtitle>
-        <ion-card-subtitle style="color: #555555; text-decoration: none;font-size:14x">Your HR Trend shows a moderate
+        <ion-card-subtitle class="title">Workout HR Zones</ion-card-subtitle>
+        <ion-card-subtitle class="content">Your HR Trend shows a moderate
           similarity in
           your fatigue trends
           from
@@ -156,7 +155,7 @@
               <ion-progress-bar value="{{HRZones[0] / 100}}" color="peak"></ion-progress-bar>
             </ion-col>
           </ion-row>
-          <ion-row>
+          <ion-row style="padding-top:20px;">
             <ion-col size="4">
               <ion-text style="font-size: 8px; display: block; vertical-align: middle;"><span
                   style="font-weight: bold">Fat Burning:</span> 1 min = 1 min
@@ -177,7 +176,7 @@
       </ion-card-content>
     </ion-card>
     <ion-item lines="none" class="item-text title-text">
-      <ion-label>Health Updates</ion-label>
+      <ion-label class="title">Health Updates</ion-label>
     </ion-item>
 
     <ion-card color="privacybg" *ngIf="!http.userSettings.lastDailyCheckin">
@@ -185,7 +184,7 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-card-subtitle style="font-size:14x">To receive stress and fatigue updates please complete a Daily
+              <ion-card-subtitle class="content">To receive stress and fatigue updates please complete a Daily
                 Check In by clicking the floating clip board icon!</ion-card-subtitle>
             </ion-col>
           </ion-row>
@@ -195,10 +194,10 @@
       </ion-card-header>
     </ion-card>
 
-    <ion-card>
+    <ion-card style="margin-top:0px;">
       <ion-card-header>
-        <ion-card-subtitle style="color: black; text-decoration: none;">Stress</ion-card-subtitle>
-        <ion-card-subtitle style="color: #555555; text-decoration: none;">Your stress indicator is a
+        <ion-card-subtitle class="title">Stress</ion-card-subtitle>
+        <ion-card-subtitle class="content">Your stress indicator is a
           combination of your
           recent trend in health data and daily check ins.
         </ion-card-subtitle>
@@ -231,8 +230,8 @@
 
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle style="color: black; text-decoration: none;">Fatigue</ion-card-subtitle>
-        <ion-card-subtitle style="color: #555555; text-decoration: none;">Your fatigue indicator is a combination of
+        <ion-card-subtitle class="title">Fatigue</ion-card-subtitle>
+        <ion-card-subtitle class="content">Your fatigue indicator is a combination of
           your recent trend in health data and daily check ins.
         </ion-card-subtitle>
       </ion-card-header>
