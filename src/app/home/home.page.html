@@ -4,7 +4,7 @@
     Find a better way for this use divs as "views"
   -->
   <div id="today-view" [hidden]="!(currentNav == 'today')">
-    <ion-card color="privacybg">
+    <ion-card color="privacybg" [hidden]="!needsCheckin">
       <ion-card-header>
         <ion-grid>
           <ion-row>
@@ -84,7 +84,7 @@
             </div>
           </div>
           <div class="character-container">
-            <img src="../../assets/images/Character.svg" style="height: 50%">
+            <ion-img [src]="gifImg"></ion-img>
           </div>
         </div>
       </ion-card-content>

@@ -4,9 +4,10 @@ import { GlobalService } from '../services/global.service';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
-import { ModalController, LoadingController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { DailyCheckupComponent } from '../modals/daily-checkup/daily-checkup.component';
 import * as moment from 'moment';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-home',
@@ -44,9 +45,11 @@ export class HomePage {
   stressScore = 0;
   fatigueScore = 0;
   lineChart: Chart;
-  loading;
+  needsCheckin = false;
+  goals;
+  gifImg = "../../assets/images/standing.gif";
   constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,
-    public loadingController: LoadingController) { }
+    public loadingService: LoadingService) { }
 
   async ionViewDidEnter() {
     var loggedIn = await this.storage.getItem("loggedIn");
@@ -60,13 +63,14 @@ export class HomePage {
       this.getHRZones();
       this.getFitbitScores();
       this.getUserSettings();
-      this.loading.dismiss();
+      this.setupGifs();
+      this.loadingService.dismissLoading();
     }
   }
 
   async getDailyGoals() {
     let response = await this.http.get('/api/fitbit/dailygoals', { dateOffset: new Date().getTime() });
-
+    this.goals = response.goals;
     if (response == undefined) {
       this.http.logout();
       return;
@@ -92,11 +96,9 @@ export class HomePage {
         this.caloriesGoal = response.goals[i].goal;
         this.caloriesCurrent = response.goals[i].progress;
       } else if (response.goals[i].goalType == 'exerciseMinutes') {
-        console.log(response.goals[i]);
         this.exerciseProgress = Math.trunc((response.goals[i].progress / response.goals[i].goal) * 100);
         this.exerciseProgressBar = (response.goals[i].progress / response.goals[i].goal);
         this.exerciseGoal = response.goals[i].goal;
-        console.log(this.exerciseCurrent = response.goals[i].progress);
       }
     }
   }
@@ -104,7 +106,6 @@ export class HomePage {
 
   async getHRZones() {
     let response = await this.http.get('/api/fitbit/HRZ', { dateOffset: new Date().getTime() });
-    console.log(response);
     if (response == undefined) {
       this.http.logout();
       return;
@@ -119,7 +120,6 @@ export class HomePage {
     }
     this.HRZones = data;
     this.HRZones = this.HRZones.reverse();
-    console.log(this.HRZones);
     if (this.chartLoaded) return;
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: "doughnut",
@@ -174,13 +174,12 @@ export class HomePage {
   async getUserSettings() {
     let response = await this.http.get('/api/Account/GetUserSettings', { dateOffset: new Date().getTime() });
     this.http.userSettings = response;
+    console.log(response);
     let lastCheckin = moment(this.http.userSettings.lastDailyCheckin);
     let now = moment();
-    let needsCheckin = true;
-
     if (lastCheckin) {
-      if (moment(lastCheckin).isAfter(now, 'day')) {
-        needsCheckin = false;
+      if (moment(lastCheckin).isBefore(now, 'day')) {
+        this.needsCheckin = true;
       }
     }
   }
@@ -200,6 +199,9 @@ export class HomePage {
       component: DailyCheckupComponent,
       cssClass: 'my-custom-modal-css'
     });
+    modal.onDidDismiss().then(() => {
+      this.ionViewDidEnter();
+    })
     return await modal.present();
   }
 
@@ -208,10 +210,22 @@ export class HomePage {
   }
 
   async presentLoading() {
-    this.loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-    });
-    await this.loading.present();
+    this.loadingService.presentLoading();
+  }
+
+  setupGifs() {
+    let numCompleted = 0;
+    for (let i = 0; i < this.goals.length; i++) {
+      if (this.goals[i].completed) numCompleted++;
+    }
+
+    if (numCompleted == 0) {
+      this.gifImg = "../../assets/images/standing.gif";
+    } else if (numCompleted > 0 && numCompleted < 4) {
+      this.gifImg = "../../assets/images/muscle.gif"
+    } else if (numCompleted == 4) {
+      this.gifImg = "../../assets/images/cape.gif"
+    }
   }
 
 }

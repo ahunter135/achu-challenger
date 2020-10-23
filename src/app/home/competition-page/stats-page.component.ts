@@ -3,8 +3,9 @@ import { Chart } from 'chart.js';
 import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
-import { ToastController, ModalController, LoadingController } from '@ionic/angular';
+import { ToastController, ModalController } from '@ionic/angular';
 import { OptinComponent } from 'src/app/modals/optin/optin.component';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-stats-page',
@@ -17,9 +18,8 @@ export class StatsPageComponent implements OnInit {
   public items: any = [];
   friendData = [];
   friendsChart: Chart;
-  loading;
   constructor(public globalService: GlobalService, public router: Router, public http: HttpService, public toast: ToastController, public modal: ModalController,
-    public loadingController: LoadingController) {
+    public loadingService: LoadingService) {
     this.globalService.getObservable().subscribe(async (data) => {
       if (data === 'competition') {
         this.viewHasEntered();
@@ -43,10 +43,10 @@ export class StatsPageComponent implements OnInit {
 
   async viewHasEntered() {
     if (!this.chartLoaded)
-      this.presentLoading();
+      this.loadingService.presentLoading();
     this.friendData = await this.http.get('/api/fitbit/friendGoals', { dateOffset: new Date().getTime() });
     if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) {
-      this.loading.dismiss();
+      this.loadingService.dismissLoading();
       return;
     }
     let data = [];
@@ -62,7 +62,10 @@ export class StatsPageComponent implements OnInit {
       backgroundColors.push('#9bbeff');
     }
 
-    if (this.chartLoaded) return;
+    if (this.chartLoaded) {
+      this.loadingService.dismissLoading();
+      return;
+    }
     this.friendsChart = new Chart(this.friendsCanvas.nativeElement, {
       type: 'bar',
       data: {
@@ -111,14 +114,7 @@ export class StatsPageComponent implements OnInit {
       }
     });
     this.chartLoaded = true;
-    this.loading.dismiss();
-  }
-
-  async presentLoading() {
-    this.loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-    });
-    await this.loading.present();
+    this.loadingService.dismissLoading();
   }
 
   goToMyStats() {

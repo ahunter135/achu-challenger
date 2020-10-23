@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { Chart } from 'chart.js';
 import { GlobalService } from 'src/app/services/global.service';
 import { HttpService } from 'src/app/services/http.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class MyStatsComponent implements OnInit {
   barChart: Chart;
   chartLoaded = false;
   loading;
-  constructor(public navCtrl: NavController, public globalService: GlobalService, public http: HttpService, public loadingController: LoadingController) {
+  constructor(public navCtrl: NavController, public globalService: GlobalService, public http: HttpService, public loadingService: LoadingService) {
     this.globalService.getObservable().subscribe(async (data) => {
       if (data === 'stats') {
         this.ionViewDidEnter();
@@ -47,7 +48,10 @@ export class MyStatsComponent implements OnInit {
     for (let i = response.length - 1; i > -1; i--) {
       data.push(response[i].overallCompletion);
     }
-    if (this.chartLoaded) return;
+    if (this.chartLoaded) {
+      this.loadingService.dismissLoading();
+      return;
+    }
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
       data: {
@@ -102,7 +106,7 @@ export class MyStatsComponent implements OnInit {
       }
     });
     this.chartLoaded = true;
-    this.loading.dismiss();
+    this.loadingService.dismissLoading();
   }
 
   goBack() {
@@ -110,9 +114,6 @@ export class MyStatsComponent implements OnInit {
   }
 
   async presentLoading() {
-    this.loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-    });
-    await this.loading.present();
+    this.loadingService.presentLoading();
   }
 }

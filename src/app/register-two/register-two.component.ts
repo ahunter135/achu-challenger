@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PickerController, ModalController, LoadingController } from '@ionic/angular';
+import { PickerController, ModalController } from '@ionic/angular';
 import { HttpService } from '../services/http.service';
 import { StorageService } from '../services/storage.service';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-register-two',
@@ -25,8 +26,7 @@ export class RegisterTwoComponent implements OnInit {
     acceptNewsEmail: true,
     registerType: "fitbit"
   }
-  loading;
-  constructor(public router: Router, public picker: PickerController, public http: HttpService, public storage: StorageService, public modalCtrl: ModalController, public loadingController: LoadingController) { }
+  constructor(public router: Router, public picker: PickerController, public http: HttpService, public storage: StorageService, public modalCtrl: ModalController, public loadingService: LoadingService) { }
 
   ngOnInit() {
     let params = this.router.getCurrentNavigation().extras.state;
@@ -43,7 +43,7 @@ export class RegisterTwoComponent implements OnInit {
       let loginResponse = { key: "loggedIn", value: JSON.stringify(response) };
       await this.storage.setItem(loginResponse);
       await this.http.setUserCreds(response);
-      this.loading.dismiss();
+      this.loadingService.dismissLoading();
       this.router.navigateByUrl("/home", {
         replaceUrl: true
       });
@@ -141,10 +141,7 @@ export class RegisterTwoComponent implements OnInit {
   }
 
   async presentLoading() {
-    this.loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-    });
-    await this.loading.present();
+    await this.loadingService.presentLoading()
   }
 
 }
