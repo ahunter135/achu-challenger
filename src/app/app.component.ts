@@ -22,11 +22,11 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.overlaysWebView(true);
+      this.statusBar.overlaysWebView(false);
       this.statusBar.styleBlackTranslucent();
+      this.statusBar.backgroundColorByHexString('#ffffff');
       this.splashScreen.hide();
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-
     });
   }
 }

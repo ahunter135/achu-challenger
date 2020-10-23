@@ -37,14 +37,9 @@
   box-shadow: none;
 }
 
-.progress {
-  border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
 .progress-buffer-bar {
   border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 ion-segment-button::before{
@@ -53,7 +48,6 @@ border-left:none;
 
  
 ion-segment-button::part(indicator-background) {
- 
   box-shadow: none;
 }
 

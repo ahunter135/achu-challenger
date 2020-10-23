@@ -8,7 +8,15 @@
 		},
 		{
 			"path": "../achu-apps/consumer-app"
+		},
+		{
+			"path": "../fitbit-production-watchfaces/challenger"
+		},
+		{
+			"path": "../fitbit-production-watchfaces/bars copy"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
 }

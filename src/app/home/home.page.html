@@ -44,6 +44,8 @@
               <ion-text style="font-size: 16px; float: right">{{stepsProgress}}%
               </ion-text>
               <ion-progress-bar value="{{stepsProgressBar}}" reversed="false" color="primary">
+                #shadow-root
+                <div part="progress" class="progress"></div>
               </ion-progress-bar>
               <ion-text style="font-size: 14px; float: left">{{stepsCurrent}} / {{stepsGoal}}
               </ion-text>
