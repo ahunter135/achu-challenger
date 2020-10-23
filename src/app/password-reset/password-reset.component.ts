@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PasswordResetComponent {
   emailreset;
-  constructor(public router: Router,public http: HttpService,public toast: ToastController, public modal: ModalController) { }
+  constructor(public router: Router, public http: HttpService, public toast: ToastController, public modal: ModalController) { }
 
 
   async sendPwReset() {
@@ -21,15 +21,14 @@ export class PasswordResetComponent {
         duration: 2000
       });
       t.present();
-       
+
     });
   }
 
   async goToLogin() {
-
     this.router.navigateByUrl("/login");
   }
 
-   
+
 
 }

@@ -39,7 +39,7 @@ ion-card-subtitle {
     top: 8%;
     position: absolute; 
     display: block;  
-    --border-radius: 8px;
+    --border-radius: ;
  }
 
  .ion-color-privacy {
@@ -59,4 +59,39 @@ ion-card-subtitle {
 
  .ion-color-friendsbg {
      --ion-color-base: var(--ion-color-friendsbg);
+ }
+
+
+ .title {
+    color: black;
+     text-decoration: none;
+     font-size: 16px;
+     font-weight: bold;
+ }
+
+ .large-text {
+
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+
+ }
+
+ .medium-text {
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+
+ }
+
+ .small-text {
+    color: black;
+    text-decoration: none;
+    font-size: 12px;
+ }
+
+ .content {
+    color: black;
+     font-size: 14px;
+     font-weight: normal;
  }
