@@ -32,7 +32,7 @@ export class MyStatsComponent implements OnInit {
   async ionViewDidEnter() {
     if (!this.chartLoaded)
       this.presentLoading();
-    let response = await this.http.get('/api/fitbit/WeeklyComparison', { dateOffset: new Date().getTime() });
+    let response = await this.http.get('/api/fitbit/WeeklyComparison', {});
     this.weeklyData = response;
     console.log(this.weeklyData);
     console.log(this.weeklyData[0].goals[3].progress);

@@ -69,7 +69,7 @@ export class HomePage {
   }
 
   async getDailyGoals() {
-    let response = await this.http.get('/api/fitbit/dailygoals', { dateOffset: new Date().getTime() });
+    let response = await this.http.get('/api/fitbit/dailygoals', {});
     this.goals = response.goals;
     if (response == undefined) {
       this.http.logout();
@@ -105,7 +105,7 @@ export class HomePage {
 
 
   async getHRZones() {
-    let response = await this.http.get('/api/fitbit/HRZ', { dateOffset: new Date().getTime() });
+    let response = await this.http.get('/api/fitbit/HRZ', {});
     if (response == undefined) {
       this.http.logout();
       return;
@@ -162,7 +162,7 @@ export class HomePage {
   }
 
   async getFitbitScores() {
-    let response = await this.http.get('/api/scores/fitbit', { dateOffset: new Date().getTime() });
+    let response = await this.http.get('/api/scores/fitbit', {});
     if (response == undefined) {
       this.http.logout();
       return;
@@ -172,7 +172,7 @@ export class HomePage {
   }
 
   async getUserSettings() {
-    let response = await this.http.get('/api/Account/GetUserSettings', { dateOffset: new Date().getTime() });
+    let response = await this.http.get('/api/Account/GetUserSettings', {});
     this.http.userSettings = response;
     console.log(response);
     let lastCheckin = moment(this.http.userSettings.lastDailyCheckin);

@@ -66,10 +66,10 @@ export class HttpService {
     let url = this.base + endpoint;
     let headers = {};
     if (this.accessToken == null)
-      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json" };
+      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "DateOffset": new Date().getTimezoneOffset() * (-60) };
     else
-      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId };
-
+      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId, "DateOffset": new Date().getTimezoneOffset() * (-60) };
+    console.log(headers);
     try {
       return await this.http.get(url, {
         headers: headers,
@@ -250,7 +250,7 @@ export class HttpService {
         } else {
           //set data
           this.userDefaults = response;
-          
+
         }
       } else {
         // log out
