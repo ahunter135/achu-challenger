@@ -5,7 +5,7 @@
 }
 
 .nav-bar-container {
-  --background: #FFFFFF;
+  --background: var(--ion-color-primary);
   z-index: 99;
 }
 
@@ -13,21 +13,27 @@
  
 
 .nav-bar-container ion-segment-button {
-  --background: #FFFFFF;
-  --border-color: #FFFFFF;
+  --background: var(--ion-color-primary);
+  --border-color: var(--ion-color-primary);
   --padding-top: 10px;
   --padding-bottom: 10px;
-  --color-checked: var(--ion-color-primary);
-  --color: #000000;
+  --color-checked: #fff;
+  --color: #fff;
 }
 
 .overallBar {
   --buffer-background: #FFFFFF;
 }
 
+.dailyProgress {
+
+  --buffer-background: #d8d9d97a;
+
+}
+
 .nav-bar-container ion-icon {
   font-size: 16px;
-  color: var(--ion-color-primary);
+  color: #fff;
 }
 
 .goal-card {
@@ -53,9 +59,11 @@ border-left:none;
 
  
 ion-segment-button::part(indicator-background) {
- 
+   background-color: var(--ion-color-primary);
   box-shadow: none;
 }
+
+ 
 
 ion-card-content {
   margin: 0;
@@ -155,6 +163,7 @@ ion-card-item ion-item {
   --bar-background-active: transparent;
   position: inherit !important;
   padding: 0 !important;
+  --bar-border-radius: 25px;
 }
 
 .fatigue-health-updates {
@@ -165,6 +174,7 @@ ion-card-item ion-item {
   --bar-background-active: transparent;
   position: inherit !important;
   padding: 0 !important;
+  --bar-border-radius: 25px;
 }
 
 .item-text {
