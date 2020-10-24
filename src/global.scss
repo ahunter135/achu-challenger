@@ -95,3 +95,21 @@ ion-card-subtitle {
      font-size: 14px;
      font-weight: normal;
  }
+
+ ion-icon {
+    &[class*="custom-"] {
+      mask-size: contain;
+      mask-position: 50% 50%;
+      mask-repeat: no-repeat;
+      background: currentColor;
+      width: 2em;
+      height: 2em;
+    }
+  
+    &[class*="custom-clipboard"] {
+      mask-image: url(assets/images/checkin.svg);
+    }
+ 
+ 
+  
+  }

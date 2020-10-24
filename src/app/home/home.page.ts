@@ -42,6 +42,7 @@ export class HomePage {
   overallCompletion = 0;
   overallCompletionBar = 0;
   HRZones = <any>[];
+  lastWorkout = "";
   stressScore = 0;
   fatigueScore = 0;
   lineChart: Chart;
@@ -60,11 +61,11 @@ export class HomePage {
       this.presentLoading();
       await this.http.setUserCreds(loggedIn);
       await this.getDailyGoals();
-      this.getHRZones();
-      this.getFitbitScores();
-      this.getUserSettings();
-      this.setupGifs();
-      this.loadingService.dismissLoading();
+      await this.getHRZones();
+      await this.getFitbitScores();
+      await this.getUserSettings();
+      await this.setupGifs();
+      await this.loadingService.dismissLoading();
     }
   }
 
@@ -97,6 +98,7 @@ export class HomePage {
         this.caloriesCurrent = response.goals[i].progress;
       } else if (response.goals[i].goalType == 'exerciseMinutes') {
         this.exerciseProgress = Math.trunc((response.goals[i].progress / response.goals[i].goal) * 100);
+        this.exerciseCurrent = response.goals[i].progress;
         this.exerciseProgressBar = (response.goals[i].progress / response.goals[i].goal);
         this.exerciseGoal = response.goals[i].goal;
       }
@@ -112,7 +114,8 @@ export class HomePage {
     }
     var data = [];
     var labels = [];
-
+    this.lastWorkout = moment(response[0].date).format("DD MMMM YYYY");
+ 
     for (let i = 1; i < response.length; i++) {
       response[i].progress = <any>response[i].minutes / 100;
       data.push(response[i].minutes);
@@ -174,15 +177,36 @@ export class HomePage {
   async getUserSettings() {
     let response = await this.http.get('/api/Account/GetUserSettings', {});
     this.http.userSettings = response;
-    console.log(response);
-    let lastCheckin = moment(this.http.userSettings.lastDailyCheckin);
-    let now = moment();
-    if (lastCheckin) {
-      if (moment(lastCheckin).isBefore(now, 'day')) {
+   
+  
+      
+
+
+    if(!this.http.userSettings.lastDailyCheckin){
+
+      this.needsCheckin = true;
+    } else {
+
+
+      let lastCheckin = moment(this.http.userSettings.lastDailyCheckin);
+      let now = moment();
+
+      if(moment(lastCheckin).isBefore(now, 'day')){
+        
         this.needsCheckin = true;
+
       }
+  
+
     }
-  }
+
+    
+         
+
+    }
+
+ 
+ 
 
   segmentChanged(ev: any) {
     this.currentHome = ev.detail.value;

@@ -61,7 +61,7 @@ export class MyStatsComponent implements OnInit {
           backgroundColor: '#FFFFFF', // array should have same number of elements as number of dataset
           borderColor: '#FFFFFF',// array should have same number of elements as number of dataset
           borderWidth: 1,
-          barThickness: 8
+          barThickness: 15
         }]
       },
       options: {

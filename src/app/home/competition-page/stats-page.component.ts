@@ -42,8 +42,9 @@ export class StatsPageComponent implements OnInit {
   }
 
   async viewHasEntered() {
+
     if (!this.chartLoaded)
-      this.loadingService.presentLoading();
+      // this.loadingService.presentLoading();
     this.friendData = await this.http.get('/api/fitbit/friendGoals', {});
     if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) {
       this.loadingService.dismissLoading();

@@ -23,7 +23,7 @@
       </ion-card-header>
     </ion-card>
     <ion-card class="goal-card">
-      <ion-card-header style="padding-bottom: 0 !important">
+      <ion-card-header style="padding-bottom: 20px !important">
         <ion-card-subtitle class="title">Daily Goals</ion-card-subtitle>
         <ion-card-subtitle class="content">{{this.http.userSettings.avatarName}} is your
           personal
@@ -118,16 +118,17 @@
           similarity in
           your fatigue trends
           from
-          your last 4 days
+          your last 4 days 
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <canvas #lineCanvas style="width: 100%; height: 40%;"></canvas>
         <br>
+        <ion-card-subtitle class="small-text">Your last workout: {{lastWorkout}}</ion-card-subtitle>
         <ion-grid>
           <ion-row class="inner-rows">
-            <ion-col size="7">
-              <ion-text style="font-size: 12px; display: block; vertical-align: middle;"><span
+            <ion-col size="7" style="padding-top:0px!important;">
+              <ion-text class="content" style=" vertical-align: middle;"><span
                   style="font-weight: bold">Fat Burning:</span> {{HRZones[2] | time}}
               </ion-text>
             </ion-col>
@@ -137,7 +138,7 @@
           </ion-row>
           <ion-row>
             <ion-col size="7">
-              <ion-text style="font-size: 12px; display: block; vertical-align: middle;"><span
+              <ion-text class="content" style="display: block; vertical-align: middle;"><span
                   style="font-weight: bold">Cardio:</span> {{HRZones[1] | time}}
               </ion-text>
             </ion-col>
@@ -147,7 +148,7 @@
           </ion-row>
           <ion-row class="inner-rows">
             <ion-col size="7">
-              <ion-text style="font-size: 12px; display: block; vertical-align: middle;"><span
+              <ion-text class="content" style="display: block; vertical-align: middle;"><span
                   style="font-weight: bold">Peak:</span> {{HRZones[0] | time}}
               </ion-text>
             </ion-col>
@@ -156,21 +157,17 @@
             </ion-col>
           </ion-row>
           <ion-row style="padding-top:20px;">
-            <ion-col size="4">
+            <ion-col size="6">
               <ion-text style="font-size: 8px; display: block; vertical-align: middle;"><span
                   style="font-weight: bold">Fat Burning:</span> 1 min = 1 min
               </ion-text>
             </ion-col>
-            <ion-col size="4">
+            <ion-col size="6">
               <ion-text style="font-size: 8px; display: block; vertical-align: middle;"><span
-                  style="font-weight: bold">Cardio:</span> 1 min = 2 min
+                  style="font-weight: bold">Cardio & Peak:</span> 1 min = 2 min
               </ion-text>
             </ion-col>
-            <ion-col size="4">
-              <ion-text style="font-size: 8px; display: block; vertical-align: middle;"><span
-                  style="font-weight: bold">Peak:</span> 1 min = 2 min
-              </ion-text>
-            </ion-col>
+ 
           </ion-row>
         </ion-grid>
       </ion-card-content>
@@ -271,17 +268,16 @@
   <div id="settings-view" [hidden]="!(currentNav == 'settings')">
     <app-settings></app-settings>
   </div>
-
 </ion-content>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-btn" (click)="openDailyCheckup()">
-  <ion-fab-button size="small">
-    <ion-icon name="clipboard-outline"></ion-icon>
+  <ion-fab-button size="medium">
+
+  <ion-icon style="font-size:55px;" src="../../assets/images/checkin.svg" ></ion-icon>
+
   </ion-fab-button>
 </ion-fab>
 
-<!--
-  Start Nav Bar
--->
+<!--Start Nav Bar-->
 <ion-segment (ionChange)="navChanged($event)" class="nav-bar-container" [(ngModel)]="navBar">
   <ion-segment-button value="today" icon-top>
     <ion-icon name="ellipse" *ngIf="navBar == 'today'"></ion-icon>
