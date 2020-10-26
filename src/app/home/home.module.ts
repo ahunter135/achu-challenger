@@ -9,13 +9,10 @@ import { HeaderCardComponent } from '../components/header-card/header-card.compo
 import { StatsPageComponent } from './competition-page/stats-page.component';
 import { ExpandableComponent } from '../components/expandable/expandable.component';
 import { MyStatsComponent } from './my-stats/my-stats.component';
-import { Ng5SliderModule } from 'ng5-slider';
-import { DailyCheckupComponent } from '../modals/daily-checkup/daily-checkup.component';
 import { TimePipe } from '../pipes/time.pipe';
 import { GoaltypePipe } from '../pipes/goaltype.pipe';
 import { SettingsComponent } from './settings/settings.component';
-import { OptinComponent } from '../modals/optin/optin.component';
-import { UpdateCharacterComponent } from '../modals/update-character/update-character.component';
+import { ModalsModule } from '../modals/modals.module';
 
 @NgModule({
   imports: [
@@ -23,10 +20,9 @@ import { UpdateCharacterComponent } from '../modals/update-character/update-char
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    Ng5SliderModule
+    ModalsModule
   ],
-  declarations: [HomePage, HeaderCardComponent, StatsPageComponent, ExpandableComponent, MyStatsComponent,
-    DailyCheckupComponent, TimePipe, GoaltypePipe, SettingsComponent, OptinComponent, UpdateCharacterComponent],
-  entryComponents: [HeaderCardComponent, StatsPageComponent, ExpandableComponent, MyStatsComponent, SettingsComponent, OptinComponent, UpdateCharacterComponent]
+  declarations: [HomePage, HeaderCardComponent, StatsPageComponent, ExpandableComponent, MyStatsComponent, TimePipe, GoaltypePipe, SettingsComponent,],
+  entryComponents: [HeaderCardComponent, StatsPageComponent, ExpandableComponent, MyStatsComponent, SettingsComponent]
 })
 export class HomePageModule { }
