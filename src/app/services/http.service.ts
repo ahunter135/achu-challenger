@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class HttpService {
   userDefaults = <any>{};
   userSettings = <any>{};
 
-  constructor(public http: HttpClient, private storage: StorageService, public router: Router) { }
+  constructor(public http: HttpClient, private storage: StorageService, public router: Router, public loadingService: LoadingService) { }
 
   async post(endpoint, data) {
     let url = this.base + endpoint;
@@ -383,6 +384,7 @@ export class HttpService {
   }
 
   async logout() {
+    await this.loadingService.dismissLoading();
     await this.storage.clearStorage();
     await this.resetData();
     await this.router.navigateByUrl("/login", {
