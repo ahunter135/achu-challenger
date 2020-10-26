@@ -69,10 +69,10 @@ export class HttpService {
     let dateOffset = new Date().getTimezoneOffset() * (-60);
     let d = dateOffset.toString();
     if (this.accessToken == null)
-      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "DateOffset": d  };
+      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "DateOffset": d };
     else
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId, "DateOffset": d };
-    console.log(headers);
+
     try {
       return await this.http.get(url, {
         headers: headers,

@@ -42,9 +42,10 @@ export class StatsPageComponent implements OnInit {
   }
 
   async viewHasEntered() {
-
     if (!this.chartLoaded)
-      // this.loadingService.presentLoading();
+      this.loadingService.presentLoading();
+    else return;
+
     this.friendData = await this.http.get('/api/fitbit/friendGoals', {});
     if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) {
       this.loadingService.dismissLoading();
@@ -63,10 +64,6 @@ export class StatsPageComponent implements OnInit {
       backgroundColors.push('#9bbeff');
     }
 
-    if (this.chartLoaded) {
-      this.loadingService.dismissLoading();
-      return;
-    }
     this.friendsChart = new Chart(this.friendsCanvas.nativeElement, {
       type: 'bar',
       data: {

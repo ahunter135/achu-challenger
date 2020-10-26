@@ -112,10 +112,11 @@ export class HomePage {
       this.http.logout();
       return;
     }
+    if (response.length == 0) return;
     var data = [];
     var labels = [];
     this.lastWorkout = moment(response[0].date).format("DD MMMM YYYY");
- 
+
     for (let i = 1; i < response.length; i++) {
       response[i].progress = <any>response[i].minutes / 100;
       data.push(response[i].minutes);
@@ -177,12 +178,12 @@ export class HomePage {
   async getUserSettings() {
     let response = await this.http.get('/api/Account/GetUserSettings', {});
     this.http.userSettings = response;
-   
-  
-      
 
 
-    if(!this.http.userSettings.lastDailyCheckin){
+
+
+
+    if (!this.http.userSettings.lastDailyCheckin) {
 
       this.needsCheckin = true;
     } else {
@@ -191,22 +192,22 @@ export class HomePage {
       let lastCheckin = moment(this.http.userSettings.lastDailyCheckin);
       let now = moment();
 
-      if(moment(lastCheckin).isBefore(now, 'day')){
-        
+      if (moment(lastCheckin).isBefore(now, 'day')) {
+
         this.needsCheckin = true;
 
       }
-  
+
 
     }
 
-    
-         
 
-    }
 
- 
- 
+
+  }
+
+
+
 
   segmentChanged(ev: any) {
     this.currentHome = ev.detail.value;
