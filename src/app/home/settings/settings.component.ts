@@ -37,6 +37,7 @@ export class SettingsComponent implements OnInit {
   }
 
   async viewTerms() {
+    console.log("jere");
     let modal = await this.modal.create({
       component: TermsComponent,
       cssClass: 'my-custom-modal-css'
