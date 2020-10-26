@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Ng5SliderModule } from 'ng5-slider';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { Deeplinks } from '@ionic-native/deeplinks/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
     SplashScreen,
     ScreenOrientation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    AppVersion
+    AppVersion,
+    Deeplinks
   ],
   bootstrap: [AppComponent]
 })

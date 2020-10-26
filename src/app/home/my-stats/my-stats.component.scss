@@ -8,6 +8,12 @@ ion-progress-bar {
     --buffer-background:#ededed;
 }
 
+img {
+  width: 70%;
+  height: 70%;
+  padding-top: 6px;
+}
+
 .ion-color-excercise{
     --ion-color-base: var(--ion-color-excercise);
     --ion-color-shade: var(--ion-color-excercise-shade);

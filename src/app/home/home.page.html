@@ -10,7 +10,8 @@
           <ion-row>
             <ion-col>
               <ion-card-subtitle class="title">Fitbit Authorization Required</ion-card-subtitle>
-              <ion-card-subtitle class="content">To use this application you must authorize Achu Health™ as a trusted application. To begin, please click the Authorize button below.</ion-card-subtitle>
+              <ion-card-subtitle class="content">To use this application you must authorize Achu Health™ as a trusted
+                application. To begin, please click the Authorize button below.</ion-card-subtitle>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -21,7 +22,7 @@
         </ion-grid>
       </ion-card-header>
     </ion-card>
-    <ion-card color="privacybg" [hidden]="!needsCheckin">
+    <ion-card color="privacybg" *ngIf="needsCheckin">
       <ion-card-header>
         <ion-grid>
           <ion-row>
@@ -135,7 +136,7 @@
           similarity in
           your fatigue trends
           from
-          your last 4 days 
+          your last 4 days
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
@@ -145,8 +146,8 @@
         <ion-grid>
           <ion-row class="inner-rows">
             <ion-col size="7" style="padding-top:0px!important;">
-              <ion-text class="content" style=" vertical-align: middle;"><span
-                  style="font-weight: bold">Fat Burning:</span> {{HRZones[2] | time}}
+              <ion-text class="content" style=" vertical-align: middle;"><span style="font-weight: bold">Fat
+                  Burning:</span> {{HRZones[2] | time}}
               </ion-text>
             </ion-col>
             <ion-col size="5">
@@ -184,7 +185,7 @@
                   style="font-weight: bold">Cardio & Peak:</span> 1 min = 2 min
               </ion-text>
             </ion-col>
- 
+
           </ion-row>
         </ion-grid>
       </ion-card-content>
@@ -289,7 +290,7 @@
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-btn" (click)="openDailyCheckup()">
   <ion-fab-button size="medium">
 
-  <ion-icon style="font-size:55px;" src="../../assets/images/checkin.svg" ></ion-icon>
+    <ion-icon style="font-size:55px;" src="../../assets/images/checkin.svg"></ion-icon>
 
   </ion-fab-button>
 </ion-fab>

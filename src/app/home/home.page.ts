@@ -73,13 +73,14 @@ export class HomePage {
   async getDailyGoals() {
     let response = await this.http.get('/api/fitbit/dailygoals', {});
     this.goals = response.goals;
-    if (response == undefined) {
+    if (response == undefined || response.status != 200) {
       this.http.logout();
       return;
     }
     this.overallCompletion = response.overallCompletion;
     this.overallCompletionBar = response.overallCompletion / 100;
     this.http.user.overallCompletion = this.overallCompletion;
+
     for (let i = 0; i < response.goals.length; i++) {
       if (response.goals[i].goalType == 'steps') {
         this.stepsProgress = Math.trunc((response.goals[i].progress / response.goals[i].goal) * 100);
@@ -109,7 +110,7 @@ export class HomePage {
 
   async getHRZones() {
     let response = await this.http.get('/api/fitbit/HRZ', {});
-    if (response == undefined) {
+    if (response == undefined || response.status != 200) {
       this.http.logout();
       return;
     }
@@ -168,7 +169,7 @@ export class HomePage {
 
   async getFitbitScores() {
     let response = await this.http.get('/api/scores/fitbit', {});
-    if (response == undefined) {
+    if (response == undefined || response.status != 200) {
       this.http.logout();
       return;
     }
@@ -177,54 +178,32 @@ export class HomePage {
   }
 
 
- async authorizeFitbit(){
+  async authorizeFitbit() {
 
-  //open to fitbit authorization page
+    //open to fitbit authorization page
 
   }
 
   async getUserSettings() {
     let response = await this.http.get('/api/Account/GetUserSettings', {});
+    if (response == undefined || response.status != 200) {
+      this.http.logout();
+      return;
+    }
     this.http.userSettings = response;
-
-
-    console.log(this.http.userSettings.lastDailyCheckin);
-
-
     if (!this.http.userSettings.lastDailyCheckin) {
-      console.log("Here1");
-
       this.needsCheckin = true;
-
     } else {
-
-      console.log("Here2");
       let lastCheckin = moment(this.http.userSettings.lastDailyCheckin);
       let now = moment();
-
       if (moment(lastCheckin).isBefore(now, 'day')) {
-        console.log("Here3");
         this.needsCheckin = true;
-
       }
-
-
     }
-
-   
-
-    if(this.http.userSettings.fitBitAuthorized == false){
-      console.log("here4");
+    if (this.http.userSettings.fitBitAuthorized == false) {
       this.needsAuth = true;
     }
-
-
-
-
   }
-
-
-
 
   segmentChanged(ev: any) {
     this.currentHome = ev.detail.value;
@@ -256,6 +235,7 @@ export class HomePage {
   }
 
   setupGifs() {
+    if (!this.goals) return;
     let numCompleted = 0;
     for (let i = 0; i < this.goals.length; i++) {
       if (this.goals[i].completed) numCompleted++;

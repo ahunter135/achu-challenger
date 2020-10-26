@@ -57,61 +57,68 @@ export class StatsPageComponent implements OnInit {
     labels.push('You');
     data.push(this.http.user.overallCompletion);
     backgroundColors.push('#51be9f');
+
+    await this.friendData.sort((a, b) =>
+      a.overallCompletion - b.overallCompletion
+    );
+
     for (let i = 0; i < this.friendData.length; i++) {
       this.friendData[i].expanded = false;
       data.push(this.friendData[i].overallCompletion);
       labels.push(this.friendData[i].name);
       backgroundColors.push('#9bbeff');
     }
-
-    this.friendsChart = new Chart(this.friendsCanvas.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          data: data,
-          backgroundColor: backgroundColors,
-          boorderColor: backgroundColors,
-          borderWidth: 1,
-          barThickness: 8
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              fontSize: 8,
-              display: false,
-              max: 100,
-              min: 0
+    /*
+        this.friendsChart = new Chart(this.friendsCanvas.nativeElement, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              data: data,
+              backgroundColor: backgroundColors,
+              boorderColor: backgroundColors,
+              borderWidth: 1,
+              barThickness: 8
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  fontSize: 8,
+                  display: false,
+                  max: 100,
+                  min: 0
+                },
+                gridLines: {
+                  display: false,
+                  drawBorder: false,
+                },
+                display: true
+              }],
+              xAxes: [{
+                ticks: {
+                  fontSize: 10,
+                  fontColor: '#000000',
+                  padding: 1
+                },
+                gridLines: {
+                  display: false
+                },
+                display: true
+              }]
             },
-            gridLines: {
-              display: false,
-              drawBorder: false,
-            },
-            display: true
-          }],
-          xAxes: [{
-            ticks: {
-              fontSize: 10,
-              fontColor: '#000000',
-              padding: 1
-            },
-            gridLines: {
+            legend: {
               display: false
             },
-            display: true
-          }]
-        },
-        legend: {
-          display: false
-        },
-        tooltips: {
-          enabled: false
-        }
-      }
-    });
+            tooltips: {
+              enabled: false
+            }
+          }
+        });
+        */
     this.chartLoaded = true;
+
     this.loadingService.dismissLoading();
   }
 
