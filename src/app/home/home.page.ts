@@ -47,6 +47,7 @@ export class HomePage {
   fatigueScore = 0;
   lineChart: Chart;
   needsCheckin = false;
+  needsAuth = false;
   goals;
   gifImg = "../../assets/images/standing.gif";
   constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,
@@ -175,30 +176,46 @@ export class HomePage {
     this.fatigueScore = response.fatigueScoreValue;
   }
 
+
+ async authorizeFitbit(){
+
+  //open to fitbit authorization page
+
+  }
+
   async getUserSettings() {
     let response = await this.http.get('/api/Account/GetUserSettings', {});
     this.http.userSettings = response;
 
 
-
+    console.log(this.http.userSettings.lastDailyCheckin);
 
 
     if (!this.http.userSettings.lastDailyCheckin) {
+      console.log("Here1");
 
       this.needsCheckin = true;
+
     } else {
 
-
+      console.log("Here2");
       let lastCheckin = moment(this.http.userSettings.lastDailyCheckin);
       let now = moment();
 
       if (moment(lastCheckin).isBefore(now, 'day')) {
-
+        console.log("Here3");
         this.needsCheckin = true;
 
       }
 
 
+    }
+
+   
+
+    if(this.http.userSettings.fitBitAuthorized == false){
+      console.log("here4");
+      this.needsAuth = true;
     }
 
 

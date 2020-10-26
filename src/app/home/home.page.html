@@ -4,6 +4,23 @@
     Find a better way for this use divs as "views"
   -->
   <div id="today-view" [hidden]="!(currentNav == 'today')">
+    <ion-card color="privacybg" [hidden]="needsFitbitAuth">
+      <ion-card-header>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-card-subtitle class="title">Fitbit Authorization Required</ion-card-subtitle>
+              <ion-card-subtitle class="content">To use this application you must authorize Achu Health™ as a trusted application. To begin, please click the Authorize button below.</ion-card-subtitle>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button expand="block" size="small" color="privacy" (click)="authorizeFitbit()">Authorize</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+    </ion-card>
     <ion-card color="privacybg" [hidden]="!needsCheckin">
       <ion-card-header>
         <ion-grid>
