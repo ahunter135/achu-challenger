@@ -29,17 +29,19 @@ export class AppComponent {
       this.statusBar.styleBlackTranslucent();
       this.statusBar.backgroundColorByHexString('#ffffff');
       this.splashScreen.hide();
-      if (window.cordova)
-        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
       this.deepLinks.route({
         '/home': HomePage,
       }).subscribe(match => {
+        alert(JSON.stringify(match));
         // match.$route - the route we matched, which is the matched entry from the arguments to route()
         // match.$args - the args passed in the link
         // match.$link - the full link data
         console.log('Successfully matched route', match);
       }, nomatch => {
+        alert(JSON.stringify(nomatch));
+
         // nomatch.$link - the full link data
         console.error('Got a deeplink that didn\'t match', nomatch);
       });
