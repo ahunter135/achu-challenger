@@ -2,7 +2,7 @@
   class="my-stats-card">
   <ion-card-header>
     <h1 class="title">My Stats</h1>
-    <p class="medium-text">Overall Progression</p>
+    <p class="title">Overall Progression</p>
   </ion-card-header>
   <ion-card-content>
     <canvas #barCanvas style="width: 100%; height: 220px;"></canvas>
@@ -27,10 +27,10 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12">
-          <ion-text class="medium-text" style="float: left">
+          <ion-text class="title" style="float: left">
             This Week
           </ion-text>
-          <ion-text class="small-text" style=" float: right">
+          <ion-text class="title" style=" float: right">
             {{(weeklyData[0].goals[1].progress / weeklyData[0].goals[1].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -42,17 +42,17 @@
         </ion-progress-bar>
         <ion-col size="12">
           <ion-text class="small-text" style="float: left">
-            {{weeklyData[0].goals[1].progress}} / {{weeklyData[0].goals[1].goal}} steps
+            {{weeklyData[0].goals[1].progress | number }} / {{weeklyData[0].goals[1].goal | number }} steps
           </ion-text>
         </ion-col>
 
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-text class="medium-text" style="float: left">
+          <ion-text class="title" style="float: left">
             Last Week
           </ion-text>
-          <ion-text class="small-text" style="float: right">
+          <ion-text class="title" style="float: right">
             {{(weeklyData[1].goals[1].progress / weeklyData[1].goals[1].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -62,7 +62,7 @@
 
         <ion-col size="12">
           <ion-text class="small-text" style="float: left">
-            {{weeklyData[1].goals[1].progress}} / {{weeklyData[1].goals[1].goal}} steps
+            {{weeklyData[1].goals[1].progress | number }} / {{weeklyData[1].goals[1].goal | number }} steps
           </ion-text>
 
         </ion-col>
@@ -87,12 +87,12 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12">
-          <ion-text class="medium-text" style=" float: left">
+          <ion-text class="title" style=" float: left">
             This Week
           </ion-text>
 
 
-          <ion-text class="small-text" style="float: right">
+          <ion-text class="title" style="float: right">
             {{(weeklyData[0].goals[2].progress / weeklyData[0].goals[2].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
 
@@ -103,16 +103,16 @@
 
         <ion-col size="12">
           <ion-text class="small-text" style="float: left">
-            {{weeklyData[0].goals[2].progress}} / {{weeklyData[0].goals[2].goal}} cals
+            {{weeklyData[0].goals[2].progress | number }} / {{weeklyData[0].goals[2].goal | number }} cals
           </ion-text>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-text class="medium-text" style="float: left">
+          <ion-text class="title" style="float: left">
             Last Week
           </ion-text>
-          <ion-text class="small-text" style=" float: right">
+          <ion-text class="title" style=" float: right">
             {{(weeklyData[1].goals[2].progress / weeklyData[1].goals[2].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -122,7 +122,7 @@
 
         <ion-col size="12">
           <ion-text class="small-text" style="float: left">
-            {{weeklyData[1].goals[2].progress}} / {{weeklyData[1].goals[2].goal}} cals
+            {{weeklyData[1].goals[2].progress | number }} / {{weeklyData[1].goals[2].goal | number }} cals
           </ion-text>
         </ion-col>
       </ion-row>
@@ -146,10 +146,10 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12">
-          <ion-text class="medium-text" style="float: left">
+          <ion-text class="title" style="float: left">
             This Week
           </ion-text>
-          <ion-text class="small-text" style="float: right">
+          <ion-text class="title" style="float: right">
             {{(weeklyData[0].goals[0].progress / weeklyData[0].goals[0].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -158,7 +158,7 @@
         </ion-progress-bar>
         <ion-col size="12">
           <ion-text class="small-text" style="float: left">
-            {{weeklyData[0].goals[0].progress}} / {{weeklyData[0].goals[0].goal}} mins
+            {{weeklyData[0].goals[0].progress | number }} / {{weeklyData[0].goals[0].goal | number }} mins
           </ion-text>
         </ion-col>
 
@@ -167,10 +167,10 @@
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-text class="medium-text" style="float: left">
+          <ion-text class="title" style="float: left">
             Last Week
           </ion-text>
-          <ion-text class="small-text" style="float: right">
+          <ion-text class="title" style="float: right">
             {{(weeklyData[1].goals[0].progress / weeklyData[1].goals[0].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -179,7 +179,7 @@
         </ion-progress-bar>
         <ion-col size="12">
           <ion-text class="small-text" style="float: left">
-            {{weeklyData[1].goals[0].progress}} / {{weeklyData[1].goals[0].goal}} mins
+            {{weeklyData[1].goals[0].progress | number }} / {{weeklyData[1].goals[0].goal | number }} mins
           </ion-text>
         </ion-col>
 
@@ -206,10 +206,10 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12">
-          <ion-text class="medium-text" style="font-weight: bold; float: left">
+          <ion-text class="title" style="font-weight: bold; float: left">
             This Week
           </ion-text>
-          <ion-text class="small-text" style="float: right">
+          <ion-text class="title" style="float: right">
             {{(weeklyData[0].goals[3].progress / weeklyData[0].goals[3].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -218,17 +218,17 @@
         </ion-progress-bar>
         <ion-col size="12">
           <ion-text class="small-text" style="float: left">
-            {{weeklyData[0].goals[3].progress}} / {{weeklyData[0].goals[3].goal}} mins
+            {{weeklyData[0].goals[3].progress | number }} / {{weeklyData[0].goals[3].goal | number }} mins
           </ion-text>
         </ion-col>
 
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-text class="medium-text" style=" float: left">
+          <ion-text class="title" style=" float: left">
             Last Week
           </ion-text>
-          <ion-text class="small-text" style="float: right">
+          <ion-text class="title" style="float: right">
             {{(weeklyData[1].goals[3].progress / weeklyData[1].goals[3].goal) * 100 | number:'1.0-0'}}%
           </ion-text>
         </ion-col>
@@ -237,7 +237,7 @@
         </ion-progress-bar>
         <ion-col size="12">
           <ion-text class="small-text" style=" float: left">
-            {{weeklyData[1].goals[3].progress}} / {{weeklyData[1].goals[3].goal}} mins
+            {{weeklyData[1].goals[3].progress | number }} / {{weeklyData[1].goals[3].goal | number}} mins
           </ion-text>
         </ion-col>
 
