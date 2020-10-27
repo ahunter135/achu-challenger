@@ -72,8 +72,11 @@ export class MyStatsComponent implements OnInit {
               max: 120,
               min: 0,
               callback: function (value, index, values) {
-                if (value != 100) return "";
-                else return "100%";
+                // if (value != 100) return "";
+                // else return "100%";
+
+                return value + "%";
+
               }
             },
             gridLines: {
