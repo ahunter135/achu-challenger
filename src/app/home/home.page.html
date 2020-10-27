@@ -42,8 +42,33 @@
         </ion-grid>
       </ion-card-header>
     </ion-card>
+
+    <ion-item lines="none" class="item-text title-text grey-bg">
+      <ion-label class="title-nb">Daily Goals</ion-label>
+    </ion-item>
+
+    <ion-card style="margin-top:0px;">
+      <ion-card-header>
+        <ion-card-subtitle class="title">AchuCharacter</ion-card-subtitle>
+        <ion-card-subtitle class="content">AchuCharacter is your own personal goal-driven avatar who adapts to your health status and overall goal completion. AchuCharacter is driven by your consistency in achieving your person goals to ensure your stay motivated on your health journey!  
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-text class="title" style="float: left;padding-bottom:5px;">
+          Overall Goal Completion
+        </ion-text>
+        <ion-text class="title" style="float: right">{{overallCompletion}}%
+        </ion-text>
+        <ion-progress-bar value="{{overallCompletionBar}}" reversed="false" color="primary" class="overallBar">
+        </ion-progress-bar>
+        <ion-col size="12">
+          
+        </ion-col>
+      </ion-card-content>
+    </ion-card>
+
     <ion-card class="goal-card">
-      <ion-card-header style="padding-bottom: 20px !important">
+      <!-- <ion-card-header style="padding-bottom: 20px !important">
         <ion-card-subtitle class="title">Daily Goals</ion-card-subtitle>
         <ion-card-subtitle class="content">{{this.http.userSettings.avatarName}} is your
           personal
@@ -54,7 +79,7 @@
           personalized goals to ensure you
           stay motivated in your journey.
         </ion-card-subtitle>
-      </ion-card-header>
+      </ion-card-header> -->
       <ion-card-content>
         <div class="flex-container">
           <div class="bars-container">
@@ -112,7 +137,7 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card class="overall-goal-card">
+    <!-- <ion-card class="overall-goal-card">
       <ion-grid>
         <ion-row>
           <ion-col size="12">
@@ -128,7 +153,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-card>
+    </ion-card> -->
 
     <ion-card class="heart-rate-card">
       <ion-button fill="clear" style="float: right;">
@@ -194,8 +219,9 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-    <ion-item lines="none" class="item-text title-text">
-      <ion-label class="title">Health Updates</ion-label>
+
+    <ion-item lines="none" class="item-text title-text grey-bg">
+      <ion-label class="title-nb">Health Updates</ion-label>
     </ion-item>
 
     <ion-card color="privacybg" *ngIf="!http.userSettings.lastDailyCheckin">
@@ -291,12 +317,27 @@
     <app-settings></app-settings>
   </div>
 </ion-content>
-<ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-btn" (click)="openDailyCheckup()">
-  <ion-fab-button size="medium">
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-btn" (click)="openDailyCheckup()" *ngIf="needsCheckin">
+  <!-- <ion-fab-button size="medium">
 
     <ion-icon style="font-size:55px;" src="../../assets/images/checkin.svg"></ion-icon>
 
-  </ion-fab-button>
+  </ion-fab-button> -->
+  
+  <img src="../../assets/images/Dailycheckin_1.png" style="width:75px;" />
+ 
+</ion-fab>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-btn" (click)="openDailyCheckup()" *ngIf="!needsCheckin">
+  <!-- <ion-fab-button size="medium">
+
+    <ion-icon style="font-size:55px;" src="../../assets/images/checkin.svg"></ion-icon>
+
+  </ion-fab-button> -->
+  
+  <img src="../../assets/images/Dailycheckin_2.png" style="width:55px;" />
+ 
 </ion-fab>
 
 <!--Start Nav Bar-->

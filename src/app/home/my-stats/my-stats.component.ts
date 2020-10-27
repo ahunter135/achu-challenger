@@ -57,8 +57,8 @@ export class MyStatsComponent implements OnInit {
         labels: [response[2].name, response[1].name, response[0].name],
         datasets: [{
           data: data,
-          backgroundColor: '#FFFFFF', // array should have same number of elements as number of dataset
-          borderColor: '#FFFFFF',// array should have same number of elements as number of dataset
+          backgroundColor: '#44c4a1', // array should have same number of elements as number of dataset
+          borderColor: '#44c4a1',// array should have same number of elements as number of dataset
           borderWidth: 1,
           barThickness: 15
         }]
@@ -67,7 +67,7 @@ export class MyStatsComponent implements OnInit {
         scales: {
           yAxes: [{
             ticks: {
-              fontSize: 8,
+              fontSize: 12,
               display: true,
               max: 120,
               min: 0,
@@ -85,7 +85,7 @@ export class MyStatsComponent implements OnInit {
           }],
           xAxes: [{
             ticks: {
-              fontSize: 8,
+              fontSize: 10,
               fontColor: '#000000',
               padding: 1,
               maxRotation: 0

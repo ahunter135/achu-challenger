@@ -5,7 +5,7 @@
 }
 
 .nav-bar-container {
-  --background: var(--ion-color-primary);
+  --background:  #333333;
   z-index: 99;
   border-radius: 0px;
 }
@@ -14,16 +14,19 @@
  
 
 .nav-bar-container ion-segment-button {
-  --background: var(--ion-color-primary);
-  --border-color: var(--ion-color-primary);
+  --background: #333333;
+  --border-color: #333333;
   --padding-top: 10px;
   --padding-bottom: 10px;
   --color-checked: #fff;
-  --color: #fff;
+  --color: #838383;
 }
 
 .overallBar {
-  --buffer-background: #FFFFFF;
+  --buffer-background: #d8d9d97a;
+  --progress-background: 
+   linear-gradient(90deg, rgba(84,125,189,1) 0%, rgba(68,196,161,1) 100%);
+   
 }
 
 .dailyProgress {
@@ -55,7 +58,7 @@ border-left:none;
 
  
 ion-segment-button::part(indicator-background) {
-   background-color: var(--ion-color-primary);
+   background-color: #333333;
   box-shadow: none;
 }
 
@@ -155,7 +158,7 @@ ion-card-item ion-item {
   --bar-height: 8px;
   --knob-size: 12px;
   --knob-background: black;
-  --bar-background: linear-gradient(90deg, rgba(118,199,174,1) 0%, rgba(131,209,222,1) 50%, rgba(125,153,204,1) 100%);
+  --bar-background:  linear-gradient(90deg, rgba(68,196,161,1) 0%, rgba(129,208,222,1) 50%, rgba(84,125,189,1) 100%);
   --bar-background-active: transparent;
   position: inherit !important;
   padding: 0 !important;
@@ -166,7 +169,7 @@ ion-card-item ion-item {
   --bar-height: 8px;
   --knob-size: 12px;
   --knob-background: black;
-  --bar-background: linear-gradient(90deg, rgba(118,199,174,1) 0%, rgba(131,209,222,1) 50%, rgba(125,153,204,1) 100%);
+  --bar-background:  linear-gradient(90deg, rgba(68,196,161,1) 0%, rgba(129,208,222,1) 50%, rgba(84,125,189,1) 100%);
   --bar-background-active: transparent;
   position: inherit !important;
   padding: 0 !important;
@@ -187,6 +190,10 @@ ion-card-item ion-item {
 
 .risk {
   color:#7d99cc;
+}
+
+.grey-bg {
+  --background: #F9F9F9 !important;
 }
 
 .title-text {
