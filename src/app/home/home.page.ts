@@ -17,7 +17,6 @@ import { LoadingService } from '../services/loading.service';
 export class HomePage {
 
   @ViewChild("lineCanvas") lineCanvas: ElementRef;
-
   chartLoaded = false;
   homeBar = "today";
   navBar = "today"
@@ -47,7 +46,7 @@ export class HomePage {
   fatigueScore = 0;
   lineChart: Chart;
   needsCheckin = false;
-  needsAuth = false;
+  needsFitbitAuth = false;
   goals;
   gifImg = "../../assets/images/standing.gif";
   constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,
@@ -177,15 +176,9 @@ export class HomePage {
     this.fatigueScore = response.fatigueScoreValue;
   }
 
-
-  async authorizeFitbit() {
-
-    //open to fitbit authorization page
-
-  }
-
   async getUserSettings() {
     let response = await this.http.get('/api/Account/GetUserSettings', {});
+    console.log(response);
     if (response == undefined) {
       this.http.logout();
       return;
@@ -196,13 +189,13 @@ export class HomePage {
     } else {
       let lastCheckin = moment(this.http.userSettings.lastDailyCheckin);
       let now = moment();
-      if (moment(lastCheckin).isBefore(now, 'day')) {
+      if (moment(lastCheckin).isBefore(now, 'day'))
         this.needsCheckin = true;
-      }
+      else
+        this.needsCheckin = false;
     }
-    if (this.http.userSettings.fitBitAuthorized == false) {
-      this.needsAuth = true;
-    }
+    console.log(!this.http.userSettings.fitBitAuthorized);
+    this.needsFitbitAuth = !this.http.userSettings.fitBitAuthorized;
   }
 
   segmentChanged(ev: any) {
