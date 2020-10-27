@@ -178,7 +178,6 @@ export class HomePage {
 
   async getUserSettings() {
     let response = await this.http.get('/api/Account/GetUserSettings', {});
-    console.log(response);
     if (response == undefined) {
       this.http.logout();
       return;
@@ -194,7 +193,6 @@ export class HomePage {
       else
         this.needsCheckin = false;
     }
-    console.log(!this.http.userSettings.fitBitAuthorized);
     this.needsFitbitAuth = !this.http.userSettings.fitBitAuthorized;
   }
 

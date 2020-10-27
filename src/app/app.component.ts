@@ -30,7 +30,6 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.overlaysWebView(false);
       this.statusBar.styleBlackTranslucent();
-      this.statusBar.backgroundColorByHexString('#ffffff');
       this.splashScreen.hide();
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
