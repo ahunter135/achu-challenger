@@ -54,26 +54,44 @@
               <img src="../../assets/images/Ribbon_3.png" *ngIf="i == 2"
                 style="width: 70%; margin: auto; display: block">
             </ion-col>
-            <ion-col size="4" class="ion-align-self-center">
+            <ion-col size="7" class="ion-align-self-center">
               <ion-text style="font-size: 14px; color: black">{{item.name}}</ion-text>
               <br>
               <ion-text style="font-size: 10px; color: gray;">Overall Completion</ion-text>
+
+
+
             </ion-col>
-            <ion-col size="4" class="ion-align-self-center bar" style="text-align: right;">
+            <ion-col size="2" class="ion-align-self-center bar" style="text-align: right;">
               {{(item.overallCompletion / 100) * 100}}%
 
             </ion-col>
-            <ion-col size="2" class="ion-align-self-center">
+            <ion-col size="1" class="ion-align-self-center">
               <ion-icon *ngIf="!item.expanded" name="chevron-forward" style="float: right"></ion-icon>
               <ion-icon *ngIf="item.expanded" name="chevron-up" style="float: right"></ion-icon>
             </ion-col>
 
           </ion-row>
+
+        <ion-row>
+        <ion-col size=2>
+
+
+
+        </ion-col>
+        <ion-col>
+          <ion-progress-bar value="{{item.overallCompletion / 100}}" reversed="false" color="primary">
+          </ion-progress-bar>
+        </ion-col>
+      </ion-row>
+
         </ion-grid>
-        <ion-progress-bar value="{{item.overallCompletion / 100}}" reversed="false" color="primary">
-        </ion-progress-bar>
+        
         <app-expandable expandHeight="200px" [expanded]="item.expanded">
           <div class="bar" *ngFor="let goal of item.goals">
+
+
+             
             <ion-text style="font-size: 12px; font-weight: bold; float: left">
               {{goal.goalType | goalType}}
             </ion-text>
@@ -81,6 +99,7 @@
             </ion-text>
             <ion-progress-bar value="{{goal.progress / goal.goal}}" reversed="false" color="primary">
             </ion-progress-bar>
+          
           </div>
         </app-expandable>
       </ion-label>
