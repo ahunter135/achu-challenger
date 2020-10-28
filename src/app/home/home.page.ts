@@ -73,6 +73,7 @@ export class HomePage {
   async getDailyGoals() {
     let response = await this.http.get('/api/fitbit/dailygoals', {});
     this.goals = response.goals;
+    this.http.user.goals = this.goals;
     if (response == undefined) {
       this.http.logout();
       return;

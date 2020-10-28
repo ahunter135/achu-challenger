@@ -57,9 +57,14 @@ export class StatsPageComponent implements OnInit {
     labels.push('You');
     data.push(this.http.user.overallCompletion);
     backgroundColors.push('#51be9f');
-
+    this.friendData.push({
+      name: this.http.user.firstName + " " + this.http.user.lastName.charAt(0) + ".",
+      goals: this.http.user.goals,
+      overallCompletion: this.http.user.overallCompletion,
+      expanded: false
+    })
     await this.friendData.sort((a, b) =>
-      a.overallCompletion - b.overallCompletion
+      b.overallCompletion - a.overallCompletion
     );
 
     for (let i = 0; i < this.friendData.length; i++) {

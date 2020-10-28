@@ -30,6 +30,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.overlaysWebView(false);
       this.statusBar.styleBlackTranslucent();
+      this.statusBar.backgroundColorByHexString('##44c4a1');
       this.splashScreen.hide();
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
 
@@ -41,6 +42,7 @@ export class AppComponent {
         // match.$args - the args passed in the link
         // match.$link - the full link data
       }, async nomatch => {
+        if (!nomatch.$link) return;
         let link = nomatch.$link.queryString;
         let code = link.split('code=')[1];
 

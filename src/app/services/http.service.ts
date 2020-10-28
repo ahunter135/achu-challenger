@@ -168,6 +168,7 @@ export class HttpService {
     let response = await this.get("/api/Account/GetUserInfo", {
       tenantId: this.tenantId
     });
+    console.log(response);
     if (response.status == undefined) {
       this.user = response;
     } else {
