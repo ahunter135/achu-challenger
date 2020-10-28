@@ -1,9 +1,10 @@
 ion-header ion-toolbar {
     --box-shadow: none !important;
     background-image: none;
-    --border-color: #ffffff;
-    --background: #ffffff
+    --border-color:#fefefe;
+    --background: #fefefe;
 }
+
 
 #createBtn {
     --padding-top: 15px;
@@ -20,4 +21,8 @@ ion-header ion-toolbar {
 ion-input {
     padding-top: 3px;
     padding-bottom: 3px;
+}
+
+ion-content {
+    --background:#fefefe;
 }

@@ -14,7 +14,7 @@ export class LoadingService {
     this.isLoading = true;
     this.loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
-      duration: 15000
+      duration: 5000
     });
     await this.loading.present();
   }

@@ -47,6 +47,11 @@ ion-card-subtitle {
     --ion-color-base: var(--ion-color-privacy);
 }
 
+ion-item {
+    --ion-background-color: transparent !important
+  }
+
+
  .ion-color-privacybg {
      --ion-color-base: var(--ion-color-privacybg);
  }
