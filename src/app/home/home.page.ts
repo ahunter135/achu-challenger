@@ -5,7 +5,7 @@ import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { ModalController } from '@ionic/angular';
-import { DailyCheckupComponent } from '../modals/daily-checkup/daily-checkup.component';  
+import { DailyCheckupComponent } from '../modals/daily-checkup/daily-checkup.component';
 import { HrzInfoComponent } from '../modals/hrz-info/hrz-info.component';
 import * as moment from 'moment';
 import { LoadingService } from '../services/loading.service';
@@ -48,6 +48,7 @@ export class HomePage {
   lineChart: Chart;
   needsCheckin = false;
   needsFitbitAuth = false;
+  totalWorkout = 0;
   goals;
   gifImg = "../../assets/images/standing.gif";
   constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,
@@ -124,6 +125,8 @@ export class HomePage {
       response[i].progress = <any>response[i].minutes / 100;
       data.push(response[i].minutes);
       labels.push(response[i].name);
+      if (i != 0)
+        this.totalWorkout += response[i].minutes;
     }
     this.HRZones = data;
     this.HRZones = this.HRZones.reverse();
@@ -208,17 +211,12 @@ export class HomePage {
     this.getContent().scrollToTop(100);
   }
 
-  async openHrzInfo(){
-    // let modal = await this.modalController.create({
-    //   component: HrzInfoComponent,
-    //   cssClass: 'my-custom-modal-css'
-    // });
-    // modal.onDidDismiss().then(() => {
-    //   this.ionViewDidEnter();
-    // })
-    // return await modal.present();
-
-alert("Jpoke");
+  async openHrzInfo() {
+    let modal = await this.modalController.create({
+      component: HrzInfoComponent,
+      cssClass: 'my-custom-modal-css'
+    });
+    return await modal.present();
   }
 
   async openDailyCheckup() {

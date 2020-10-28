@@ -45,7 +45,7 @@ export class MyStatsComponent implements OnInit {
       if (i !== 1)
         gridColor.push('rgba(0, 0, 0, 0.1)');
       else
-        gridColor.push('#555555');
+        gridColor.push('#44c4a1');
     }
     var data = [];
     for (let i = response.length - 1; i > -1; i--) {
