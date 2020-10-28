@@ -48,9 +48,11 @@
         <ion-grid fixed>
           <ion-row>
             <ion-col size="2" class="ion-align-self-center">
-              <img src="../../assets/images/Ribbon_1.png" *ngIf="i == 0">
-              <img src="../../assets/images/Ribbon_2.png" *ngIf="i == 1">
-              <img src="../../assets/images/Ribbon_3.png" *ngIf="i == 2">
+              <img src="../../assets/images/Ribbon_1.png" *ngIf="i == 0" style="margin: auto; display: block">
+              <img src="../../assets/images/Ribbon_2.png" *ngIf="i == 1"
+                style="width: 70%; margin: auto; display: block">
+              <img src="../../assets/images/Ribbon_3.png" *ngIf="i == 2"
+                style="width: 70%; margin: auto; display: block">
             </ion-col>
             <ion-col size="4" class="ion-align-self-center">
               <ion-text style="font-size: 14px; color: black">{{item.name}}</ion-text>
