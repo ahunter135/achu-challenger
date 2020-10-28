@@ -43,29 +43,10 @@
       </ion-card-header>
     </ion-card>
 
+    
     <ion-item lines="none" class="item-text title-text grey-bg">
       <ion-label class="title-nb">Daily Goals</ion-label>
     </ion-item>
-
-    <ion-card style="margin-top:0px;">
-      <ion-card-header>
-        <ion-card-subtitle class="title">AchuCharacter</ion-card-subtitle>
-        <ion-card-subtitle class="content">AchuCharacter is your own personal goal-driven avatar who adapts to your health status and overall goal completion. AchuCharacter is driven by your consistency in achieving your person goals to ensure your stay motivated on your health journey!  
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-text class="title" style="float: left;padding-bottom:5px;">
-          Overall Goal Completion
-        </ion-text>
-        <ion-text class="title" style="float: right">{{overallCompletion}}%
-        </ion-text>
-        <ion-progress-bar value="{{overallCompletionBar}}" reversed="false" color="primary" class="overallBar">
-        </ion-progress-bar>
-        <ion-col size="12">
-          
-        </ion-col>
-      </ion-card-content>
-    </ion-card>
 
     <ion-card class="goal-card">
       <!-- <ion-card-header style="padding-bottom: 20px !important">
@@ -84,10 +65,10 @@
         <div class="flex-container">
           <div class="bars-container">
             <div class="bar" style="padding-bottom:5px;">
-              <ion-text class="title" style="float: left">
+              <ion-text class="title-regular" style="float: left">
                 Steps
               </ion-text>
-              <ion-text class="title" style="float: right">{{stepsProgress}}%
+              <ion-text class="title-regular" style="float: right">{{stepsProgress}}%
               </ion-text>
               <ion-progress-bar class="dailyProgress" value="{{stepsProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
@@ -95,10 +76,10 @@
               </ion-text>
             </div>
             <div class="bar" style="padding-bottom:5px;">
-              <ion-text class="title" style="float: left">
+              <ion-text class="title-regular" style="float: left">
                 Calories
               </ion-text>
-              <ion-text class="title" style="float: right">{{caloriesProgress}}%
+              <ion-text class="title-regular" style="float: right">{{caloriesProgress}}%
               </ion-text>
               <ion-progress-bar class="dailyProgress" value="{{caloriesProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
@@ -107,10 +88,10 @@
               </ion-text>
             </div>
             <div class="bar" style="padding-bottom:5px;">
-              <ion-text class="title" style="float: left">
+              <ion-text class="title-regular" style="float: left">
                 Sleep
               </ion-text>
-              <ion-text class="title" style="float: right">{{sleepProgress}}%
+              <ion-text class="title-regular" style="float: right">{{sleepProgress}}%
               </ion-text>
               <ion-progress-bar class="dailyProgress" value="{{sleepProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
@@ -118,10 +99,10 @@
               </ion-text>
             </div>
             <div class="bar" style="padding-bottom:5px;">
-              <ion-text class="title" style="float: left">
+              <ion-text class="title-regular" style="float: left">
                 Exercise
               </ion-text>
-              <ion-text class="title" style="float: right">{{exerciseProgress}}%
+              <ion-text class="title-regular" style="float: right">{{exerciseProgress}}%
               </ion-text>
               <ion-progress-bar class="dailyProgress" value="{{exerciseProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
@@ -136,6 +117,98 @@
         </div>
       </ion-card-content>
     </ion-card>
+
+
+
+    <ion-card style="margin-top:0px;">
+      <ion-card-header>
+        <ion-card-subtitle class="title">AchuCharacter</ion-card-subtitle>
+        <ion-card-subtitle class="content">{{this.http.userSettings.avatarName}} is your own personal goal-driven avatar who adapts to your health status and overall goal completion. {{this.http.userSettings.avatarName}} is driven by your consistency in achieving your person goals to ensure your stay motivated on your health journey!  
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-text class="title-regular" style="float: left;padding-bottom:5px;">
+          Overall Goal Completion
+        </ion-text>
+        <ion-text class="title-regular" style="float: right">{{overallCompletion}}%
+        </ion-text>
+        <ion-progress-bar value="{{overallCompletionBar}}" reversed="false" color="primary" class="overallBar">
+        </ion-progress-bar>
+        <ion-col size="12">
+          
+        </ion-col>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- <ion-card class="goal-card"> -->
+      <!-- <ion-card-header style="padding-bottom: 20px !important">
+        <ion-card-subtitle class="title">Daily Goals</ion-card-subtitle>
+        <ion-card-subtitle class="content">{{this.http.userSettings.avatarName}} is your
+          personal
+          goal-driven avatar who adapts
+          to
+          your own
+          personal health status. {{this.http.userSettings.avatarName}} is driven by your consistency in achieving your
+          personalized goals to ensure you
+          stay motivated in your journey.
+        </ion-card-subtitle>
+      </ion-card-header> -->
+      <!-- <ion-card-content>
+        <div class="flex-container">
+          <div class="bars-container">
+            <div class="bar" style="padding-bottom:5px;">
+              <ion-text class="title-regular" style="float: left">
+                Steps
+              </ion-text>
+              <ion-text class="title-regular" style="float: right">{{stepsProgress}}%
+              </ion-text>
+              <ion-progress-bar class="dailyProgress" value="{{stepsProgressBar}}" reversed="false" color="primary">
+              </ion-progress-bar>
+              <ion-text class="medium-text" style="float: left">{{stepsCurrent  | number }} / {{stepsGoal  | number }}
+              </ion-text>
+            </div>
+            <div class="bar" style="padding-bottom:5px;">
+              <ion-text class="title-regular" style="float: left">
+                Calories
+              </ion-text>
+              <ion-text class="title-regular" style="float: right">{{caloriesProgress}}%
+              </ion-text>
+              <ion-progress-bar class="dailyProgress" value="{{caloriesProgressBar}}" reversed="false" color="primary">
+              </ion-progress-bar>
+              <ion-text class="medium-text" style="float: left">{{caloriesCurrent  | number }} /
+                {{caloriesGoal  | number }}
+              </ion-text>
+            </div>
+            <div class="bar" style="padding-bottom:5px;">
+              <ion-text class="title-regular" style="float: left">
+                Sleep
+              </ion-text>
+              <ion-text class="title-regular" style="float: right">{{sleepProgress}}%
+              </ion-text>
+              <ion-progress-bar class="dailyProgress" value="{{sleepProgressBar}}" reversed="false" color="primary">
+              </ion-progress-bar>
+              <ion-text class="medium-text" style="float: left">{{sleepCurrent  | number }} / {{sleepGoal  | number }}
+              </ion-text>
+            </div>
+            <div class="bar" style="padding-bottom:5px;">
+              <ion-text class="title-regular" style="float: left">
+                Exercise
+              </ion-text>
+              <ion-text class="title-regular" style="float: right">{{exerciseProgress}}%
+              </ion-text>
+              <ion-progress-bar class="dailyProgress" value="{{exerciseProgressBar}}" reversed="false" color="primary">
+              </ion-progress-bar>
+              <ion-text class="medium-text" style="float: left">{{exerciseCurrent  | number }} /
+                {{exerciseGoal  | number }}
+              </ion-text>
+            </div>
+          </div>
+          <div class="character-container">
+            <ion-img [src]="gifImg"></ion-img>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card> -->
 
     <!-- <ion-card class="overall-goal-card">
       <ion-grid>
@@ -156,8 +229,8 @@
     </ion-card> -->
 
     <ion-card class="heart-rate-card">
-      <ion-button fill="clear" style="float: right;">
-        <ion-icon slot="icon-only" name="information-circle" style="color: #cfcfcf;font-size:20px;"></ion-icon>
+      <ion-button fill="clear" style="float: right;" (click)="openHrzInfo()" >
+        <ion-icon  slot="icon-only" name="information-circle" style="color: #cfcfcf;font-size:20px;"></ion-icon>
       </ion-button>
       <ion-card-header>
         <ion-card-subtitle class="title">Workout HR Zones</ion-card-subtitle>
@@ -224,20 +297,7 @@
       <ion-label class="title-nb">Health Updates</ion-label>
     </ion-item>
 
-    <ion-card color="privacybg" *ngIf="!http.userSettings.lastDailyCheckin">
-      <ion-card-header>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-card-subtitle class="content">To receive stress and fatigue updates please complete a Daily
-                Check In by clicking the floating clip board icon!</ion-card-subtitle>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-          </ion-row>
-        </ion-grid>
-      </ion-card-header>
-    </ion-card>
+ 
 
     <ion-card style="margin-top:0px;">
       <ion-card-header>

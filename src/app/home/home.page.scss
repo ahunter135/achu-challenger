@@ -30,9 +30,7 @@
 }
 
 .dailyProgress {
-
   --buffer-background: #d8d9d97a;
-
 }
 
 .nav-bar-container ion-icon {
@@ -45,6 +43,11 @@
   margin: 0;
   background-color: inherit;
   box-shadow: none;
+  padding-left: unset;
+  padding-right: unset;
+  padding-inline-start: 20px;
+  padding-inline-end: 20px;
+  padding-top:0px;
 }
 
 .progress-buffer-bar {
@@ -170,6 +173,7 @@ ion-card-item ion-item {
   --knob-size: 12px;
   --knob-background: black;
   --bar-background:  linear-gradient(90deg, rgba(68,196,161,1) 0%, rgba(129,208,222,1) 50%, rgba(84,125,189,1) 100%);
+
   --bar-background-active: transparent;
   position: inherit !important;
   padding: 0 !important;
@@ -193,7 +197,7 @@ ion-card-item ion-item {
 }
 
 .grey-bg {
-  --background: #F9F9F9 !important;
+  --background: #fefcfe !important;
 }
 
 .title-text {

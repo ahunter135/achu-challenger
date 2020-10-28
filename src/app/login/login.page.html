@@ -1,8 +1,9 @@
 <ion-content>
-  <ion-grid>
-    <ion-row class="ion-align-items-center" style="position: fixed; top: 50px; left: 0; right: 0; text-align: center;">
+  <ion-grid style="padding-top:80px;">
+    <!-- <ion-row class="ion-align-items-center" style="position: fixed; top: 50px; left: 0; right: 0; text-align: center;"> -->
+      <ion-row class="ion-align-items-center" text-center>
       <ion-col size="2"></ion-col>
-      <ion-col size="8">
+      <ion-col size="8" class="ion-align-items-center ion-text-center">
         <img src="../../../assets/images/achu_fullcolour_logo.png"
           style="padding-bottom: 20px; width: 60%; height: 60%">
       </ion-col>
@@ -10,43 +11,62 @@
     </ion-row>
   </ion-grid>
   <ion-grid>
-    <ion-row class="ion-align-items-center" style="position: fixed; top: 150px; left: 0; right: 0;">
+    <!-- <ion-row class="ion-align-items-center" style="position: fixed; top: 150px; left: 0; right: 0;"> -->
+      <ion-row class="ion-align-items-center" > 
       <ion-col size="1"></ion-col>
-      <ion-col size="9">
+      <ion-col size="11">
         <ion-text style="font-size: x-large; font-weight: bold; float: left;">Login to your account</ion-text>
       </ion-col>
-      <ion-col size="2"></ion-col>
+      <!-- <ion-col size="2"></ion-col> -->
     </ion-row>
-    <ion-row class="ion-align-items-center" style="position: fixed; top: 230px; left: 0; right: 0;">
-      <ion-col size="1"></ion-col>
-      <ion-col size="10">
-        <div style="float: left;">
+    <!-- <ion-row class="ion-align-items-center" style="position: fixed; top: 230px; "> -->
+      <ion-row class="ion-align-items-center">
+      <!-- <ion-col size="1"></ion-col> -->
+      <ion-col size="12">
+         
           <ion-item lines="none">
             <ion-label position="stacked">
-              <p style="font-weight: bold; font-size: 20px">Email</p>
+              <p style="font-weight: bold; font-size: 20px;color:black;">Email</p>
             </ion-label>
             <ion-input style="width: 100%;" type="email" placeholder="example@example.com" [(ngModel)]="email">
             </ion-input>
           </ion-item>
+
           <ion-item lines="none">
             <ion-label position="stacked">
-              <p style="font-weight: bold; font-size: 20px">Password</p>
+              <p style="font-weight: bold; font-size: 20px;color:black;">Password</p>
             </ion-label>
             <ion-input style="width: 100%;" type="password" placeholder="******" [(ngModel)]="password">
             </ion-input>
           </ion-item>
-          <ion-button id="createBtn" color="primary" expand="block" (click)="login()" *ngIf="!loggingIn">Login
+        </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center">
+          
+          <ion-col size="12" class="ion-text-center">
+            
+          <ion-button id="createBtn"   color="primary" expand="block" (click)="login()" *ngIf="!loggingIn">Login
           </ion-button>
           <ion-button id="createBtn" color="primary" expand="block" *ngIf="loggingIn">
             <ion-spinner name="bubbles"></ion-spinner>
           </ion-button>
+         
           <br>
           <a (click)="goToSignUp()">Create an Account</a>
           <br><br>
           <a (click)="goToPwReset()">Forgot Password?</a>
-        </div>
-      </ion-col>
-      <ion-col size="1"></ion-col>
-    </ion-row>
+        </ion-col>
+        </ion-row>
+        
+   
+    
   </ion-grid>
+
+
+
+ 
+
+
+
 </ion-content>

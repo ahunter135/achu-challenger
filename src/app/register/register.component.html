@@ -5,7 +5,7 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true">
+<!-- <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row class="ion-align-items-center" style="position: fixed; top: 100px; left: 0; right: 0;">
       <ion-col size="1"></ion-col>
@@ -40,4 +40,72 @@
       <ion-col size="3"></ion-col>
     </ion-row>
   </ion-grid>
+</ion-content> -->
+
+<ion-content>
+  <ion-grid style="padding-top:50px;">
+    <!-- <ion-row class="ion-align-items-center" style="position: fixed; top: 50px; left: 0; right: 0; text-align: center;"> -->
+      <ion-row class="ion-align-items-center" text-center>
+      <ion-col size="2"></ion-col>
+      <ion-col size="8" class="ion-align-items-center ion-text-center">
+        <img src="../../../assets/images/achu_fullcolour_logo.png"
+          style="padding-bottom: 20px; width: 60%; height: 60%">
+      </ion-col>
+      <ion-col size="2"></ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <!-- <ion-row class="ion-align-items-center" style="position: fixed; top: 150px; left: 0; right: 0;"> -->
+      <ion-row class="ion-align-items-center" > 
+      <ion-col size="1"></ion-col>
+      <ion-col size="11">
+        <ion-text style="font-size: x-large; font-weight: bold; float: left;">Create Your Account</ion-text>
+      </ion-col>
+     
+    </ion-row>
+     
+      <ion-row class="ion-align-items-center">
+     
+      <ion-col size="12">
+         
+          <ion-item lines="none">
+            <ion-label position="stacked">
+              <p style="font-weight: bold; font-size: 20px;color:black;">Email</p>
+            </ion-label>
+            <ion-input style="width: 100%;" type="email" placeholder="Your Email" [(ngModel)]="email">
+            </ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label position="stacked">
+              <p style="font-weight: bold; font-size: 20px;color:black;">Password</p>
+            </ion-label>
+            <ion-input style="width: 100%;" type="password" placeholder="At Least 6 Characters" [(ngModel)]="password">
+            </ion-input>
+          </ion-item>
+        </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center">
+          
+          <ion-col size="12" class="ion-text-center">
+            
+          <ion-button id="createBtn"   color="primary" expand="block" (click)="register()">Next
+          </ion-button>
+           
+         
+          
+        </ion-col>
+        </ion-row>
+        
+   
+    
+  </ion-grid>
+
+
+
+ 
+
+
+
 </ion-content>

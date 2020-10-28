@@ -1,3 +1,46 @@
-<p>
-  hrz-info works!
-</p>
+<ion-toolbar mode="md">
+  <ion-title slot="start" style="font-size: 25px">Heart Rate Zones</ion-title>
+  <ion-buttons slot="end">
+    <ion-button fill="clear" color="primary" (click)="dismiss()">Close</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content>
+  <ion-card >
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-card-subtitle class="title">Heart Rate Zones</ion-card-subtitle>
+            <p>Target heart rate zones are calculated using maximum heart rate - the highest number of times your heart can safely beat in one minute - withiny our age demographic</p>
+            <ion-card-subtitle class="content">Peak:</ion-card-subtitle>
+            <p>Intensity: Vigorour (85 to 100 percent of your max heart rate)</p>
+            <p>Benefit: Increases performance speed</p>
+            <hr>
+            <ion-card-subtitle class="content">Cardio:</ion-card-subtitle>
+            <p>Intensity: Hard (70 to 84 percent of your max heart rate)</p>
+            <p>Benefit: Increases performance speed</p>
+            <hr>
+            <ion-card-subtitle class="content">Fat Burn:</ion-card-subtitle>
+            <p>Intensity: Moderate (50 to 69 percent of your max heart rate)</p>
+            <p>Benefit: Builds aerobic endurance and teaches the body to burn fat as fuel</p>
+    </ion-col>
+        </ion-row>
+        
+
+      </ion-grid>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>
+<ion-footer class="ion-no-border" style="height: 125px;">
+
+  <ion-toolbar id="footerBar">
+
+    <ion-button  color="privacy" expand="block" (click)="dismiss()" mode="ios"
+      >
+      Close
+    </ion-button>
+ 
+  </ion-toolbar>
+
+</ion-footer>

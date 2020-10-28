@@ -26,7 +26,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 ion-content {
-    --background: #F9F9F9;
+    --background: #fefcfe;
 }
 
 ion-card-subtitle {
@@ -62,7 +62,7 @@ ion-card-subtitle {
  }
 
 .grey-bg {
-    --background: #F9F9F9 !important;
+    --background: #fefcfe !important;
 }
  .title {
     color: black;
@@ -75,6 +75,14 @@ ion-card-subtitle {
     color: black;
      text-decoration: none;
      font-size: 16px;
+     font-weight:300;
+      }
+
+      .title-regular{
+        color: black;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 400;
       }
 
  .large-text {
@@ -101,7 +109,7 @@ ion-card-subtitle {
  .content {
     color: black;
      font-size: 14px;
-     font-weight: normal;
+     font-weight: 300;
  }
 
  ion-icon {

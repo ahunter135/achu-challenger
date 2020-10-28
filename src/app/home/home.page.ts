@@ -5,7 +5,8 @@ import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { ModalController } from '@ionic/angular';
-import { DailyCheckupComponent } from '../modals/daily-checkup/daily-checkup.component';
+import { DailyCheckupComponent } from '../modals/daily-checkup/daily-checkup.component';  
+import { HrzInfoComponent } from '../modals/hrz-info/hrz-info.component';
 import * as moment from 'moment';
 import { LoadingService } from '../services/loading.service';
 
@@ -204,6 +205,19 @@ export class HomePage {
     this.currentNav = ev.detail.value;
     this.globalService.publishData(this.currentNav);
     this.getContent().scrollToTop(100);
+  }
+
+  async openHrzInfo(){
+    // let modal = await this.modalController.create({
+    //   component: HrzInfoComponent,
+    //   cssClass: 'my-custom-modal-css'
+    // });
+    // modal.onDidDismiss().then(() => {
+    //   this.ionViewDidEnter();
+    // })
+    // return await modal.present();
+
+alert("Jpoke");
   }
 
   async openDailyCheckup() {
