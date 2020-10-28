@@ -24,8 +24,8 @@
 
 .overallBar {
   --buffer-background: #d8d9d97a;
-  --progress-background: 
-   linear-gradient(90deg, rgba(84,125,189,1) 0%, rgba(68,196,161,1) 100%);
+  --progress-background: linear-gradient(90deg, rgba(68,196,161,1) 0%, rgba(129,208,222,1) 50%, rgba(84,125,189,1) 100%);
+   
    
 }
 
@@ -160,20 +160,21 @@ ion-card-item ion-item {
 .stress-health-updates {
   --bar-height: 8px;
   --knob-size: 12px;
-  --knob-background: black;
+  --knob-background: #d8d9d9ee;
   --bar-background:  linear-gradient(90deg, rgba(68,196,161,1) 0%, rgba(129,208,222,1) 50%, rgba(84,125,189,1) 100%);
   --bar-background-active: transparent;
   position: inherit !important;
   padding: 0 !important;
   --bar-border-radius: 25px;
+  opacity: 1 !important;
 }
 
 .fatigue-health-updates {
   --bar-height: 8px;
   --knob-size: 12px;
-  --knob-background: black;
+  --knob-background: #d8d9d9ee;
   --bar-background:  linear-gradient(90deg, rgba(68,196,161,1) 0%, rgba(129,208,222,1) 50%, rgba(84,125,189,1) 100%);
-
+  opacity: 1 !important;
   --bar-background-active: transparent;
   position: inherit !important;
   padding: 0 !important;
