@@ -79,7 +79,7 @@
               </ion-text>
               <ion-progress-bar class="dailyProgress" value="{{sleepProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
-              <ion-text class="medium-text" style="float: left">{{sleepCurrent  | number }} / {{sleepGoal  | number }}
+              <ion-text class="medium-text" style="float: left">{{(sleepCurrent / 60)  | number }} / {{(sleepGoal / 60)  | number: '1.1' }} hrs
               </ion-text>
             </div>
             <div class="bar" style="padding-bottom:5px;">
@@ -91,7 +91,7 @@
               <ion-progress-bar class="dailyProgress" value="{{exerciseProgressBar}}" reversed="false" color="primary">
               </ion-progress-bar>
               <ion-text class="medium-text" style="float: left">{{exerciseCurrent  | number }} /
-                {{exerciseGoal  | number }}
+                {{exerciseGoal  | number }} mins
               </ion-text>
             </div>
           </div>
