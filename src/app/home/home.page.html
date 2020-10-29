@@ -44,7 +44,7 @@
       <ion-label class="title-nb">Daily Goals</ion-label>
     </ion-item>
 
-    <ion-card class="goal-card">
+    <ion-card class="goal-card" *ngIf="goals">
       <ion-card-content>
         <div class="flex-container">
           <div class="bars-container">
@@ -102,8 +102,62 @@
         </div>
       </ion-card-content>
     </ion-card>
+    <ion-card class="goal-card" *ngIf="!goals">
+      <ion-card-content>
+        <div class="flex-container">
+          <div class="bars-container">
+            <div class="bar" style="padding-bottom:5px;">
+              <ion-text class="title-regular" style="float: left">
+                Steps
+              </ion-text>
+              <ion-text class="title-regular" style="float: right">0%
+              </ion-text>
+              <ion-progress-bar value="0" buffer="0"></ion-progress-bar>
+              <ion-text class="medium-text" style="float: left">0 / 0
+              </ion-text>
+            </div>
+            <div class="bar" style="padding-bottom:5px;">
+              <ion-text class="title-regular" style="float: left">
+                Calories
+              </ion-text>
+              <ion-text class="title-regular" style="float: right">0%
+              </ion-text>
+              <ion-progress-bar value="0" buffer="0"></ion-progress-bar>
+              <ion-text class="medium-text" style="float: left">0 /
+                0
+              </ion-text>
+            </div>
+            <div class="bar" style="padding-bottom:5px;">
+              <ion-text class="title-regular" style="float: left">
+                Sleep
+              </ion-text>
+              <ion-text class="title-regular" style="float: right">0%
+              </ion-text>
+              <ion-progress-bar value="0" buffer="0"></ion-progress-bar>
+              <ion-text class="medium-text" style="float: left">0 /
+                0 hrs
+              </ion-text>
+            </div>
+            <div class="bar" style="padding-bottom:5px;">
+              <ion-text class="title-regular" style="float: left">
+                Exercise
+              </ion-text>
+              <ion-text class="title-regular" style="float: right">0%
+              </ion-text>
+              <ion-progress-bar value="0" buffer="0"></ion-progress-bar>
+              <ion-text class="medium-text" style="float: left">0 /
+                0 mins
+              </ion-text>
+            </div>
+          </div>
+          <div class="character-container">
+            <ion-img [src]="gifImg"></ion-img>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
 
-    <ion-card style="margin-top:0px;">
+    <ion-card style="margin-top:0px;" *ngIf="http.user.goals">
       <ion-card-header>
         <ion-card-subtitle class="title">AchuCharacter</ion-card-subtitle>
         <ion-card-subtitle class="content">{{this.http.userSettings.avatarName}} is your own personal goal-driven avatar
@@ -119,13 +173,28 @@
         </ion-text>
         <ion-progress-bar value="{{overallCompletionBar}}" reversed="false" color="primary" class="overallBar">
         </ion-progress-bar>
-        <ion-col size="12">
-
-        </ion-col>
+      </ion-card-content>
+    </ion-card>
+    <ion-card style="margin-top:0px;" *ngIf="!http.user.goals">
+      <ion-card-header>
+        <ion-card-subtitle class="title">AchuCharacter</ion-card-subtitle>
+        <ion-card-subtitle class="content">{{this.http.userSettings.avatarName}} is your own personal goal-driven avatar
+          who adapts to your health status and overall goal completion. {{this.http.userSettings.avatarName}} is driven
+          by your consistency in achieving your person goals to ensure your stay motivated on your health journey!
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-text class="title-regular" style="float: left;padding-bottom:5px;">
+          Overall Goal Completion
+        </ion-text>
+        <ion-text class="title-regular" style="float: right">0%
+        </ion-text>
+        <ion-progress-bar value="0" buffer="0" color="primary" class="overallBar">
+        </ion-progress-bar>
       </ion-card-content>
     </ion-card>
 
-    <ion-card class="heart-rate-card">
+    <ion-card class="heart-rate-card" *ngIf="HRZones">
       <ion-button fill="clear" style="float: right;" (click)="openHrzInfo()">
         <ion-icon slot="icon-only" name="information-circle" style="color: #cfcfcf;font-size:20px;"></ion-icon>
       </ion-button>
@@ -196,6 +265,80 @@
               </ion-text>
             </ion-col>
 
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="heart-rate-card" *ngIf="!HRZones">
+      <ion-button fill="clear" style="float: right;" (click)="openHrzInfo()">
+        <ion-icon slot="icon-only" name="information-circle" style="color: #cfcfcf;font-size:20px;"></ion-icon>
+      </ion-button>
+      <ion-card-header>
+        <ion-card-subtitle class="title" (click)="openHrzInfo()">Workout HR Zones</ion-card-subtitle>
+        <ion-card-subtitle class="content">Your HR Trend shows a moderate
+          similarity in
+          your fatigue trends
+          from
+          your last 4 days
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <!--<div style="position: absolute; z-index: 99; top: 10%; left: 40%;">
+          <ion-text style="font-weight: bold; font-size: x-large; margin: auto; text-align: center; padding: 0;">
+            {{totalWorkout}}<span
+              style="font-weight: bold; margin: auto; text-align: center; padding: 0; font-size: small">min</span>
+          </ion-text>
+        </div>
+        <div style="position: absolute; z-index: 99; top: 15%; left: 37%">
+          <ion-text style="font-weight: bold; margin: auto; text-align: center; padding: 0; font-size: x-small;">
+            Total
+            Workout</ion-text>
+        </div>-->
+        <canvas #lineCanvas style="width: 100%; height: 40%; z-index: 50;"></canvas>
+        <br>
+        <ion-card-subtitle class="small-text">Your last workout: </ion-card-subtitle>
+        <ion-grid>
+          <ion-row class="inner-rows">
+            <ion-col size="7" style="padding-top:0px!important;">
+              <ion-text class="content" style=" vertical-align: middle;"><span style="font-weight: bold">Fat
+                  Burning:</span> 0
+              </ion-text>
+            </ion-col>
+            <ion-col size="5">
+              <ion-progress-bar value="0" buffer="0" color="fat-burning"></ion-progress-bar>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="7">
+              <ion-text class="content" style="display: block; vertical-align: middle;"><span
+                  style="font-weight: bold">Cardio:</span> 0
+              </ion-text>
+            </ion-col>
+            <ion-col size="5">
+              <ion-progress-bar value="0" buffer="0" color="cardio"></ion-progress-bar>
+            </ion-col>
+          </ion-row>
+          <ion-row class="inner-rows">
+            <ion-col size="7">
+              <ion-text class="content" style="display: block; vertical-align: middle;"><span
+                  style="font-weight: bold">Peak:</span> 0
+              </ion-text>
+            </ion-col>
+            <ion-col size="5">
+              <ion-progress-bar value="0" buffer="0" color="peak"></ion-progress-bar>
+            </ion-col>
+          </ion-row>
+          <ion-row style="padding-top:20px;">
+            <ion-col size="6">
+              <ion-text style="font-size: 8px; display: block; vertical-align: middle;"><span
+                  style="font-weight: bold">Fat Burning:</span> 1 min = 1 min
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text style="font-size: 8px; display: block; vertical-align: middle;"><span
+                  style="font-weight: bold">Cardio & Peak:</span> 1 min = 2 min
+              </ion-text>
+            </ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>

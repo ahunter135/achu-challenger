@@ -60,14 +60,12 @@ export class HomePage {
     if (loggedIn == undefined) {
       this.http.logout();
     } else {
-      this.presentLoading();
       await this.http.setUserCreds(loggedIn);
       await this.getDailyGoals();
       await this.getHRZones();
       await this.getFitbitScores();
       await this.getUserSettings();
       await this.setupGifs();
-      await this.loadingService.dismissLoading();
     }
   }
 
@@ -82,7 +80,6 @@ export class HomePage {
     this.overallCompletion = response.overallCompletion;
     this.overallCompletionBar = response.overallCompletion / 100;
     this.http.user.overallCompletion = this.overallCompletion;
-
     for (let i = 0; i < response.goals.length; i++) {
       if (response.goals[i].goalType == 'steps') {
         this.stepsProgress = Math.trunc((response.goals[i].progress / response.goals[i].goal) * 100);

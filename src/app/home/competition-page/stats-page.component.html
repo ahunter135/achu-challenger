@@ -73,25 +73,25 @@
 
           </ion-row>
 
-        <ion-row>
-        <ion-col size=2>
+          <ion-row>
+            <ion-col size=2>
 
 
 
-        </ion-col>
-        <ion-col>
-          <ion-progress-bar value="{{item.overallCompletion / 100}}" reversed="false" color="primary">
-          </ion-progress-bar>
-        </ion-col>
-      </ion-row>
+            </ion-col>
+            <ion-col>
+              <ion-progress-bar value="{{item.overallCompletion / 100}}" reversed="false" color="primary">
+              </ion-progress-bar>
+            </ion-col>
+          </ion-row>
 
         </ion-grid>
-        
+
         <app-expandable expandHeight="200px" [expanded]="item.expanded">
           <div class="bar" *ngFor="let goal of item.goals">
 
 
-             
+
             <ion-text style="font-size: 12px; font-weight: bold; float: left">
               {{goal.goalType | goalType}}
             </ion-text>
@@ -99,10 +99,12 @@
             </ion-text>
             <ion-progress-bar value="{{goal.progress / goal.goal}}" reversed="false" color="primary">
             </ion-progress-bar>
-          
+
           </div>
         </app-expandable>
       </ion-label>
     </ion-item>
   </ion-card-content>
 </ion-card>
+
+<ion-spinner style="margin: auto; display: block" *ngIf="loading"></ion-spinner>

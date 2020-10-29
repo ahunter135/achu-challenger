@@ -9,6 +9,14 @@ ion-progress-bar {
     --buffer-background:#ededed;
 }
 
+.hidden {
+  opacity: 0;
+}
+
+.not-hidden {
+  opacity: 1;
+}
+
 // img {
 //   width: 70%;
 //   height: 70%;

@@ -31,11 +31,11 @@ export class MyStatsComponent implements OnInit {
 
   async ionViewDidEnter() {
     if (!this.chartLoaded)
-      this.presentLoading();
+      this.loading = true;
     else return;
     let response = await this.http.get('/api/fitbit/WeeklyComparison', {});
     if (response == undefined) {
-      this.loadingService.dismissLoading();
+      this.loading = false;
       return;
     }
     this.weeklyData = response;
@@ -108,7 +108,7 @@ export class MyStatsComponent implements OnInit {
       }
     });
     this.chartLoaded = true;
-    this.loadingService.dismissLoading();
+    this.loading = false
   }
 
   goBack() {
