@@ -1,5 +1,9 @@
 <app-header-card></app-header-card>
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="ionViewDidEnter($event)" spinner="crescent"
+    pulling-text="Pull to refresh...">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div id="today-view" [hidden]="!(currentNav == 'today')">
     <ion-card color="privacybg" [hidden]="!needsFitbitAuth">
       <ion-card-header>

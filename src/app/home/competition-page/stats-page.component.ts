@@ -47,7 +47,9 @@ export class StatsPageComponent implements OnInit {
       this.loading = true;
     else return;
 
-    this.friendData = await this.http.get('/api/fitbit/friendGoals', {});
+    let response = await this.http.get('/api/fitbit/friendGoals', {});
+
+    this.friendData = response.body;
     if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) {
       this.loading = false
       return;

@@ -27,11 +27,11 @@ export class LoginPage implements OnInit {
       password: this.password
     });
 
-    if (response.status == undefined) {
+    if (response.status == 200) {
       //  if (response.tenantId == "6a75bd8d-248e-41aa-9939-91632c52c5d6") {
-      let loginResponse = { key: "loggedIn", value: JSON.stringify(response) };
+      let loginResponse = { key: "loggedIn", value: JSON.stringify(response.body) };
       await this.storage.setItem(loginResponse);
-      await this.http.setUserCreds(response);
+      await this.http.setUserCreds(response.body);
       this.loggingIn = false;
       this.router.navigateByUrl("/home", {
         replaceUrl: true

@@ -54,7 +54,7 @@ export class HomePage {
   constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,
     public loadingService: LoadingService) { }
 
-  async ionViewDidEnter() {
+  async ionViewDidEnter(event = <any>false) {
     var loggedIn = await this.storage.getItem("loggedIn");
 
     if (loggedIn == undefined) {
@@ -66,17 +66,21 @@ export class HomePage {
       await this.getFitbitScores();
       await this.getUserSettings();
       await this.setupGifs();
+      if (event)
+        event.target.complete();
     }
   }
 
   async getDailyGoals() {
     let response = await this.http.get('/api/fitbit/dailygoals', {});
-    this.goals = response.goals;
+    this.goals = response.body.goals;
     this.http.user.goals = this.goals;
-    if (response == undefined) {
+    if (response.status != 200) {
       this.http.logout();
       return;
     }
+    response = response.body;
+    console.log(response);
     this.overallCompletion = response.overallCompletion;
     this.overallCompletionBar = response.overallCompletion / 100;
     this.http.user.overallCompletion = this.overallCompletion;
@@ -109,11 +113,14 @@ export class HomePage {
 
   async getHRZones() {
     let response = await this.http.get('/api/fitbit/HRZ', {});
-    if (response == undefined) {
+    if (response.status != 200) {
+      console.log(response);
       this.http.logout();
       return;
     }
     if (response.length == 0) return;
+
+    response = response.body;
     var data = [];
     var labels = [];
     this.lastWorkout = moment(response[0].date).format("DD MMMM YYYY");
@@ -170,20 +177,23 @@ export class HomePage {
 
   async getFitbitScores() {
     let response = await this.http.get('/api/scores/fitbit', {});
-    if (response == undefined) {
+    if (response.status != 200) {
+      console.log(response);
       this.http.logout();
       return;
     }
-    this.stressScore = response.stressScoreValue;
-    this.fatigueScore = response.fatigueScoreValue;
+    this.stressScore = response.body.stressScoreValue;
+    this.fatigueScore = response.body.fatigueScoreValue;
   }
 
   async getUserSettings() {
     let response = await this.http.get('/api/Account/GetUserSettings', {});
-    if (response == undefined) {
+    if (response.status != 200) {
+      console.log(response);
       this.http.logout();
       return;
     }
+    response = response.body;
     this.http.userSettings = response;
     if (!this.http.userSettings.lastDailyCheckin) {
       this.needsCheckin = true;

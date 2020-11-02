@@ -34,10 +34,11 @@ export class MyStatsComponent implements OnInit {
       this.loading = true;
     else return;
     let response = await this.http.get('/api/fitbit/WeeklyComparison', {});
-    if (response == undefined) {
+    if (response.status != 200) {
       this.loading = false;
       return;
     }
+    response = response.body;
     this.weeklyData = response;
     var gridColor = [];
     var maxLines = 15;

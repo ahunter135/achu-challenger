@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from "@angular/common/http";
 import { StorageService } from './storage.service';
 import { Router } from '@angular/router';
 import { LoadingService } from './loading.service';
@@ -31,10 +31,11 @@ export class HttpService {
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json" };
     else
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId };
-    let config = {
+    let config = <any>{
       url: url,
       method: "POST",
-      headers: headers
+      headers: headers,
+      observe: 'response'
     }
     try {
       return await this.http.post(url, data, config).toPromise();
@@ -57,7 +58,7 @@ export class HttpService {
       headers: headers
     }
     try {
-      return await this.http.put(url, data, config).toPromise();
+      return new HttpResponse(await this.http.put(url, data, config).toPromise());
     } catch (e) {
       return e;
     }
@@ -76,7 +77,8 @@ export class HttpService {
     try {
       return await this.http.get(url, {
         headers: headers,
-        params: data
+        params: data,
+        observe: 'response'
       }).toPromise();
     } catch (e) {
       return e;
@@ -168,27 +170,26 @@ export class HttpService {
     let response = await this.get("/api/Account/GetUserInfo", {
       tenantId: this.tenantId
     });
-    console.log(response);
-    if (response.status == undefined) {
-      this.user = response;
+    if (response.status == 200) {
+      this.user = response.body;
     } else {
       response = await this.refreshTokens();
 
-      if (response.status == undefined) {
-        await this.setAccessToken(response.accessToken);
-        await this.setRefreshToken(response.refreshToken);
+      if (response.status == 200) {
+        await this.setAccessToken(response.body.accessToken);
+        await this.setRefreshToken(response.body.refreshToken);
 
-        this.email = response.email;
-        this.tenantId = response.tenantId;
+        this.email = response.body.email;
+        this.tenantId = response.body.tenantId;
 
         response = await this.get("/api/Account/GetUserInfo", { tenantId: this.tenantId });
 
-        if (response.status != undefined) {
+        if (response.status != 200) {
           // logout
           await this.logout();
         } else {
           //set data
-          this.user = response;
+          this.user = response.body;
         }
       } else {
         // logout
@@ -201,26 +202,26 @@ export class HttpService {
   async loadSicknessData() {
     let response = await this.get("/api/Sickness", {});
 
-    if (response.status == undefined) {
-      this.userSicknessData = response;
+    if (response.status == 200) {
+      this.userSicknessData = response.body;
     } else if (response.status == 401) {
       response = await this.refreshTokens();
 
-      if (response.status == undefined) {
-        await this.setAccessToken(response.accessToken);
-        await this.setRefreshToken(response.refreshToken);
+      if (response.status == 200) {
+        await this.setAccessToken(response.body.accessToken);
+        await this.setRefreshToken(response.body.refreshToken);
 
-        this.email = response.email;
-        this.tenantId = response.tenantId;
+        this.email = response.body.email;
+        this.tenantId = response.body.tenantId;
 
         response = await this.http.get("/api/Sickness", {});
 
-        if (response.status != undefined) {
+        if (response.status != 200) {
           // logout
           await this.logout();
         } else {
           //set data
-          this.userSicknessData = response;
+          this.userSicknessData = response.body;
         }
       } else {
         // log out
@@ -234,27 +235,26 @@ export class HttpService {
   async loadUserDefaults() {
     let response = await this.get("/api/Account/UserDefaults", {});
 
-    if (response.status == undefined) {
-      this.userDefaults = response;
+    if (response.status == 200) {
+      this.userDefaults = response.body;
     } else if (response.status == 401) {
       response = await this.refreshTokens();
 
-      if (response.status == undefined) {
-        await this.setAccessToken(response.accessToken);
-        await this.setRefreshToken(response.refreshToken);
+      if (response.status == 200) {
+        await this.setAccessToken(response.body.accessToken);
+        await this.setRefreshToken(response.body.refreshToken);
 
-        this.email = response.email;
-        this.tenantId = response.tenantId;
+        this.email = response.body.email;
+        this.tenantId = response.body.tenantId;
 
         response = await this.http.get("/api/Account/UserDefaults", {});
 
-        if (response.status != undefined) {
+        if (response.status != 200) {
           // logout
           await this.logout();
         } else {
           //set data
-          this.userDefaults = response;
-
+          this.userDefaults = response.body;
         }
       } else {
         // log out
@@ -282,14 +282,14 @@ export class HttpService {
       maxLat: maxLat
     });
 
-    if (response.status == undefined) {
-      return response;
+    if (response.status == 200) {
+      return response.body;
     } else if (response.status == 401) {
       response = await this.refreshTokens();
 
-      if (response.status == undefined) {
-        await this.setAccessToken(response.accessToken);
-        await this.setRefreshToken(response.refreshToken);
+      if (response.status == 200) {
+        await this.setAccessToken(response.body.accessToken);
+        await this.setRefreshToken(response.body.refreshToken);
 
         response = await this.get("/sickscan/Data", {
           dateOffset: day.getTime(),
@@ -298,12 +298,12 @@ export class HttpService {
           minLat: minLat,
           maxLat: maxLat
         });
-        if (response.status != undefined) {
+        if (response.status != 200) {
           // logout
           await this.logout();
         } else {
           //set data
-          return response;
+          return response.body;
         }
       } else {
         // log out
@@ -320,29 +320,29 @@ export class HttpService {
       tenantId: this.tenantId
     });
 
-    if (response.status == undefined) {
-      return response;
+    if (response.status == 200) {
+      return response.body;
     } else if (response.status == 401) {
       response = await this.refreshTokens();
 
-      if (response.status == undefined) {
-        await this.setAccessToken(response.accessToken);
-        await this.setRefreshToken(response.refreshToken);
+      if (response.status == 200) {
+        await this.setAccessToken(response.body.accessToken);
+        await this.setRefreshToken(response.body.refreshToken);
 
-        this.email = response.email;
-        this.tenantId = response.tenantId;
+        this.email = response.body.email;
+        this.tenantId = response.body.tenantId;
 
         response = await this.get("/api/Sickness/Details", {
           id: report.id,
           tenantId: this.tenantId
         });
 
-        if (response.status != undefined) {
+        if (response.status != 200) {
           // logout
           await this.logout();
         } else {
           //set data
-          return response;
+          return response.body;
         }
       } else {
         // log out
@@ -363,11 +363,11 @@ export class HttpService {
 
     if (!response) {
       response = await this.refreshTokens();
-      if (response.status == undefined) {
-        await this.setAccessToken(response.accessToken);
-        await this.setRefreshToken(response.refreshToken);
-        this.email = response.email;
-        this.tenantId = response.tenantId;
+      if (response.status == 200) {
+        await this.setAccessToken(response.body.accessToken);
+        await this.setRefreshToken(response.body.refreshToken);
+        this.email = response.body.email;
+        this.tenantId = response.body.tenantId;
 
         response = await this.post("/api/DailyRating", {
           timeStamp: new Date().toISOString(),
@@ -376,12 +376,12 @@ export class HttpService {
           stress: stress
         });
 
-        return response;
+        return response.body;
       } else {
         await this.logout();
       }
     } else
-      return response;
+      return response.body;
   }
 
   async logout() {

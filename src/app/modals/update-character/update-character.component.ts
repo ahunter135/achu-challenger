@@ -24,7 +24,7 @@ export class UpdateCharacterComponent {
       });
       t.present();
       let response = await this.http.get('/api/Account/GetUserSettings', {});
-      this.http.userSettings = response;
+      this.http.userSettings = response.body;
       this.modal.dismiss();
     });
   }

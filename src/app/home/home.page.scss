@@ -147,6 +147,10 @@ ion-card-item ion-item {
   width: 100%;
 }
 
+ion-refresher {
+  z-index: 10;
+}
+
 .flex-container .character-container {
   display: flex; 
   flex-wrap: nowrap; 

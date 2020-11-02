@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { ToastController, ModalController } from '@ionic/angular';
- 
+
 @Component({
   selector: 'app-optin',
   templateUrl: './optin.component.html',
@@ -25,7 +25,7 @@ export class OptinComponent {
       });
       t.present();
       let response = await this.http.get('/api/Account/GetUserSettings', {});
-      this.http.userSettings = response;
+      this.http.userSettings = response.body;
     });
   }
 
