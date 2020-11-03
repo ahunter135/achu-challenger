@@ -91,6 +91,7 @@ export class HttpService {
       if (response.status == 200) {
         return response;
       } else if (response.status == 401 && this.callCount < 1) {
+        this.callCount++;
         response = await this.refreshTokens();
 
         if (response.status == 200) {
@@ -140,6 +141,7 @@ export class HttpService {
       if (response.status == 200) {
         return response;
       } else if (response.status == 401 && this.callCount < 1) {
+        this.callCount++;
         response = await this.refreshTokens();
 
         if (response.status == 200) {
@@ -185,6 +187,7 @@ export class HttpService {
       if (response.status == 200) {
         return response;
       } else if (response.status == 401 && this.callCount < 1) {
+        this.callCount++;
         response = await this.refreshTokens();
 
         if (response.status == 200) {
