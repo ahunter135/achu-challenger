@@ -40,6 +40,7 @@ export class HttpService {
     try {
       let response = await <any>this.http.post(url, data, config).toPromise();
       if (response.status == 200) {
+        this.callCount = 0;
         return response;
       } else if (response.status == 401 && this.callCount < 1) {
         this.callCount++;
@@ -58,8 +59,8 @@ export class HttpService {
             // logout
             await this.logout();
           } else {
-            //set data
-            this.userSicknessData = response.body;
+            this.callCount = 0;
+            return response;
           }
         } else {
           // log out
@@ -89,6 +90,7 @@ export class HttpService {
     try {
       let response = await <any>this.http.put(url, data, config).toPromise();
       if (response.status == 200) {
+        this.callCount = 0;
         return response;
       } else if (response.status == 401 && this.callCount < 1) {
         this.callCount++;
@@ -107,8 +109,8 @@ export class HttpService {
             // logout
             await this.logout();
           } else {
-            //set data
-            this.userSicknessData = response.body;
+            this.callCount = 0;
+            return response;
           }
         } else {
           // log out
@@ -139,6 +141,7 @@ export class HttpService {
         observe: 'response'
       }).toPromise();
       if (response.status == 200) {
+        this.callCount = 0;
         return response;
       } else if (response.status == 401 && this.callCount < 1) {
         this.callCount++;
@@ -157,8 +160,8 @@ export class HttpService {
             // logout
             await this.logout();
           } else {
-            //set data
-            this.userSicknessData = response.body;
+            this.callCount = 0;
+            return response;
           }
         } else {
           // log out
@@ -203,8 +206,8 @@ export class HttpService {
             // logout
             await this.logout();
           } else {
-            //set data
-            this.userSicknessData = response.body;
+            this.callCount = 0;
+            return response;
           }
         } else {
           // log out
@@ -501,6 +504,7 @@ export class HttpService {
   }
 
   async logout() {
+    this.callCount = 0;
     await this.loadingService.dismissLoading();
     await this.storage.clearStorage();
     await this.resetData();
