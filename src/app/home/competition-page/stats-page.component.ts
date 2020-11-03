@@ -19,6 +19,7 @@ export class StatsPageComponent implements OnInit {
   friendData = [];
   friendsChart: Chart;
   loading = false;
+  history = [];
   constructor(public globalService: GlobalService, public router: Router, public http: HttpService, public toast: ToastController, public modal: ModalController,
     public loadingService: LoadingService) {
     this.globalService.getObservable().subscribe(async (data) => {
@@ -48,7 +49,7 @@ export class StatsPageComponent implements OnInit {
     else return;
 
     let response = await this.http.get('/api/fitbit/friendGoals', {});
-
+    this.getHistory();
     this.friendData = response.body;
     if (this.friendData.length == 0 || !this.http.userSettings.fitBitShare) {
       this.loading = false
@@ -128,6 +129,14 @@ export class StatsPageComponent implements OnInit {
     this.chartLoaded = true;
 
     this.loading = false
+  }
+
+  async getHistory() {
+    let response = await this.http.get("/api/Fitbit/WeeklyRanks", {});
+    if (response.status == 200) {
+      this.history = response.body;
+      console.log(this.history);
+    }
   }
 
   goToMyStats() {

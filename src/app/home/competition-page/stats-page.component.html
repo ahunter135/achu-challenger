@@ -107,4 +107,29 @@
   </ion-card-content>
 </ion-card>
 
+<ion-card *ngIf="history.length > 0">
+  <ion-card-content>
+    <span>
+      <strong>History</strong>
+    </span>
+    <br>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let data of history">
+          <img src="../../assets/images/Ribbon_1.png" *ngIf="data.rank == 1">
+          <img src="../../assets/images/Ribbon_2.png" *ngIf="data.rank == 2">
+          <img src="../../assets/images/Ribbon_3.png" *ngIf="data.rank == 3">
+          <ion-icon name="ellipse" *ngIf="data.rank == 0" style="width: 100%; height: 100%; opacity: 0.5;">
+          </ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngFor="let data of history">
+          <span style="display: block; margin: auto; text-align: center;">{{data.day | slice: 0:1}}</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
 <ion-spinner style="margin: auto; display: block" *ngIf="loading"></ion-spinner>
