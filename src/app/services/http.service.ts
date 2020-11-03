@@ -19,7 +19,7 @@ export class HttpService {
   currentLng = -78.185234;
   userDefaults = <any>{};
   userSettings = <any>{};
-
+  callCount = 0;
   constructor(public http: HttpClient, private storage: StorageService, public router: Router, public loadingService: LoadingService) { }
 
   async post(endpoint, data) {
@@ -38,7 +38,36 @@ export class HttpService {
       observe: 'response'
     }
     try {
-      return await this.http.post(url, data, config).toPromise();
+      let response = await <any>this.http.post(url, data, config).toPromise();
+      if (response.status == 200) {
+        return response;
+      } else if (response.status == 401 && this.callCount < 1) {
+        this.callCount++;
+        response = await this.refreshTokens();
+
+        if (response.status == 200) {
+          await this.setAccessToken(response.body.accessToken);
+          await this.setRefreshToken(response.body.refreshToken);
+
+          this.email = response.body.email;
+          this.tenantId = response.body.tenantId;
+
+          response = await this.post(endpoint, data);
+
+          if (response.status != 200) {
+            // logout
+            await this.logout();
+          } else {
+            //set data
+            this.userSicknessData = response.body;
+          }
+        } else {
+          // log out
+          await this.logout();
+        }
+      } else {
+        this.logout();
+      }
     } catch (e) {
       return e;
     }
@@ -58,7 +87,35 @@ export class HttpService {
       headers: headers
     }
     try {
-      return new HttpResponse(await this.http.put(url, data, config).toPromise());
+      let response = await <any>this.http.put(url, data, config).toPromise();
+      if (response.status == 200) {
+        return response;
+      } else if (response.status == 401 && this.callCount < 1) {
+        response = await this.refreshTokens();
+
+        if (response.status == 200) {
+          await this.setAccessToken(response.body.accessToken);
+          await this.setRefreshToken(response.body.refreshToken);
+
+          this.email = response.body.email;
+          this.tenantId = response.body.tenantId;
+
+          response = await this.put(endpoint, data);
+
+          if (response.status != 200) {
+            // logout
+            await this.logout();
+          } else {
+            //set data
+            this.userSicknessData = response.body;
+          }
+        } else {
+          // log out
+          await this.logout();
+        }
+      } else {
+        this.logout();
+      }
     } catch (e) {
       return e;
     }
@@ -75,11 +132,39 @@ export class HttpService {
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId, "DateOffset": d };
 
     try {
-      return await this.http.get(url, {
+      let response = await <any>this.http.get(url, {
         headers: headers,
         params: data,
         observe: 'response'
       }).toPromise();
+      if (response.status == 200) {
+        return response;
+      } else if (response.status == 401 && this.callCount < 1) {
+        response = await this.refreshTokens();
+
+        if (response.status == 200) {
+          await this.setAccessToken(response.body.accessToken);
+          await this.setRefreshToken(response.body.refreshToken);
+
+          this.email = response.body.email;
+          this.tenantId = response.body.tenantId;
+
+          response = await this.get(endpoint, data);
+
+          if (response.status != 200) {
+            // logout
+            await this.logout();
+          } else {
+            //set data
+            this.userSicknessData = response.body;
+          }
+        } else {
+          // log out
+          await this.logout();
+        }
+      } else {
+        this.logout();
+      }
     } catch (e) {
       return e;
     }
@@ -94,9 +179,37 @@ export class HttpService {
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId };
 
     try {
-      return await this.http.delete(url, {
+      let response = await <any>this.http.delete(url, {
         headers: headers
       }).toPromise();
+      if (response.status == 200) {
+        return response;
+      } else if (response.status == 401 && this.callCount < 1) {
+        response = await this.refreshTokens();
+
+        if (response.status == 200) {
+          await this.setAccessToken(response.body.accessToken);
+          await this.setRefreshToken(response.body.refreshToken);
+
+          this.email = response.body.email;
+          this.tenantId = response.body.tenantId;
+
+          response = await this.delete(endpoint);
+
+          if (response.status != 200) {
+            // logout
+            await this.logout();
+          } else {
+            //set data
+            this.userSicknessData = response.body;
+          }
+        } else {
+          // log out
+          await this.logout();
+        }
+      } else {
+        this.logout();
+      }
     } catch (e) {
       return e;
     }
