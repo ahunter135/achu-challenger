@@ -33,13 +33,20 @@ export class MyStatsComponent implements OnInit {
     if (!this.chartLoaded)
       this.loading = true;
     else return;
-    let response = await this.http.get('/api/fitbit/WeeklyComparison', {});
+    let response = await this.http.get('/api/Fitbit/WeeklyComparison', {});
     if (response.status != 200) {
       this.loading = false;
       return;
     }
     response = response.body;
     this.weeklyData = response;
+    response = await this.http.get('/api/Fitbit/WeeklyCompletion', {});
+    if (response.status != 200) {
+      this.loading = false;
+      return;
+    }
+    let thisWeek = response.body[1];
+    let lastWeek = response.body[0];
     var gridColor = [];
     var maxLines = 15;
     for (var i = 0; i < maxLines; i++) {
@@ -49,19 +56,37 @@ export class MyStatsComponent implements OnInit {
         gridColor.push('#44c4a1');
     }
     var data = [];
-    for (let i = response.length - 1; i > -1; i--) {
-      data.push(response[i].overallCompletion);
+    for (let i = 0; i < thisWeek.length; i++) {
+      data.push(thisWeek[i].overallCompletion);
+    }
+    var lastData = [];
+    var labels = [];
+    for (let i = 0; i < lastWeek.length; i++) {
+      lastData.push(lastWeek[i].overallCompletion);
+      labels.push(lastWeek[i].day);
     }
     this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: 'bar',
+      type: 'line',
       data: {
-        labels: [response[2].name, response[1].name, response[0].name],
+        labels: labels,
         datasets: [{
           data: data,
           backgroundColor: '#44c4a1', // array should have same number of elements as number of dataset
           borderColor: '#44c4a1',// array should have same number of elements as number of dataset
-          borderWidth: 1,
-          barThickness: 15
+          borderWidth: 3,
+          barThickness: 15,
+          pointRadius: 0,
+          fill: false,
+          borderJoinStyle: 'miter'
+        }, {
+          data: lastData,
+          backgroundColor: 'rgba(0, 0, 0, 0.1)', // array should have same number of elements as number of dataset
+          borderColor: 'rgba(0, 0, 0, 0.1)',// array should have same number of elements as number of dataset
+          borderWidth: 3,
+          barThickness: 15,
+          pointRadius: 0,
+          fill: false,
+          borderJoinStyle: 'miter'
         }]
       },
       options: {
