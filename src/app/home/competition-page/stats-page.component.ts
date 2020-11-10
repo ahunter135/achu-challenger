@@ -13,6 +13,8 @@ import { LoadingService } from 'src/app/services/loading.service';
   styleUrls: ['./stats-page.component.scss'],
 })
 export class StatsPageComponent implements OnInit {
+  @ViewChild("infCanvas") infCanvas: ElementRef;
+  @ViewChild("perCanvas") perCanvas: ElementRef;
   @ViewChild("friendsCanvas") friendsCanvas: ElementRef;
   chartLoaded = false;
   public items: any = [];
@@ -20,6 +22,8 @@ export class StatsPageComponent implements OnInit {
   friendsChart: Chart;
   loading = false;
   history = [];
+  personCircle: Chart;
+  influencerCircle: Chart;
   constructor(public globalService: GlobalService, public router: Router, public http: HttpService, public toast: ToastController, public modal: ModalController,
     public loadingService: LoadingService) {
     this.globalService.getObservable().subscribe(async (data) => {
@@ -77,58 +81,90 @@ export class StatsPageComponent implements OnInit {
       labels.push(this.friendData[i].name);
       backgroundColors.push('#9bbeff');
     }
-    /*
-        this.friendsChart = new Chart(this.friendsCanvas.nativeElement, {
-          type: 'bar',
-          data: {
-            labels: labels,
-            datasets: [{
-              data: data,
-              backgroundColor: backgroundColors,
-              boorderColor: backgroundColors,
-              borderWidth: 1,
-              barThickness: 8
-            }]
-          },
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  fontSize: 8,
-                  display: false,
-                  max: 100,
-                  min: 0
-                },
-                gridLines: {
-                  display: false,
-                  drawBorder: false,
-                },
-                display: true
-              }],
-              xAxes: [{
-                ticks: {
-                  fontSize: 10,
-                  fontColor: '#000000',
-                  padding: 1
-                },
-                gridLines: {
-                  display: false
-                },
-                display: true
-              }]
-            },
-            legend: {
-              display: false
-            },
-            tooltips: {
-              enabled: false
-            }
-          }
-        });
-        */
+    await this.loadInfChart();
+    await this.loadPersonChart();
     this.chartLoaded = true;
 
     this.loading = false
+  }
+
+  async loadInfChart() {
+    this.influencerCircle = new Chart(this.infCanvas.nativeElement, {
+      type: "doughnut",
+      data: {
+        labels: [],
+        datasets: [
+          {
+            data: [25],
+            borderAlign: 'inner',
+            backgroundColor: [
+              '#4cbf9f'
+            ]
+          }
+        ]
+      },
+      options: {
+        cutoutPercentage: 75,
+        scales: {
+          yAxes: [{
+            gridLines: {
+              display: false
+            },
+            display: false
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }]
+        },
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        }
+      }
+    });
+  }
+  async loadPersonChart() {
+    this.personCircle = new Chart(this.perCanvas.nativeElement, {
+      type: "doughnut",
+      data: {
+        labels: [],
+        datasets: [
+          {
+            data: [25],
+            borderAlign: 'inner',
+            backgroundColor: [
+              '#4cbf9f'
+            ]
+          }
+        ]
+      },
+      options: {
+        cutoutPercentage: 75,
+        scales: {
+          yAxes: [{
+            gridLines: {
+              display: false
+            },
+            display: false
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }]
+        },
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        }
+      }
+    });
   }
 
   async getHistory() {

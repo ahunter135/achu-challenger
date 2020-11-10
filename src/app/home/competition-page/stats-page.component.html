@@ -40,6 +40,62 @@
   </ion-card-header>
 </ion-card>
 
+<ion-card>
+  <ion-card-header style="font-weight: bold; text-decoration: none; color: black;">
+    Compete with your influencer
+  </ion-card-header>
+  <ion-card-content style="padding: 0 !important;">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-align-self-start">
+          <ion-row>
+            <ion-col>
+              <ion-text style="font-weight: bold; font-size: 15px">@Influencer</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-align-self-center">
+              <canvas #infCanvas style="width: 90%; height: 90%;"></canvas>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text style="font-weight: bold; font-size: 20px">50%</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text style="font-size: 10px;">Overall Completion</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col class="ion-align-self-end">
+          <ion-row>
+            <ion-col>
+              <ion-text style="font-weight: bold; font-size: 15px">Person 1</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-align-self-center">
+              <canvas #perCanvas style="width: 90%; height: 90%;"></canvas>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text style="font-weight: bold; font-size: 20px">50%</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text style="font-size: 10px;">Overall Completion</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
 <ion-card *ngIf="friendData.length > 0 && http.userSettings.fitBitShare">
   <ion-card-content style="padding: 0 !important;">
     <ion-item (click)="expandItem(item)" *ngFor="let item of friendData; index as i" lines="none"
@@ -107,7 +163,7 @@
   </ion-card-content>
 </ion-card>
 
-<ion-card *ngIf="history.length > 0">
+<ion-card *ngIf="history.length > 0 && friendData.length > 0">
   <ion-card-content>
     <span>
       <strong>History</strong>
