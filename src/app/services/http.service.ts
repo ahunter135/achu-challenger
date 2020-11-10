@@ -47,12 +47,6 @@ export class HttpService {
         response = await this.refreshTokens();
 
         if (response.status == 200) {
-          await this.setAccessToken(response.body.accessToken);
-          await this.setRefreshToken(response.body.refreshToken);
-
-          this.email = response.body.email;
-          this.tenantId = response.body.tenantId;
-
           response = await this.post(endpoint, data);
 
           if (response.status != 200) {
@@ -97,12 +91,6 @@ export class HttpService {
         response = await this.refreshTokens();
 
         if (response.status == 200) {
-          await this.setAccessToken(response.body.accessToken);
-          await this.setRefreshToken(response.body.refreshToken);
-
-          this.email = response.body.email;
-          this.tenantId = response.body.tenantId;
-
           response = await this.put(endpoint, data);
 
           if (response.status != 200) {
@@ -148,12 +136,6 @@ export class HttpService {
         response = await this.refreshTokens();
 
         if (response.status == 200) {
-          await this.setAccessToken(response.body.accessToken);
-          await this.setRefreshToken(response.body.refreshToken);
-
-          this.email = response.body.email;
-          this.tenantId = response.body.tenantId;
-
           response = await this.get(endpoint, data);
 
           if (response.status != 200) {
@@ -174,6 +156,7 @@ export class HttpService {
       return e;
     }
   }
+
   async delete(endpoint) {
     let url = this.base + endpoint;
     let headers = {};
@@ -194,12 +177,6 @@ export class HttpService {
         response = await this.refreshTokens();
 
         if (response.status == 200) {
-          await this.setAccessToken(response.body.accessToken);
-          await this.setRefreshToken(response.body.refreshToken);
-
-          this.email = response.body.email;
-          this.tenantId = response.body.tenantId;
-
           response = await this.delete(endpoint);
 
           if (response.status != 200) {
@@ -249,21 +226,27 @@ export class HttpService {
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json" };
     else
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId };
-    let config = {
+    let config = <any>{
       url: this.base + "/auth/Auth/Tokens",
       method: "POST",
-      headers: headers
+      headers: headers,
+      observe: 'response'
     }
     let token = await this.getRefreshToken();
     let accessToken = await this.getAccessToken();
 
     try {
-      return await this.http.post(this.base + "/auth/Auth/Tokens", {
+      let response = <any>await this.http.post(this.base + "/auth/Auth/Tokens", {
         email: this.email,
         accessToken: accessToken,
         refreshToken: token,
         tenantId: this.tenantId
       }, config).toPromise();
+
+      await this.setAccessToken(response.body.accessToken);
+      await this.setRefreshToken(response.body.refreshToken);
+      
+      return response;
     } catch (error) {
       return error
     }
@@ -295,12 +278,6 @@ export class HttpService {
       response = await this.refreshTokens();
 
       if (response.status == 200) {
-        await this.setAccessToken(response.body.accessToken);
-        await this.setRefreshToken(response.body.refreshToken);
-
-        this.email = response.body.email;
-        this.tenantId = response.body.tenantId;
-
         response = await this.get("/api/Account/GetUserInfo", { tenantId: this.tenantId });
 
         if (response.status != 200) {
@@ -327,12 +304,6 @@ export class HttpService {
       response = await this.refreshTokens();
 
       if (response.status == 200) {
-        await this.setAccessToken(response.body.accessToken);
-        await this.setRefreshToken(response.body.refreshToken);
-
-        this.email = response.body.email;
-        this.tenantId = response.body.tenantId;
-
         response = await this.http.get("/api/Sickness", {});
 
         if (response.status != 200) {
@@ -360,12 +331,6 @@ export class HttpService {
       response = await this.refreshTokens();
 
       if (response.status == 200) {
-        await this.setAccessToken(response.body.accessToken);
-        await this.setRefreshToken(response.body.refreshToken);
-
-        this.email = response.body.email;
-        this.tenantId = response.body.tenantId;
-
         response = await this.http.get("/api/Account/UserDefaults", {});
 
         if (response.status != 200) {
@@ -407,9 +372,6 @@ export class HttpService {
       response = await this.refreshTokens();
 
       if (response.status == 200) {
-        await this.setAccessToken(response.body.accessToken);
-        await this.setRefreshToken(response.body.refreshToken);
-
         response = await this.get("/sickscan/Data", {
           dateOffset: day.getTime(),
           minLon: minLon,
@@ -445,12 +407,6 @@ export class HttpService {
       response = await this.refreshTokens();
 
       if (response.status == 200) {
-        await this.setAccessToken(response.body.accessToken);
-        await this.setRefreshToken(response.body.refreshToken);
-
-        this.email = response.body.email;
-        this.tenantId = response.body.tenantId;
-
         response = await this.get("/api/Sickness/Details", {
           id: report.id,
           tenantId: this.tenantId
@@ -483,11 +439,6 @@ export class HttpService {
     if (!response) {
       response = await this.refreshTokens();
       if (response.status == 200) {
-        await this.setAccessToken(response.body.accessToken);
-        await this.setRefreshToken(response.body.refreshToken);
-        this.email = response.body.email;
-        this.tenantId = response.body.tenantId;
-
         response = await this.post("/api/DailyRating", {
           timeStamp: new Date().toISOString(),
           anxiety: anxiety,
