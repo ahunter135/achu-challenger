@@ -40,7 +40,7 @@
   </ion-card-header>
 </ion-card>
 
-<ion-card>
+<ion-card *ngIf="influencerData">
   <ion-card-header style="font-weight: bold; text-decoration: none; color: black;">
     Compete with your influencer
   </ion-card-header>
@@ -50,7 +50,8 @@
         <ion-col class="ion-align-self-start">
           <ion-row>
             <ion-col>
-              <ion-text style="font-weight: bold; font-size: 15px">@Influencer</ion-text>
+              <ion-text style="font-weight: bold; font-size: 15px">
+                {{influencerData[1].name}}</ion-text>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -60,7 +61,8 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-text style="font-weight: bold; font-size: 20px">50%</ion-text>
+              <ion-text style="font-weight: bold; font-size: 20px">
+                {{influencerData[1].overallCompletion}}%</ion-text>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -68,11 +70,20 @@
               <ion-text style="font-size: 10px;">Overall Completion</ion-text>
             </ion-col>
           </ion-row>
+          <ion-row *ngFor="let goal of influencerData[1].goals">
+            <ion-col>
+              <ion-text style="font-size: 12px;">{{goal.goalType | goalType}}:</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text style="font-size: 12px;">{{(goal.progress / goal.goal) * 100 | number:'1.0-0'}}%
+              </ion-text>
+            </ion-col>
+          </ion-row>
         </ion-col>
         <ion-col class="ion-align-self-end">
           <ion-row>
             <ion-col>
-              <ion-text style="font-weight: bold; font-size: 15px">Person 1</ion-text>
+              <ion-text style="font-weight: bold; font-size: 15px">{{influencerData[0].name}}</ion-text>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -82,12 +93,21 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-text style="font-weight: bold; font-size: 20px">50%</ion-text>
+              <ion-text style="font-weight: bold; font-size: 20px">{{influencerData[0].overallCompletion}}%</ion-text>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-text style="font-size: 10px;">Overall Completion</ion-text>
+              <ion-text style="font-size: 9px;">Overall Completion</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngFor="let goal of influencerData[0].goals">
+            <ion-col>
+              <ion-text style="font-size: 12px;">{{goal.goalType | goalType}}:</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text style="font-size: 12px;">{{(goal.progress / goal.goal) * 100 | number:'1.0-0'}}%
+              </ion-text>
             </ion-col>
           </ion-row>
         </ion-col>

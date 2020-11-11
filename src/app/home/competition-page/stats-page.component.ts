@@ -24,6 +24,7 @@ export class StatsPageComponent implements OnInit {
   history = [];
   personCircle: Chart;
   influencerCircle: Chart;
+  influencerData;
   constructor(public globalService: GlobalService, public router: Router, public http: HttpService, public toast: ToastController, public modal: ModalController,
     public loadingService: LoadingService) {
     this.globalService.getObservable().subscribe(async (data) => {
@@ -81,8 +82,25 @@ export class StatsPageComponent implements OnInit {
       labels.push(this.friendData[i].name);
       backgroundColors.push('#9bbeff');
     }
-    await this.loadInfChart();
-    await this.loadPersonChart();
+
+    response = await this.http.get("/api/Fitbit/InfluencerCompetition", {});
+    if (response.status == 200) {
+      console.log(response.body);
+      this.influencerData = response.body;
+      if (!this.infCanvas || !this.perCanvas) {
+        // This gives the app enough time to show the canvas in html then set the data
+        setTimeout(async () => {
+          await this.loadInfChart();
+          await this.loadPersonChart();
+        }, 250);
+      } else {
+        // canvas shown in time; proceed
+        await this.loadInfChart();
+        await this.loadPersonChart();
+      }
+      
+    }
+    
     this.chartLoaded = true;
 
     this.loading = false
@@ -95,10 +113,10 @@ export class StatsPageComponent implements OnInit {
         labels: [],
         datasets: [
           {
-            data: [25],
+            data: [this.influencerData[1].overallCompletion, 100 - this.influencerData[1].overallCompletion],
             borderAlign: 'inner',
             backgroundColor: [
-              '#4cbf9f'
+              '#4cbf9f', '#FFFFFF'
             ]
           }
         ]
@@ -134,10 +152,10 @@ export class StatsPageComponent implements OnInit {
         labels: [],
         datasets: [
           {
-            data: [25],
+            data: [this.influencerData[0].overallCompletion, 100 - this.influencerData[0].overallCompletion],
             borderAlign: 'inner',
             backgroundColor: [
-              '#4cbf9f'
+              '#4cbf9f', '#FFFFFF'
             ]
           }
         ]
