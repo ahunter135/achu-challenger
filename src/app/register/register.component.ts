@@ -42,24 +42,24 @@ export class RegisterComponent implements OnInit {
         let response = await this.http.get("/auth/Auth/DoesUserExist", {
           email: this.email
         });
-
-        if (!response.userExists) {
+console.log(response);
+        if (!response.body.userExists) {
           this.router.navigate(["register-two"], { state: { email: this.email, password: this.password } });
         } else {
-          this.show("User Exists. Attempting Login");
-          response = await this.http.post("/auth/Auth/Login", {
-            email: this.email,
-            password: this.password
-          });
-          if (response.status != 401) {
-            let loginResponse = { key: "loggedIn", value: JSON.stringify(response) };
-            await this.storage.setItem(loginResponse);
-            this.router.navigateByUrl("/home", {
-              replaceUrl: true
-            });
-          } else {
-            this.show("Login Failed");
-          }
+          this.show("Email exits, please login or reset password.");
+          // response = await this.http.post("/auth/Auth/Login", {
+          //   email: this.email,
+          //   password: this.password
+          // });
+          // if (response.status != 401) {
+          //   let loginResponse = { key: "loggedIn", value: JSON.stringify(response) };
+          //   await this.storage.setItem(loginResponse);
+          //   this.router.navigateByUrl("/home", {
+          //     replaceUrl: true
+          //   });
+          // } else {
+          //   this.show("Email exists, please reset your password.");
+          // }
         }
       } else {
         this.show("Invalid Email");

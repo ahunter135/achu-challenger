@@ -39,12 +39,13 @@ export class RegisterTwoComponent implements OnInit {
     this.presentLoading();
     let response = await this.http.post("/auth/Register", this.obj);
 
-    if (response.status == undefined) {
-      let loginResponse = { key: "loggedIn", value: JSON.stringify(response) };
+    if (response.status == 200) {
+      let loginResponse = { key: "loggedIn", value: JSON.stringify(response.body) };
       await this.storage.setItem(loginResponse);
-      await this.http.setUserCreds(response);
-      this.loadingService.dismissLoading();
-      this.router.navigateByUrl("/home", {
+      
+      await this.http.setUserCreds(response.body);
+     await this.loadingService.dismissLoading();
+      await this.router.navigateByUrl("/home", {
         replaceUrl: true
       });
     }

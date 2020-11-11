@@ -118,9 +118,10 @@ export class HomePage {
       this.http.logout();
       return;
     }
-    if (response.length == 0) return;
+    if (response.body.length === 0) return;
 
     response = response.body;
+    
     var data = [];
     var labels = [];
     this.lastWorkout = moment(response[0].date).format("DD MMMM YYYY");
@@ -188,14 +189,18 @@ export class HomePage {
   }
 
   async getUserSettings() {
+    console.log("HERE");
     let response = await this.http.get('/api/Account/GetUserSettings', {});
+    console.log(response);
     if (response.status != 200) {
       console.log(response);
       this.http.logout();
       return;
     }
-    response = response.body;
-    this.http.userSettings = response;
+ 
+  
+     this.http.userSettings = response.body;
+     console.log(this.http.userSettings);
     if (!this.http.userSettings.lastDailyCheckin) {
       this.needsCheckin = true;
     } else {
