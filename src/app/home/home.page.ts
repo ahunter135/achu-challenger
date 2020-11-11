@@ -135,7 +135,44 @@ export class HomePage {
     this.HRZones = data;
     this.HRZones = this.HRZones.reverse();
     if (this.chartLoaded) return;
-    
+    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+      type: "doughnut",
+      data: {
+        labels: [],
+        datasets: [
+          {
+            data: data,
+            borderAlign: 'inner',
+            backgroundColor: [
+              '#7d99cc', '#83d1de', '#76c7ae'
+            ]
+          }
+        ]
+      },
+      options: {
+        cutoutPercentage: 75,
+        scales: {
+          yAxes: [{
+            gridLines: {
+              display: false
+            },
+            display: false
+          }],
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }]
+        },
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        }
+      }
+    });
+
     this.chartLoaded = true;
   }
 

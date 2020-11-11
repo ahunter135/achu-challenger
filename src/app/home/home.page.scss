@@ -221,3 +221,52 @@ ion-refresher {
 .ion-color-privacybg {
    --ion-color-base: var(--ion-color-privacybg);
 }
+
+
+/* Portrait */
+@media only screen and (min-width: 320px) {
+    .circle-container {
+      position: absolute;
+      z-index: 99;
+      top: 10%;
+      left: 41%;
+    }
+
+    .text-container {
+      position: absolute;
+      z-index: 99;
+      top: 15%;
+      left: 38%;
+    }
+}
+
+@media only screen and (min-width: 360px) {
+  .circle-container {
+    position: absolute;
+    z-index: 99;
+    top: 14%;
+    left: 43%;
+  }
+
+  .text-container {
+    position: absolute;
+    z-index: 99;
+    top: 19%;
+    left: 40%;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .circle-container {
+    position: absolute;
+    z-index: 99;
+    top: 12%;
+    left: 46%;
+  }
+
+  .text-container {
+    position: absolute;
+    z-index: 99;
+    top: 18%;
+    left: 45%;
+  }
+}
