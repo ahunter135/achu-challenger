@@ -434,7 +434,7 @@
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-btn">
   <img src="../../assets/images/Dailycheckin_1.png" style="width:75px;" *ngIf="needsCheckin"
     (click)="openDailyCheckup()" />
-  <img src="../../assets/images/Dailycheckin_2.png" style="width:55px;" *ngIf="!needsCheckin" />
+  <img src="../../assets/images/Dailycheckin_2.png" style="width:55px;" *ngIf="!needsCheckin" (click)="openDailyCheckup()"/>
 </ion-fab>
 
 <!--Start Nav Bar-->
