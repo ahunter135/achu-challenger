@@ -330,19 +330,12 @@ export class HttpService {
     } else if (response.status == 401) {
       response = await this.refreshTokens();
 
-      if (response.status == 200) {
-        response = await this.http.get("/api/Account/UserDefaults", {});
-
-        if (response.status != 200) {
-          // logout
-          await this.logout();
-        } else {
-          //set data
-          this.userDefaults = response.body;
-        }
-      } else {
-        // log out
+      if (response.status != 200) {
+        // logout
         await this.logout();
+      } else {
+        //set data
+        this.userDefaults = response.body;
       }
     } else {
       await this.logout();
@@ -371,24 +364,12 @@ export class HttpService {
     } else if (response.status == 401) {
       response = await this.refreshTokens();
 
-      if (response.status == 200) {
-        response = await this.get("/sickscan/Data", {
-          dateOffset: day.getTime(),
-          minLon: minLon,
-          maxLon: maxLon,
-          minLat: minLat,
-          maxLat: maxLat
-        });
-        if (response.status != 200) {
-          // logout
-          await this.logout();
-        } else {
-          //set data
-          return response.body;
-        }
-      } else {
-        // log out
+      if (response.status != 200) {
+        // logout
         await this.logout();
+      } else {
+        //set data
+        return response.body;
       }
     } else {
       await this.logout();
@@ -406,23 +387,14 @@ export class HttpService {
     } else if (response.status == 401) {
       response = await this.refreshTokens();
 
-      if (response.status == 200) {
-        response = await this.get("/api/Sickness/Details", {
-          id: report.id,
-          tenantId: this.tenantId
-        });
-
-        if (response.status != 200) {
-          // logout
-          await this.logout();
-        } else {
-          //set data
-          return response.body;
-        }
-      } else {
-        // log out
+      if (response.status != 200) {
+        // logout
         await this.logout();
+      } else {
+        //set data
+        return response.body;
       }
+      
     } else {
       await this.logout();
     }
@@ -436,16 +408,9 @@ export class HttpService {
       stress: stress
     });
 
-    if (!response) {
+    if (response.status != 200) {
       response = await this.refreshTokens();
       if (response.status == 200) {
-        response = await this.post("/api/DailyRating", {
-          timeStamp: new Date().toISOString(),
-          anxiety: anxiety,
-          fatigue: fatigue,
-          stress: stress
-        });
-
         return response.body;
       } else {
         await this.logout();

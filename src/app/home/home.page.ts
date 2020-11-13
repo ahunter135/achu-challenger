@@ -125,7 +125,7 @@ export class HomePage {
     var data = [];
     var labels = [];
     this.lastWorkout = moment(response[0].date).format("DD MMMM YYYY");
-
+    this.totalWorkout = 0;
     for (let i = 1; i < response.length; i++) {
       response[i].progress = <any>response[i].minutes / 100;
       data.push(response[i].minutes);
