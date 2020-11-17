@@ -50,6 +50,7 @@ export class HomePage {
   needsFitbitAuth = false;
   totalWorkout = 0;
   goals;
+  completedDayBefore = 0;
   gifImg = "../../assets/images/standing.gif";
   constructor(public globalService: GlobalService, public storage: StorageService, public router: Router, public http: HttpService, public modalController: ModalController,
     public loadingService: LoadingService) { }
@@ -80,7 +81,7 @@ export class HomePage {
       return;
     }
     response = response.body;
-    console.log(response);
+
     this.overallCompletion = response.overallCompletion;
     this.overallCompletionBar = response.overallCompletion / 100;
     this.http.user.overallCompletion = this.overallCompletion;
@@ -114,7 +115,6 @@ export class HomePage {
   async getHRZones() {
     let response = await this.http.get('/api/fitbit/HRZ', {});
     if (response.status != 200) {
-      console.log(response);
       this.http.logout();
       return;
     }
@@ -180,7 +180,6 @@ export class HomePage {
   async getFitbitScores() {
     let response = await this.http.get('/api/scores/fitbit', {});
     if (response.status != 200) {
-      console.log(response);
       this.http.logout();
       return;
     }
@@ -189,18 +188,14 @@ export class HomePage {
   }
 
   async getUserSettings() {
-    console.log("HERE");
     let response = await this.http.get('/api/Account/GetUserSettings', {});
-    console.log(response);
     if (response.status != 200) {
-      console.log(response);
       this.http.logout();
       return;
     }
  
   
      this.http.userSettings = response.body;
-     console.log(this.http.userSettings);
     if (!this.http.userSettings.lastDailyCheckin) {
       this.needsCheckin = true;
     } else {
@@ -251,18 +246,38 @@ export class HomePage {
     this.loadingService.presentLoading();
   }
 
-  setupGifs() {
+  async setupGifs() {
     if (!this.goals) return;
     let numCompleted = 0;
     for (let i = 0; i < this.goals.length; i++) {
       if (this.goals[i].completed) numCompleted++;
     }
 
+    let response = await this.http.get("/api/Fitbit/GoalsCompleted", {});
+    this.completedDayBefore = <number>response.body;
+    
+
     if (numCompleted == 0) {
-      this.gifImg = "../../assets/images/standing.gif";
+      /**
+       * No goals completed today, check yesterday
+       * if 0, sad muscles
+       * if > 0 < 4 stand normally
+       * if 4 hands swinging
+       */
+      if (this.completedDayBefore == 0)
+        this.gifImg = "../../assets/images/sad-muscles.gif";
+      else if (this.completedDayBefore > 0 && this.completedDayBefore < 4)
+        this.gifImg = "../../assets/images/standing.gif"
+      else this.gifImg = "../../assets/images/standing-swinging.gif"
     } else if (numCompleted > 0 && numCompleted < 4) {
+      /**
+       * Some goals today have been completed, but not all
+       */
       this.gifImg = "../../assets/images/muscle.gif"
     } else if (numCompleted == 4) {
+      /**
+       * All goals completed today
+       */
       this.gifImg = "../../assets/images/cape.gif"
     }
   }
