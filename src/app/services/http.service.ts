@@ -26,11 +26,10 @@ export class HttpService {
     let url = this.base + endpoint;
     let headers = {};
     let access = await this.getAccessToken();
-
-    if (access == null)
+    if (!access)
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json" };
     else
-      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId };
+      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + access, "TenantId": this.tenantId };
     let config = <any>{
       url: url,
       method: "POST",
@@ -40,11 +39,13 @@ export class HttpService {
     try {
       let response = await <any>this.http.post(url, data, config).toPromise();
       if (response.status == 200) {
-        this.callCount = 0;
         return response;
-      } else if (response.status == 401 && this.callCount < 1) {
-        this.callCount++;
-        response = await this.refreshTokens();
+      } else {
+        this.logout();
+      }
+    } catch (e) {
+      if (e.status == 401) {
+        let response = await this.refreshTokens();
 
         if (response.status == 200) {
           response = await this.post(endpoint, data);
@@ -53,18 +54,13 @@ export class HttpService {
             // logout
             await this.logout();
           } else {
-            this.callCount = 0;
             return response;
           }
         } else {
           // log out
           await this.logout();
         }
-      } else {
-        this.logout();
       }
-    } catch (e) {
-      return e;
     }
   }
 
@@ -72,10 +68,10 @@ export class HttpService {
     let url = this.base + endpoint;
     let headers = {};
     let access = await this.getAccessToken();
-    if (access == null)
+    if (!access)
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json" };
     else
-      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId };
+      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + access, "TenantId": this.tenantId };
     let config = {
       url: url,
       method: "PUT",
@@ -84,10 +80,8 @@ export class HttpService {
     try {
       let response = await <any>this.http.put(url, data, config).toPromise();
       if (response.status == 200) {
-        this.callCount = 0;
         return response;
-      } else if (response.status == 401 && this.callCount < 1) {
-        this.callCount++;
+      } else if (response.status == 401) {
         response = await this.refreshTokens();
 
         if (response.status == 200) {
@@ -97,7 +91,6 @@ export class HttpService {
             // logout
             await this.logout();
           } else {
-            this.callCount = 0;
             return response;
           }
         } else {
@@ -117,10 +110,11 @@ export class HttpService {
     let headers = {};
     let dateOffset = new Date().getTimezoneOffset() * (-60);
     let d = dateOffset.toString();
-    if (this.accessToken == null)
+    let access = await this.getAccessToken();
+    if (!access)
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "DateOffset": d };
     else
-      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId, "DateOffset": d };
+      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + access, "TenantId": this.tenantId, "DateOffset": d };
 
     try {
       let response = await <any>this.http.get(url, {
@@ -129,11 +123,13 @@ export class HttpService {
         observe: 'response'
       }).toPromise();
       if (response.status == 200) {
-        this.callCount = 0;
         return response;
-      } else if (response.status == 401 && this.callCount < 1) {
-        this.callCount++;
-        response = await this.refreshTokens();
+      } else {
+        this.logout();
+      }
+    } catch (e) {
+      if (e.status == 401) {
+        let response = await this.refreshTokens();
 
         if (response.status == 200) {
           response = await this.get(endpoint, data);
@@ -142,18 +138,13 @@ export class HttpService {
             // logout
             await this.logout();
           } else {
-            this.callCount = 0;
             return response;
           }
         } else {
           // log out
           await this.logout();
         }
-      } else {
-        this.logout();
       }
-    } catch (e) {
-      return e;
     }
   }
 
@@ -161,10 +152,10 @@ export class HttpService {
     let url = this.base + endpoint;
     let headers = {};
     let access = await this.getAccessToken();
-    if (access == null)
+    if (!access)
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json" };
     else
-      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId };
+      headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + access, "TenantId": this.tenantId };
 
     try {
       let response = await <any>this.http.delete(url, {
@@ -172,9 +163,12 @@ export class HttpService {
       }).toPromise();
       if (response.status == 200) {
         return response;
-      } else if (response.status == 401 && this.callCount < 1) {
-        this.callCount++;
-        response = await this.refreshTokens();
+      } else {
+        this.logout();
+      }
+    } catch (e) {
+      if (e.status == 401) {
+        let response = await this.refreshTokens();
 
         if (response.status == 200) {
           response = await this.delete(endpoint);
@@ -183,18 +177,13 @@ export class HttpService {
             // logout
             await this.logout();
           } else {
-            this.callCount = 0;
             return response;
           }
         } else {
           // log out
           await this.logout();
         }
-      } else {
-        this.logout();
       }
-    } catch (e) {
-      return e;
     }
   }
 
@@ -222,7 +211,8 @@ export class HttpService {
 
   async refreshTokens() {
     let headers = {};
-    if (this.accessToken == null)
+    let accessToken = await this.getAccessToken();
+    if (!accessToken)
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json" };
     else
       headers = { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT', "Accept": "application/json", "Authorization": "Bearer " + this.accessToken, "TenantId": this.tenantId };
@@ -233,7 +223,6 @@ export class HttpService {
       observe: 'response'
     }
     let token = await this.getRefreshToken();
-    let accessToken = await this.getAccessToken();
 
     try {
       let response = <any>await this.http.post(this.base + "/auth/Auth/Tokens", {
@@ -245,7 +234,8 @@ export class HttpService {
 
       await this.setAccessToken(response.body.accessToken);
       await this.setRefreshToken(response.body.refreshToken);
-      
+      let loginResponse = { key: "loggedIn", value: JSON.stringify(response.body) };
+      await this.storage.setItem(loginResponse);
       return response;
     } catch (error) {
       return error
@@ -353,7 +343,6 @@ export class HttpService {
   }
 
   async logout() {
-    this.callCount = 0;
     await this.loadingService.dismissLoading();
     await this.storage.clearStorage();
     await this.resetData();
