@@ -77,7 +77,8 @@ export class MyStatsComponent implements OnInit {
           barThickness: 15,
           pointRadius: 0,
           fill: false,
-          borderJoinStyle: 'miter'
+          borderJoinStyle: 'miter',
+          lineTension: 0
         }, {
           data: lastData,
           backgroundColor: 'rgba(0, 0, 0, 0.1)', // array should have same number of elements as number of dataset
@@ -86,7 +87,8 @@ export class MyStatsComponent implements OnInit {
           barThickness: 15,
           pointRadius: 0,
           fill: false,
-          borderJoinStyle: 'miter'
+          borderJoinStyle: 'miter',
+          lineTension: 0
         }]
       },
       options: {
