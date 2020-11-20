@@ -275,24 +275,8 @@ export class HttpService {
     if (response.status == 200) {
       this.user = response.body;
     } else {
-      response = await this.refreshTokens();
-
-      if (response.status == 200) {
-        response = await this.get("/api/Account/GetUserInfo", { tenantId: this.tenantId });
-
-        if (response.status != 200) {
-          // logout
-          await this.logout();
-        } else {
-          //set data
-          this.user = response.body;
-        }
-      } else {
-        // logout
-        await this.logout();
-      }
+      await this.logout();
     }
-
   }
 
   async loadSicknessData() {
@@ -300,23 +284,6 @@ export class HttpService {
 
     if (response.status == 200) {
       this.userSicknessData = response.body;
-    } else if (response.status == 401) {
-      response = await this.refreshTokens();
-
-      if (response.status == 200) {
-        response = await this.http.get("/api/Sickness", {});
-
-        if (response.status != 200) {
-          // logout
-          await this.logout();
-        } else {
-          //set data
-          this.userSicknessData = response.body;
-        }
-      } else {
-        // log out
-        await this.logout();
-      }
     } else {
       await this.logout();
     }
@@ -327,16 +294,6 @@ export class HttpService {
 
     if (response.status == 200) {
       this.userDefaults = response.body;
-    } else if (response.status == 401) {
-      response = await this.refreshTokens();
-
-      if (response.status != 200) {
-        // logout
-        await this.logout();
-      } else {
-        //set data
-        this.userDefaults = response.body;
-      }
     } else {
       await this.logout();
     }
@@ -361,16 +318,6 @@ export class HttpService {
 
     if (response.status == 200) {
       return response.body;
-    } else if (response.status == 401) {
-      response = await this.refreshTokens();
-
-      if (response.status != 200) {
-        // logout
-        await this.logout();
-      } else {
-        //set data
-        return response.body;
-      }
     } else {
       await this.logout();
     }
@@ -384,17 +331,6 @@ export class HttpService {
 
     if (response.status == 200) {
       return response.body;
-    } else if (response.status == 401) {
-      response = await this.refreshTokens();
-
-      if (response.status != 200) {
-        // logout
-        await this.logout();
-      } else {
-        //set data
-        return response.body;
-      }
-      
     } else {
       await this.logout();
     }
@@ -408,15 +344,12 @@ export class HttpService {
       stress: stress
     });
 
-    if (response.status != 200) {
-      response = await this.refreshTokens();
-      if (response.status == 200) {
-        return response.body;
-      } else {
-        await this.logout();
-      }
-    } else
+    if (response.status == 200) {
       return response.body;
+    } else {
+      await this.logout();
+    }
+
   }
 
   async logout() {
