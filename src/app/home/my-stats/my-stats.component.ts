@@ -78,7 +78,8 @@ export class MyStatsComponent implements OnInit {
           pointRadius: 0,
           fill: false,
           borderJoinStyle: 'miter',
-          lineTension: 0
+          lineTension: 0,
+          label: 'This Week'
         }, {
           data: lastData,
           backgroundColor: 'rgba(0, 0, 0, 0.1)', // array should have same number of elements as number of dataset
@@ -88,7 +89,8 @@ export class MyStatsComponent implements OnInit {
           pointRadius: 0,
           fill: false,
           borderJoinStyle: 'miter',
-          lineTension: 0
+          lineTension: 0,
+          label: 'Last Week'
         }]
       },
       options: {
@@ -128,7 +130,7 @@ export class MyStatsComponent implements OnInit {
           }]
         },
         legend: {
-          display: false
+          display: true
         },
         tooltips: {
           enabled: false
