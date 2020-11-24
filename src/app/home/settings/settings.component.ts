@@ -6,6 +6,7 @@ import { OptinComponent } from 'src/app/modals/optin/optin.component';
 import { UpdateCharacterComponent } from 'src/app/modals/update-character/update-character.component';
 import { PrivacyComponent } from 'src/app/modals/privacy/privacy.component';
 import { TermsComponent } from 'src/app/modals/terms/terms.component';
+import { PostLoginComponent } from 'src/app/modals/post-login/post-login.component';
 
 @Component({
   selector: 'app-settings',
@@ -14,7 +15,8 @@ import { TermsComponent } from 'src/app/modals/terms/terms.component';
 })
 export class SettingsComponent implements OnInit {
   version;
-  constructor(public http: HttpService, public appVersion: AppVersion, public toast: ToastController, public modal: ModalController) { }
+  constructor(public http: HttpService, public appVersion: AppVersion, 
+    public modalCtrl: ModalController, public toast: ToastController, public modal: ModalController) { }
 
   async ngOnInit() {
     this.version = await this.appVersion.getVersionNumber();
@@ -51,6 +53,13 @@ export class SettingsComponent implements OnInit {
       cssClass: 'my-custom-modal-css'
     });
     return await modal.present();
+  }
+
+  async showOnboarding() {
+    const modal = await this.modalCtrl.create({
+      component: PostLoginComponent
+    });
+    await modal.present();
   }
 
 
