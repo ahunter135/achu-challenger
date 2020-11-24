@@ -5,6 +5,7 @@ import { NavController } from '@ionic/angular';
 import { HttpService } from 'src/app/services/http.service';
 import { ModalController, } from '@ionic/angular';
 import { RegisterComponent } from '../register/register.component';
+import { PostLoginComponent } from '../modals/post-login/post-login.component';
 
 @Component({
   selector: 'app-login',
@@ -28,17 +29,19 @@ export class LoginPage implements OnInit {
     });
 
     if (response.status == 200) {
-      //  if (response.tenantId == "6a75bd8d-248e-41aa-9939-91632c52c5d6") {
       let loginResponse = { key: "loggedIn", value: JSON.stringify(response.body) };
       await this.storage.setItem(loginResponse);
       await this.http.setUserCreds(response.body);
       this.loggingIn = false;
-      this.router.navigateByUrl("/home", {
-        replaceUrl: true
+      const modal = await this.modalCtrl.create({
+        component: PostLoginComponent
       });
-      //} else {
-      //  alert("Unauthorized");
-      // }
+      await modal.present();
+      await modal.onWillDismiss().then(data => {
+        this.router.navigateByUrl("/home", {
+          replaceUrl: true
+        });
+      });
     } else {
       if (response.status == 401) alert("Invalid Email or Password");
       else alert("Please enter an Email and Password.");
