@@ -357,8 +357,8 @@
         <ion-icon slot="icon-only" name="information-circle" style="color: #cfcfcf;font-size:20px;"></ion-icon>
       </ion-button>
       <ion-card-header>
-        
-        <ion-card-subtitle class="title">Stress</ion-card-subtitle>
+
+        <ion-card-subtitle class="title" (click)="openStressFatigue()">Stress</ion-card-subtitle>
         <ion-card-subtitle class="content">Your stress indicator is a
           combination of your
           recent trend in health data and daily check ins.
@@ -395,7 +395,7 @@
         <ion-icon slot="icon-only" name="information-circle" style="color: #cfcfcf;font-size:20px;"></ion-icon>
       </ion-button>
       <ion-card-header>
-        <ion-card-subtitle class="title">Fatigue</ion-card-subtitle>
+        <ion-card-subtitle class="title" (click)="openStressFatigue()">Fatigue</ion-card-subtitle>
         <ion-card-subtitle class="content">Your fatigue indicator is a combination of
           your recent trend in health data and daily check ins.
         </ion-card-subtitle>
@@ -441,7 +441,8 @@
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-btn">
   <img src="../../assets/images/Dailycheckin_1.png" style="width:75px;" *ngIf="needsCheckin"
     (click)="openDailyCheckup()" />
-  <img src="../../assets/images/Dailycheckin_2.png" style="width:55px;" *ngIf="!needsCheckin" (click)="openDailyCheckup()"/>
+  <img src="../../assets/images/Dailycheckin_2.png" style="width:55px;" *ngIf="!needsCheckin"
+    (click)="openDailyCheckup()" />
 </ion-fab>
 
 <!--Start Nav Bar-->

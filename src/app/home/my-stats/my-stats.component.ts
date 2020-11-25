@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Chart } from 'chart.js';
 import { GlobalService } from 'src/app/services/global.service';
 import { HttpService } from 'src/app/services/http.service';
 import { LoadingService } from 'src/app/services/loading.service';
-
+import { MyStatsModalComponent } from 'src/app/modals/my-stats/my-stats.component';
 
 @Component({
   selector: 'app-my-stats',
@@ -17,7 +17,7 @@ export class MyStatsComponent implements OnInit {
   barChart: Chart;
   chartLoaded = false;
   loading;
-  constructor(public navCtrl: NavController, public globalService: GlobalService, public http: HttpService, public loadingService: LoadingService) {
+  constructor(public navCtrl: NavController, public globalService: GlobalService, public http: HttpService, public loadingService: LoadingService, public modalCtrl: ModalController) {
     this.globalService.getObservable().subscribe(async (data) => {
       if (data === 'stats') {
         this.ionViewDidEnter();
@@ -147,5 +147,13 @@ export class MyStatsComponent implements OnInit {
 
   async presentLoading() {
     this.loadingService.presentLoading();
+  }
+
+  async openMyStats() {
+    let modal = await this.modalCtrl.create({
+      component: MyStatsModalComponent,
+      cssClass: 'my-custom-modal-css'
+    });
+    return await modal.present();
   }
 }

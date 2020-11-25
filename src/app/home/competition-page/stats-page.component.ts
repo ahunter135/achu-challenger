@@ -6,6 +6,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { ToastController, ModalController } from '@ionic/angular';
 import { OptinComponent } from 'src/app/modals/optin/optin.component';
 import { LoadingService } from 'src/app/services/loading.service';
+import { CompetitionComponent } from 'src/app/modals/competition/competition.component';
 
 @Component({
   selector: 'app-stats-page',
@@ -195,6 +196,14 @@ export class StatsPageComponent implements OnInit {
 
   goToMyStats() {
     this.router.navigateByUrl("home/my-stats");
+  }
+
+  async openCompetition() {
+    let modal = await this.modal.create({
+      component: CompetitionComponent,
+      cssClass: 'my-custom-modal-css'
+    });
+    return await modal.present();
   }
 
   async optIn() {

@@ -13,6 +13,8 @@ import { TimePipe } from '../pipes/time.pipe';
 import { GoaltypePipe } from '../pipes/goaltype.pipe';
 import { SettingsComponent } from './settings/settings.component';
 import { ModalsModule } from '../modals/modals.module';
+import { PostLoginComponent } from '../modals/post-login/post-login.component';
+import { StressFatigueComponent } from '../modals/stress-fatigue/stress-fatigue.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,7 @@ import { ModalsModule } from '../modals/modals.module';
     HomePageRoutingModule,
     ModalsModule
   ],
-  declarations: [HomePage, HeaderCardComponent, StatsPageComponent, ExpandableComponent, MyStatsComponent, TimePipe, GoaltypePipe, SettingsComponent,],
+  declarations: [HomePage, HeaderCardComponent, StatsPageComponent, ExpandableComponent, MyStatsComponent, TimePipe, GoaltypePipe, SettingsComponent, PostLoginComponent, StressFatigueComponent],
   entryComponents: [HeaderCardComponent, StatsPageComponent, ExpandableComponent, MyStatsComponent, SettingsComponent]
 })
 export class HomePageModule { }

@@ -6,13 +6,13 @@ import { ToastController, ModalController } from '@ionic/angular';
   templateUrl: './my-stats.component.html',
   styleUrls: ['./my-stats.component.scss'],
 })
-export class MyStatsComponent {
+export class MyStatsModalComponent {
 
 
  constructor(public toast: ToastController, public modal: ModalController) { }
 
  dismiss() {
   this.modal.dismiss();
-}
+  }
 
 }
