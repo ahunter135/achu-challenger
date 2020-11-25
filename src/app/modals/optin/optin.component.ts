@@ -8,7 +8,7 @@ import { ToastController, ModalController } from '@ionic/angular';
   styleUrls: ['./optin.component.scss'],
 })
 export class OptinComponent {
-
+ 
   constructor(public http: HttpService, public toast: ToastController, public modal: ModalController) { }
 
 

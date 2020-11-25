@@ -1,0 +1,36 @@
+<ion-toolbar mode="md">
+  <ion-title slot="start" style="font-size: 25px">Health Updates</ion-title>
+  <ion-buttons slot="end">
+    <ion-button fill="clear" color="primary" (click)="dismiss()">Close</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content>
+  <ion-card >
+    <ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-card-subtitle class="title">Stress & Fatigue</ion-card-subtitle>
+            <p>Achu's™ algorithm identifies trends in your health data to give you real-time alerts on your overall health. The more you check-in, the more Achu™ optimizes its forecasting ability.</p>
+            
+    </ion-col>
+        </ion-row>
+        
+
+      </ion-grid>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>
+<ion-footer class="ion-no-border" style="height: 125px;">
+
+  <ion-toolbar id="footerBar">
+
+    <ion-button  color="privacy" expand="block" (click)="dismiss()" mode="ios"
+      >
+      Close
+    </ion-button>
+ 
+  </ion-toolbar>
+
+</ion-footer>
