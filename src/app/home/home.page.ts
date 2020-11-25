@@ -7,6 +7,7 @@ import { HttpService } from '../services/http.service';
 import { ModalController } from '@ionic/angular';
 import { DailyCheckupComponent } from '../modals/daily-checkup/daily-checkup.component';
 import { HrzInfoComponent } from '../modals/hrz-info/hrz-info.component';
+import { StressFatigueComponent } from '../modals/stress-fatigue/stress-fatigue.component';
 import * as moment from 'moment';
 import { LoadingService } from '../services/loading.service';
 
@@ -222,6 +223,14 @@ export class HomePage {
   async openHrzInfo() {
     let modal = await this.modalController.create({
       component: HrzInfoComponent,
+      cssClass: 'my-custom-modal-css'
+    });
+    return await modal.present();
+  }
+
+  async openStressFatigue() {
+    let modal = await this.modalController.create({
+      component: StressFatigueComponent,
       cssClass: 'my-custom-modal-css'
     });
     return await modal.present();

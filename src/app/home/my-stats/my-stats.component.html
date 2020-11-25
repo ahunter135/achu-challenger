@@ -1,10 +1,16 @@
 <ion-card
   style="width: 100%; padding: 0; margin: 0;border-top-left-radius: 0px;border-top-right-radius: 0px;box-shadow:none;"
   class="my-stats-card">
+  
   <ion-card-header>
+    <ion-button fill="clear" style="float: right;" (click)="openMyStats()">
+      <ion-icon slot="icon-only" name="information-circle" style="color: #cfcfcf;font-size:20px;"></ion-icon>
+    </ion-button>
     <h1 class="title-nb" style="margin-bottom: 0px;">My Stats</h1>
     <h1 class="title" style="margin-top:0px;">Overall Progression</h1>
   </ion-card-header>
+
+  
   <ion-card-content *ngIf="loading">
     <ion-spinner style="display: block; margin: auto;"></ion-spinner>
   </ion-card-content>

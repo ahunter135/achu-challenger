@@ -204,12 +204,12 @@
       </ion-button>
       <ion-card-header>
         <ion-card-subtitle class="title" (click)="openHrzInfo()">Workout HR Zones</ion-card-subtitle>
-        <ion-card-subtitle class="content">Your HR Trend shows a moderate
+        <!-- <ion-card-subtitle class="content">Your HR Trend shows a moderate
           similarity in
           your fatigue trends
           from
           your last 4 days
-        </ion-card-subtitle>
+        </ion-card-subtitle> -->
       </ion-card-header>
       <ion-card-content>
         <div class="circle-container">
@@ -353,7 +353,11 @@
     </ion-item>
 
     <ion-card style="margin-top:0px;">
+      <ion-button fill="clear" style="float: right;" (click)="openStressFatigue()">
+        <ion-icon slot="icon-only" name="information-circle" style="color: #cfcfcf;font-size:20px;"></ion-icon>
+      </ion-button>
       <ion-card-header>
+        
         <ion-card-subtitle class="title">Stress</ion-card-subtitle>
         <ion-card-subtitle class="content">Your stress indicator is a
           combination of your
@@ -387,6 +391,9 @@
     </ion-card>
 
     <ion-card>
+      <ion-button fill="clear" style="float: right;" (click)="openStressFatigue()">
+        <ion-icon slot="icon-only" name="information-circle" style="color: #cfcfcf;font-size:20px;"></ion-icon>
+      </ion-button>
       <ion-card-header>
         <ion-card-subtitle class="title">Fatigue</ion-card-subtitle>
         <ion-card-subtitle class="content">Your fatigue indicator is a combination of
