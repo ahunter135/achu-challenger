@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ToastController, ModalController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-my-stats',
+  selector: 'app-my-stats-modal',
   templateUrl: './my-stats.component.html',
   styleUrls: ['./my-stats.component.scss'],
 })

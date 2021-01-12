@@ -7,10 +7,16 @@
 			"path": "../fitbit/random"
 		},
 		{
-			"path": "../achu-apps/consumer-app"
+			"path": "../firebase"
 		},
 		{
 			"path": "../fitbit-production-watchfaces/challenger"
+		},
+		{
+			"path": "../fitbit-production-watchfaces/challenger2"
+		},
+		{
+			"path": "../achu-apps/atwork"
 		}
 	],
 	"settings": {

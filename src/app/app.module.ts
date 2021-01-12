@@ -13,9 +13,10 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Deeplinks } from '@ionic-native/deeplinks/ngx';
+import { PostLoginComponent } from './modals/post-login/post-login.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PostLoginComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot({
     mode: 'ios'

@@ -10,7 +10,6 @@ import { LoginPage } from './login.page';
 import { RegisterComponent } from '../register/register.component';
 import { RegisterTwoComponent } from '../register-two/register-two.component';
 import { PasswordResetComponent } from '../password-reset/password-reset.component';
-import { PostLoginComponent } from '../modals/post-login/post-login.component';
 
 @NgModule({
   imports: [
@@ -19,7 +18,7 @@ import { PostLoginComponent } from '../modals/post-login/post-login.component';
     IonicModule,
     LoginPageRoutingModule
   ],
-  declarations: [LoginPage, RegisterComponent, RegisterTwoComponent, PasswordResetComponent, PostLoginComponent],
+  declarations: [LoginPage, RegisterComponent, RegisterTwoComponent, PasswordResetComponent],
   entryComponents: [PasswordResetComponent]
 })
 export class LoginPageModule { }

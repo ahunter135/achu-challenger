@@ -7,6 +7,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { Deeplinks } from '@ionic-native/deeplinks/ngx';
 import { HomePage } from './home/home.page';
 import { HttpService } from './services/http.service';
+import { FCM } from 'plugins/cordova-plugin-fcm-with-dependecy-updated/ionic/FCM';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +34,6 @@ export class AppComponent {
       this.statusBar.backgroundColorByHexString('##44c4a1');
       this.splashScreen.hide();
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-
       this.deepLinks.route({
         '/home': HomePage,
       }).subscribe(match => {

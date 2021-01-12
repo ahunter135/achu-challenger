@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "639360211455",
+    "project_id": "fitbitandroid-2c95b",
+    "storage_bucket": "fitbitandroid-2c95b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639360211455:android:4842d77e03b8a071deefca",
+        "android_client_info": {
+          "package_name": "com.datapult.achu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639360211455-gg0sn8lfr8tn8792evcpgqmhe7vrg18m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7S_e9dx0OQ7qEfVlkfE6W79gRbIGy-Lo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639360211455-gg0sn8lfr8tn8792evcpgqmhe7vrg18m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
